@@ -276,7 +276,7 @@ public class JMenuPrincipal extends javax.swing.JFrame {
         txtTotal.setText("Total");
 
         btnPagar.setBackground(new java.awt.Color(226, 183, 252));
-        btnPagar.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        btnPagar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         btnPagar.setText("Pagar");
         btnPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -300,7 +300,7 @@ public class JMenuPrincipal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtCobro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         PanTicketLayout.setVerticalGroup(
@@ -310,16 +310,12 @@ public class JMenuPrincipal extends javax.swing.JFrame {
                 .addComponent(panHeaderCarito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(PanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanTicketLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanTicketLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(PanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTotal)
-                            .addComponent(txtCobro))))
-                .addGap(11, 11, 11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTotal)
+                    .addComponent(txtCobro)
+                    .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13))
         );
 
         javax.swing.GroupLayout panFondoLayout = new javax.swing.GroupLayout(panFondo);
@@ -384,14 +380,14 @@ public class JMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_panBebidasMouseClicked
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        // TODO add your handling code here:
+        JFormaPago jfp = new JFormaPago();
+        jfp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnPagarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanTicket;
     private javax.swing.JButton btnPagar;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;

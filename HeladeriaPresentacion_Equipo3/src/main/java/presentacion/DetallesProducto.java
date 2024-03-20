@@ -4,6 +4,8 @@
  */
 package presentacion;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author natas
@@ -46,12 +48,18 @@ public class DetallesProducto extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         panSeparador2 = new javax.swing.JPanel();
         txtNombreProducto2 = new javax.swing.JLabel();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
+        radTamSabor1 = new javax.swing.JRadioButton();
+        radTamSabor2 = new javax.swing.JRadioButton();
+        radTamSabor3 = new javax.swing.JRadioButton();
+        radTamSabor4 = new javax.swing.JRadioButton();
+        radTamSabor5 = new javax.swing.JRadioButton();
         panSeparador16 = new javax.swing.JPanel();
+        txtNombreProducto3 = new javax.swing.JLabel();
+        radTamToping = new javax.swing.JRadioButton();
+        panSeparador17 = new javax.swing.JPanel();
+        txtCantidad = new javax.swing.JLabel();
+        txfCantidad = new javax.swing.JTextField();
+        btnAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,7 +114,7 @@ public class DetallesProducto extends javax.swing.JFrame {
         radTamGrande.setText("Grande");
 
         btnCancelar.setBackground(new java.awt.Color(226, 183, 252));
-        btnCancelar.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        btnCancelar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,41 +136,78 @@ public class DetallesProducto extends javax.swing.JFrame {
         txtNombreProducto2.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         txtNombreProducto2.setText("Sabores");
 
-        jRadioButton4.setBackground(new java.awt.Color(255, 255, 255));
-        btnGrupSabores.add(jRadioButton4);
-        jRadioButton4.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jRadioButton4.setText("Chico ");
+        radTamSabor1.setBackground(new java.awt.Color(255, 255, 255));
+        btnGrupSabores.add(radTamSabor1);
+        radTamSabor1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        radTamSabor1.setText("Vainilla");
 
-        jRadioButton5.setBackground(new java.awt.Color(255, 255, 255));
-        btnGrupSabores.add(jRadioButton5);
-        jRadioButton5.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jRadioButton5.setText("Chico ");
+        radTamSabor2.setBackground(new java.awt.Color(255, 255, 255));
+        btnGrupSabores.add(radTamSabor2);
+        radTamSabor2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        radTamSabor2.setText("Chocolate");
 
-        jRadioButton6.setBackground(new java.awt.Color(255, 255, 255));
-        btnGrupSabores.add(jRadioButton6);
-        jRadioButton6.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jRadioButton6.setText("Chico ");
+        radTamSabor3.setBackground(new java.awt.Color(255, 255, 255));
+        btnGrupSabores.add(radTamSabor3);
+        radTamSabor3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        radTamSabor3.setText("Fresa");
+        radTamSabor3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radTamSabor3ActionPerformed(evt);
+            }
+        });
 
-        jRadioButton7.setBackground(new java.awt.Color(255, 255, 255));
-        btnGrupSabores.add(jRadioButton7);
-        jRadioButton7.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jRadioButton7.setText("Chico ");
+        radTamSabor4.setBackground(new java.awt.Color(255, 255, 255));
+        btnGrupSabores.add(radTamSabor4);
+        radTamSabor4.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        radTamSabor4.setText("Platano");
 
-        jRadioButton8.setBackground(new java.awt.Color(255, 255, 255));
-        btnGrupSabores.add(jRadioButton8);
-        jRadioButton8.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jRadioButton8.setText("Chico ");
+        radTamSabor5.setBackground(new java.awt.Color(255, 255, 255));
+        btnGrupSabores.add(radTamSabor5);
+        radTamSabor5.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        radTamSabor5.setText("Chicle");
 
         javax.swing.GroupLayout panSeparador16Layout = new javax.swing.GroupLayout(panSeparador16);
         panSeparador16.setLayout(panSeparador16Layout);
         panSeparador16Layout.setHorizontalGroup(
             panSeparador16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 369, Short.MAX_VALUE)
         );
         panSeparador16Layout.setVerticalGroup(
             panSeparador16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 9, Short.MAX_VALUE)
         );
+
+        txtNombreProducto3.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        txtNombreProducto3.setText("Topings");
+
+        radTamToping.setBackground(new java.awt.Color(255, 255, 255));
+        radTamToping.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        radTamToping.setText("Si");
+
+        javax.swing.GroupLayout panSeparador17Layout = new javax.swing.GroupLayout(panSeparador17);
+        panSeparador17.setLayout(panSeparador17Layout);
+        panSeparador17Layout.setHorizontalGroup(
+            panSeparador17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panSeparador17Layout.setVerticalGroup(
+            panSeparador17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 9, Short.MAX_VALUE)
+        );
+
+        txtCantidad.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        txtCantidad.setText("Cantidad");
+
+        txfCantidad.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+
+        btnAceptar.setBackground(new java.awt.Color(226, 183, 252));
+        btnAceptar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panFondoBlancoLayout = new javax.swing.GroupLayout(panFondoBlanco);
         panFondoBlanco.setLayout(panFondoBlancoLayout);
@@ -170,6 +215,23 @@ public class DetallesProducto extends javax.swing.JFrame {
             panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panFondoBlancoLayout.createSequentialGroup()
                 .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panFondoBlancoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panSeparador1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(panFondoBlancoLayout.createSequentialGroup()
+                                .addComponent(panLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panFondoBlancoLayout.createSequentialGroup()
+                                        .addComponent(txtNombreProducto)
+                                        .addGap(0, 17, Short.MAX_VALUE))
+                                    .addGroup(panFondoBlancoLayout.createSequentialGroup()
+                                        .addComponent(txtProducto)
+                                        .addGap(8, 146, Short.MAX_VALUE))))
+                            .addComponent(panSeparador2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panSeparador16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panSeparador17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(panFondoBlancoLayout.createSequentialGroup()
                         .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panFondoBlancoLayout.createSequentialGroup()
@@ -187,30 +249,27 @@ public class DetallesProducto extends javax.swing.JFrame {
                             .addGroup(panFondoBlancoLayout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton5)
-                                    .addComponent(jRadioButton4)
-                                    .addComponent(jRadioButton6)
-                                    .addComponent(jRadioButton7)
-                                    .addComponent(jRadioButton8))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(panFondoBlancoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(panSeparador1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(radTamSabor2)
+                                    .addComponent(radTamSabor1)
+                                    .addComponent(radTamSabor3)
+                                    .addComponent(radTamSabor4)
+                                    .addComponent(radTamSabor5)))
                             .addGroup(panFondoBlancoLayout.createSequentialGroup()
-                                .addComponent(panLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)
+                                .addComponent(radTamToping))
+                            .addGroup(panFondoBlancoLayout.createSequentialGroup()
+                                .addGap(145, 145, 145)
+                                .addComponent(txtNombreProducto3))
+                            .addGroup(panFondoBlancoLayout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCantidad))
                                 .addGap(18, 18, 18)
-                                .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panFondoBlancoLayout.createSequentialGroup()
-                                        .addComponent(txtNombreProducto)
-                                        .addGap(0, 17, Short.MAX_VALUE))
-                                    .addGroup(panFondoBlancoLayout.createSequentialGroup()
-                                        .addComponent(txtProducto)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnCancelar)
-                                        .addGap(8, 8, 8))))
-                            .addComponent(panSeparador2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panSeparador16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panFondoBlancoLayout.setVerticalGroup(
@@ -219,9 +278,7 @@ public class DetallesProducto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panFondoBlancoLayout.createSequentialGroup()
-                        .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtProducto)
-                            .addComponent(btnCancelar))
+                        .addComponent(txtProducto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNombreProducto))
                     .addComponent(panLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -240,18 +297,32 @@ public class DetallesProducto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNombreProducto2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton4)
+                .addComponent(radTamSabor1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton5)
+                .addComponent(radTamSabor2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton6)
+                .addComponent(radTamSabor3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton7)
+                .addComponent(radTamSabor4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton8)
+                .addComponent(radTamSabor5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panSeparador16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNombreProducto3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radTamToping)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panSeparador17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txfCantidad)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout panFondoRosaLayout = new javax.swing.GroupLayout(panFondoRosa);
@@ -291,38 +362,45 @@ public class DetallesProducto extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void radTamSabor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radTamSabor3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radTamSabor3ActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "Se agrego el producto correctamente");
+        
+        JMenuPrincipal jmp = new JMenuPrincipal();
+        jmp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.ButtonGroup btnGrupSabores;
     private javax.swing.ButtonGroup btnGrupTamaño;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JPanel panFondoBlanco;
     private javax.swing.JPanel panFondoRosa;
     private javax.swing.JPanel panLogo;
     private javax.swing.JPanel panSeparador1;
-    private javax.swing.JPanel panSeparador10;
-    private javax.swing.JPanel panSeparador11;
-    private javax.swing.JPanel panSeparador12;
-    private javax.swing.JPanel panSeparador15;
     private javax.swing.JPanel panSeparador16;
+    private javax.swing.JPanel panSeparador17;
     private javax.swing.JPanel panSeparador2;
-    private javax.swing.JPanel panSeparador3;
-    private javax.swing.JPanel panSeparador4;
-    private javax.swing.JPanel panSeparador5;
-    private javax.swing.JPanel panSeparador6;
-    private javax.swing.JPanel panSeparador7;
-    private javax.swing.JPanel panSeparador8;
-    private javax.swing.JPanel panSeparador9;
     private javax.swing.JRadioButton radTamChico;
     private javax.swing.JRadioButton radTamGrande;
     private javax.swing.JRadioButton radTamMediano;
+    private javax.swing.JRadioButton radTamSabor1;
+    private javax.swing.JRadioButton radTamSabor2;
+    private javax.swing.JRadioButton radTamSabor3;
+    private javax.swing.JRadioButton radTamSabor4;
+    private javax.swing.JRadioButton radTamSabor5;
+    private javax.swing.JRadioButton radTamToping;
+    private javax.swing.JTextField txfCantidad;
+    private javax.swing.JLabel txtCantidad;
     private javax.swing.JLabel txtNombreProducto;
     private javax.swing.JLabel txtNombreProducto1;
     private javax.swing.JLabel txtNombreProducto2;
+    private javax.swing.JLabel txtNombreProducto3;
     private javax.swing.JLabel txtProducto;
     // End of variables declaration//GEN-END:variables
 }
