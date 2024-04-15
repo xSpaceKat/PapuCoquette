@@ -4,7 +4,7 @@ package persistencia.Enum;
  *
  * @author Katt
  */
-public enum Tamaño {
+public enum Tamanio {
 
     Chico, Mediano, Grande;
 

@@ -4,10 +4,13 @@
  */
 package interfacesNegocio;
 
+import dto.PedidoDTO;
+import persistencia.entidades.Pedido;
+
 /**
  *
  * @author Berry
  */
 public interface IObjetosNegocioAgregarPedido {
-    public void agregarPedido();
+    public void agregarPedido(PedidoDTO pedido);
 }

@@ -18,7 +18,7 @@ import persistencia.idao.IPedidoDAO;
 public class PedidoDAO implements IPedidoDAO{
 
     @Override
-    public void agregarProductos(Pedido pedido) throws PersistenceException {
+    public void agregarPedido(Pedido pedido) throws PersistenceException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConexionPU");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();

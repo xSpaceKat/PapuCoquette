@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import persistencia.Enum.Sabores;
-import persistencia.Enum.Tamaño;
+import persistencia.Enum.Tamanio;
 
 /**
  *
@@ -34,7 +34,7 @@ public class DetalleProducto implements Serializable {
 
     @Column(name = "tamanio", nullable = false)
     @Enumerated(EnumType.STRING)
-    private Tamaño tamanio;
+    private Tamanio tamanio;
 
     @Column(name = "toppings", nullable = false)
     private Boolean toppings;
@@ -53,7 +53,7 @@ public class DetalleProducto implements Serializable {
     public DetalleProducto() {
     }
 
-    public DetalleProducto(Long id, Sabores sabor, Tamaño tamanio, Boolean toppings, Float precioVenta) {
+    public DetalleProducto(Long id, Sabores sabor, Tamanio tamanio, Boolean toppings, Float precioVenta) {
         this.id = id;
         this.sabor = sabor;
         this.tamanio = tamanio;
@@ -61,7 +61,7 @@ public class DetalleProducto implements Serializable {
         this.precioVenta = precioVenta;
     }
 
-    public DetalleProducto(Sabores sabor, Tamaño tamanio, Boolean toppings, Float precioVenta) {
+    public DetalleProducto(Sabores sabor, Tamanio tamanio, Boolean toppings, Float precioVenta) {
         this.sabor = sabor;
         this.tamanio = tamanio;
         this.toppings = toppings;
@@ -84,11 +84,11 @@ public class DetalleProducto implements Serializable {
         this.sabor = sabor;
     }
 
-    public Tamaño getTamanio() {
+    public Tamanio getTamanio() {
         return tamanio;
     }
 
-    public void setTamanio(Tamaño tamanio) {
+    public void setTamanio(Tamanio tamanio) {
         this.tamanio = tamanio;
     }
 
