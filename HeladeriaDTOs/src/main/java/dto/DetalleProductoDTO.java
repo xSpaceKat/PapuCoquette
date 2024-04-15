@@ -10,20 +10,24 @@ public class DetalleProductoDTO {
     private String tamanio;
     private Boolean toppings;
     private Float precioVenta;
+    private Integer cantidad;
     private ProductoDTO producto;
     private PedidoDTO pedido;
 
     public DetalleProductoDTO() {
     }
 
-    public DetalleProductoDTO(String sabores, String tamanio, Boolean toppings, Float precioVenta, ProductoDTO producto, PedidoDTO pedido) {
+    public DetalleProductoDTO(String sabores, String tamanio, Boolean toppings, Float precioVenta, Integer cantidad, ProductoDTO producto, PedidoDTO pedido) {
         this.sabores = sabores;
         this.tamanio = tamanio;
         this.toppings = toppings;
         this.precioVenta = precioVenta;
+        this.cantidad = cantidad;
         this.producto = producto;
         this.pedido = pedido;
     }
+
+   
 
     public String getSabores() {
         return sabores;
@@ -73,6 +77,16 @@ public class DetalleProductoDTO {
         this.pedido = pedido;
     }
 
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "DetalleProductoDTO{" + "sabores=" + sabores + ", tamanio=" + tamanio + ", toppings=" + toppings + ", precioVenta=" + precioVenta + ", producto=" + producto + ", pedido=" + pedido + '}';

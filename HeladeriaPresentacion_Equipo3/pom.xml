@@ -5,8 +5,24 @@
     <artifactId>HeladeriaPresentacion_Equipo3</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    
-    
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>HeladeriaDTOs</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>HeladeriaAgregar</artifactId>
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.itson.bdavanzadas</groupId>
+                    <artifactId>HeladeriaNegocio</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>

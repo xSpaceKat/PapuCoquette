@@ -4,6 +4,11 @@
  */
 package presentacion;
 
+import com.mycompany.heladeriaagregar.CasoAgregar;
+import com.mycompany.heladeriaagregarinteraz.ICasoAgregar;
+import dto.DetalleProductoDTO;
+import dto.PedidoDTO;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,10 +17,16 @@ import javax.swing.JOptionPane;
  */
 public class JMenuPrincipal extends javax.swing.JFrame {
 
+    private List<DetalleProductoDTO> listaDetallesProductos;
+    private ICasoAgregar casoAgregar;
+    
     /**
      * Creates new form JMenuPrincipal
+     * @param listaDetallesProductos
      */
-    public JMenuPrincipal() {
+    public JMenuPrincipal(List<DetalleProductoDTO> listaDetallesProductos) {
+        this.listaDetallesProductos = listaDetallesProductos;
+        this.casoAgregar = new CasoAgregar(); 
         initComponents();
     }
 
@@ -362,24 +373,29 @@ public class JMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void panConosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panConosMouseClicked
-        DetallesProducto dt = new DetallesProducto("Conos");
+        DetallesProducto dt = new DetallesProducto("Conos", listaDetallesProductos);
         dt.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_panConosMouseClicked
 
     private void panVasosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panVasosMouseClicked
-        DetallesProducto dt = new DetallesProducto("Vasos");
+        DetallesProducto dt = new DetallesProducto("Vasos", listaDetallesProductos);
         dt.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_panVasosMouseClicked
 
     private void panBebidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panBebidasMouseClicked
-        DetallesProducto dt = new DetallesProducto("Bebidas");
+        DetallesProducto dt = new DetallesProducto("Bebidas", listaDetallesProductos);
         dt.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_panBebidasMouseClicked
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
+        PedidoDTO pedidoDTO = null;
+        pedidoDTO.setDetalles(listaDetallesProductos);
+        
+        casoAgregar.AgregarPedido(pedidoDTO);
+        
         JFormaPago jfp = new JFormaPago();
         jfp.setVisible(true);
         this.dispose();

@@ -4,10 +4,15 @@
  */
 package com.mycompany.heladeriaagregarinteraz;
 
+import dto.DetalleProductoDTO;
+import dto.PedidoDTO;
+import dto.ProductoDTO;
+
 /**
  *
  * @author USER
  */
-public class ICasoAgregar {
+public interface ICasoAgregar {
+    
     public void AgregarPedido(PedidoDTO pedidoDTO);
 }

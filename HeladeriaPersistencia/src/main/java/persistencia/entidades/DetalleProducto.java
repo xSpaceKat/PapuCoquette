@@ -41,6 +41,9 @@ public class DetalleProducto implements Serializable {
 
     @Column(name = "precioVenta", nullable = false)
     private Float precioVenta;
+    
+    @Column(name = "cantidad", nullable = false)
+    private Integer cantidad;
 
     @OneToOne
     @JoinColumn(name = "idProductos")

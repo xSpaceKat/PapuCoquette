@@ -4,6 +4,11 @@
  */
 package presentacion;
 
+import com.mycompany.heladeriaagregar.CasoAgregar;
+import com.mycompany.heladeriaagregarinteraz.ICasoAgregar;
+import dto.DetalleProductoDTO;
+import java.util.List;
+import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,19 +16,26 @@ import javax.swing.JOptionPane;
  * @author natas
  */
 public class DetallesProducto extends javax.swing.JFrame {
-    
+
     private String producto;
+    private List<DetalleProductoDTO> listaDetallesProductos;
+    private DetalleProductoDTO detalleProductoDTO;
     
+
     /**
      * Creates new form DetallesProducto
      */
-    public DetallesProducto(String producto) {
+    public DetallesProducto(String producto, List<DetalleProductoDTO> listaDetallesProductos) {
+        this.listaDetallesProductos = listaDetallesProductos;
         this.producto = producto;
+        this.detalleProductoDTO = new DetalleProductoDTO();
+        
         initComponents();
-        
+
         txtNombreProducto.setText(producto);
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -357,7 +369,7 @@ public class DetallesProducto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        JMenuPrincipal jmp = new JMenuPrincipal();
+        JMenuPrincipal jmp = new JMenuPrincipal(listaDetallesProductos);
         jmp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -367,9 +379,44 @@ public class DetallesProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_radTamSabor3ActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Se agrego el producto correctamente");
+        //JOptionPane.showMessageDialog(rootPane, "Se agrego el producto correctamente");
         
-        JMenuPrincipal jmp = new JMenuPrincipal();
+        //tamaño
+        if (radTamChico.isSelected()) {
+            detalleProductoDTO.setTamanio("Chico");
+        } else if (radTamMediano.isSelected()) {
+            detalleProductoDTO.setTamanio("Mediano");
+        } else if (radTamGrande.isSelected()) {
+            detalleProductoDTO.setTamanio("Grande");
+        }
+        
+        //sabor
+        if (radTamSabor1.isSelected()) {
+            detalleProductoDTO.setSabores("Vainilla");
+        } else if (radTamSabor2.isSelected()) {
+            detalleProductoDTO.setSabores("Chocolate");
+        } else if (radTamSabor3.isSelected()) {
+            detalleProductoDTO.setSabores("Fresa");
+        } else if (radTamSabor4.isSelected()) {
+            detalleProductoDTO.setSabores("Platano");
+        } else if (radTamSabor5.isSelected()) {
+            detalleProductoDTO.setSabores("Chichle");
+        }
+        
+        //toping
+        if (radTamToping.isSelected()) {
+            detalleProductoDTO.setToppings(true);
+        } else {
+            detalleProductoDTO.setToppings(false);
+        }
+        
+        //cantidad
+        detalleProductoDTO.setCantidad(Integer.parseInt(txfCantidad.getText()));
+        
+        
+
+        
+        JMenuPrincipal jmp = new JMenuPrincipal(listaDetallesProductos);
         jmp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
