@@ -7,6 +7,7 @@ package presentacion;
 import com.mycompany.heladeriaagregar.CasoAgregar;
 import com.mycompany.heladeriaagregarinteraz.ICasoAgregar;
 import dto.DetalleProductoDTO;
+import dto.ProductoDTO;
 import java.util.List;
 import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
@@ -18,6 +19,7 @@ import javax.swing.JOptionPane;
 public class DetallesProducto extends javax.swing.JFrame {
 
     private String producto;
+    private ProductoDTO productoDTO;
     private List<DetalleProductoDTO> listaDetallesProductos;
     private DetalleProductoDTO detalleProductoDTO;
     
@@ -33,6 +35,7 @@ public class DetallesProducto extends javax.swing.JFrame {
         initComponents();
 
         txtNombreProducto.setText(producto);
+        detalleProductoDTO.setProducto(productoDTO);
 
     }
 
