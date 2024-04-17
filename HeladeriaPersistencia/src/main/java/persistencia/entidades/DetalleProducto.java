@@ -1,6 +1,7 @@
 package persistencia.entidades;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -45,7 +46,7 @@ public class DetalleProducto implements Serializable {
     @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idProductos")
     private Producto producto;
 

@@ -11,7 +11,7 @@ import java.util.List;
 public class DetallesProducto extends javax.swing.JFrame {
 
     private String producto;
-    private ProductoDTO productoDTO;
+    private ProductoDTO productoDTO=new ProductoDTO("PapuNieve", 12.5f, "Cono");
     private List<DetalleProductoDTO> listaDetallesProductos;
     private DetalleProductoDTO detalleProductoDTO;
 
@@ -394,7 +394,7 @@ public class DetallesProducto extends javax.swing.JFrame {
         } else if (radTamSabor4.isSelected()) {
             detalleProductoDTO.setSabores("Platano");
         } else if (radTamSabor5.isSelected()) {
-            detalleProductoDTO.setSabores("Chichle");
+            detalleProductoDTO.setSabores("Chicle");
         }
 
         //toping
@@ -406,6 +406,7 @@ public class DetallesProducto extends javax.swing.JFrame {
 
         //cantidad
         detalleProductoDTO.setCantidad(Integer.parseInt(txfCantidad.getText()));
+        detalleProductoDTO.setCantidad(15*detalleProductoDTO.getCantidad());
 
         //se agrega a la lista de detallesproducots
         listaDetallesProductos.add(detalleProductoDTO);
