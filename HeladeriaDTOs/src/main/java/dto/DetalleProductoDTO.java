@@ -27,8 +27,6 @@ public class DetalleProductoDTO {
         this.pedido = pedido;
     }
 
-   
-
     public String getSabores() {
         return sabores;
     }
@@ -85,8 +83,6 @@ public class DetalleProductoDTO {
         this.cantidad = cantidad;
     }
 
-    
-    
     @Override
     public String toString() {
         return "DetalleProductoDTO{" + "sabores=" + sabores + ", tamanio=" + tamanio + ", toppings=" + toppings + ", precioVenta=" + precioVenta + ", producto=" + producto + ", pedido=" + pedido + '}';

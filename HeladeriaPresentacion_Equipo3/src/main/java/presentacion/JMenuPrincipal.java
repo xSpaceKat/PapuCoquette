@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package presentacion;
-
 
 import com.mycompany.heladeriaagregar.CasoAgregar;
 import com.mycompany.heladeriaagregarinteraz.ICasoAgregar;
 import dto.DetalleProductoDTO;
 import dto.PedidoDTO;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,14 +14,15 @@ public class JMenuPrincipal extends javax.swing.JFrame {
 
     private List<DetalleProductoDTO> listaDetallesProductos;
     private ICasoAgregar casoAgregar;
-    
+
     /**
      * Creates new form JMenuPrincipal
+     *
      * @param listaDetallesProductos
      */
     public JMenuPrincipal(List<DetalleProductoDTO> listaDetallesProductos) {
         this.listaDetallesProductos = listaDetallesProductos;
-        this.casoAgregar = new CasoAgregar(); 
+        this.casoAgregar = new CasoAgregar();
         initComponents();
     }
 
@@ -393,10 +388,9 @@ public class JMenuPrincipal extends javax.swing.JFrame {
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
         PedidoDTO pedidoDTO = new PedidoDTO(10F, listaDetallesProductos);
-        
+
         casoAgregar.AgregarPedido(pedidoDTO);
-        
-        
+
         JFormaPago jfp = new JFormaPago();
         jfp.setVisible(true);
         this.dispose();

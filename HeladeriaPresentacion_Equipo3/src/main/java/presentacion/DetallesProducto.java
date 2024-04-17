@@ -1,16 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package presentacion;
 
-import com.mycompany.heladeriaagregar.CasoAgregar;
-import com.mycompany.heladeriaagregarinteraz.ICasoAgregar;
 import dto.DetalleProductoDTO;
 import dto.ProductoDTO;
 import java.util.List;
-import javax.swing.ButtonModel;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,7 +14,6 @@ public class DetallesProducto extends javax.swing.JFrame {
     private ProductoDTO productoDTO;
     private List<DetalleProductoDTO> listaDetallesProductos;
     private DetalleProductoDTO detalleProductoDTO;
-    
 
     /**
      * Creates new form DetallesProducto
@@ -31,7 +22,7 @@ public class DetallesProducto extends javax.swing.JFrame {
         this.listaDetallesProductos = listaDetallesProductos;
         this.producto = producto;
         this.detalleProductoDTO = new DetalleProductoDTO();
-        
+
         initComponents();
 
         txtNombreProducto.setText(producto);
@@ -383,7 +374,7 @@ public class DetallesProducto extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         //JOptionPane.showMessageDialog(rootPane, "Se agrego el producto correctamente");
-        
+
         //tamaño
         if (radTamChico.isSelected()) {
             detalleProductoDTO.setTamanio("Chico");
@@ -392,7 +383,7 @@ public class DetallesProducto extends javax.swing.JFrame {
         } else if (radTamGrande.isSelected()) {
             detalleProductoDTO.setTamanio("Grande");
         }
-        
+
         //sabor
         if (radTamSabor1.isSelected()) {
             detalleProductoDTO.setSabores("Vainilla");
@@ -405,20 +396,20 @@ public class DetallesProducto extends javax.swing.JFrame {
         } else if (radTamSabor5.isSelected()) {
             detalleProductoDTO.setSabores("Chichle");
         }
-        
+
         //toping
         if (radTamToping.isSelected()) {
             detalleProductoDTO.setToppings(true);
         } else {
             detalleProductoDTO.setToppings(false);
         }
-        
+
         //cantidad
         detalleProductoDTO.setCantidad(Integer.parseInt(txfCantidad.getText()));
-        
+
         //se agrega a la lista de detallesproducots
         listaDetallesProductos.add(detalleProductoDTO);
-        
+
         JMenuPrincipal jmp = new JMenuPrincipal(listaDetallesProductos);
         jmp.setVisible(true);
         this.dispose();

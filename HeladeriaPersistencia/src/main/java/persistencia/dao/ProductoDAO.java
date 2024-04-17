@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package persistencia.dao;
 
 import java.util.List;
@@ -38,17 +34,16 @@ public class ProductoDAO implements IProductoDAO {
     @Override
     public List<Producto> consultarProductos() throws PersistenceException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConexionPU");
-            EntityManager em = emf.createEntityManager();
-            CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-            CriteriaQuery<Producto> criteriaQuery = criteriaBuilder.createQuery(Producto.class);
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Producto> criteriaQuery = criteriaBuilder.createQuery(Producto.class);
 
-            Root<Producto> automovilRoot = criteriaQuery.from(Producto.class);
+        Root<Producto> automovilRoot = criteriaQuery.from(Producto.class);
 
+        criteriaQuery.select(automovilRoot);
 
-            criteriaQuery.select(automovilRoot);
-
-            TypedQuery<Producto> typedQuery = em.createQuery(criteriaQuery);
-            return typedQuery.getResultList();
+        TypedQuery<Producto> typedQuery = em.createQuery(criteriaQuery);
+        return typedQuery.getResultList();
     }
-    
+
 }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package persistencia.dao;
 
 import javax.persistence.EntityManager;
@@ -15,18 +11,29 @@ import persistencia.idao.IPedidoDAO;
  *
  * @author USER
  */
-public class PedidoDAO implements IPedidoDAO{
+public class PedidoDAO implements IPedidoDAO {
 
     @Override
     public void agregarPedido(Pedido pedido) throws PersistenceException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConexionPU");
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
 
-        em.persist(pedido);
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
+        //pedido.getDetallesPedido();
+        //List<DetallesProducto> k = new List<DetallesProducto>;
+        try {
+
+            em.getTransaction().begin();
+
+            em.persist(pedido);
+
+            em.getTransaction().commit();
+            em.close();
+            emf.close();
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
-    
+
 }
