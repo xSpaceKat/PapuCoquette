@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+
 import com.mycompany.heladeriaagregar.CasoAgregar;
 import com.mycompany.heladeriaagregarinteraz.ICasoAgregar;
 import dto.DetalleProductoDTO;
@@ -391,10 +392,10 @@ public class JMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_panBebidasMouseClicked
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        PedidoDTO pedidoDTO = null;
-        pedidoDTO.setDetalles(listaDetallesProductos);
+        PedidoDTO pedidoDTO = new PedidoDTO(10F, listaDetallesProductos);
         
         casoAgregar.AgregarPedido(pedidoDTO);
+        
         
         JFormaPago jfp = new JFormaPago();
         jfp.setVisible(true);

@@ -413,8 +413,8 @@ public class DetallesProducto extends javax.swing.JFrame {
         //cantidad
         detalleProductoDTO.setCantidad(Integer.parseInt(txfCantidad.getText()));
         
-        
-
+        //se agrega a la lista de detallesproducots
+        listaDetallesProductos.add(detalleProductoDTO);
         
         JMenuPrincipal jmp = new JMenuPrincipal(listaDetallesProductos);
         jmp.setVisible(true);

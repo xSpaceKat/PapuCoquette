@@ -141,8 +141,8 @@ public class JCambio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        JMenuPrincipal jmp = new JMenuPrincipal();
-        jmp.setVisible(true);
+        //JMenuPrincipal jmp = new JMenuPrincipal();
+        //jmp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPagarActionPerformed
 
