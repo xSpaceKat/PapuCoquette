@@ -27,13 +27,14 @@ public class JFormaPago extends javax.swing.JFrame {
         panFondoBlanco = new javax.swing.JPanel();
         btnPagar = new javax.swing.JButton();
         btnPagar2 = new javax.swing.JButton();
+        botonRegresar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panFondoRosa.setBackground(new java.awt.Color(233, 215, 248));
 
         txtTitulo.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        txtTitulo.setText("Forma de pago");
+        txtTitulo.setText("Formas de pago");
 
         panFondoBlanco.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -61,7 +62,7 @@ public class JFormaPago extends javax.swing.JFrame {
             panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFondoBlancoLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(btnPagar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnPagar2, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                 .addGap(30, 30, 30)
                 .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
@@ -73,8 +74,16 @@ public class JFormaPago extends javax.swing.JFrame {
                 .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPagar2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
+
+        botonRegresar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        botonRegresar.setText("Regresar");
+        botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panFondoRosaLayout = new javax.swing.GroupLayout(panFondoRosa);
         panFondoRosa.setLayout(panFondoRosaLayout);
@@ -83,12 +92,14 @@ public class JFormaPago extends javax.swing.JFrame {
             .addGroup(panFondoRosaLayout.createSequentialGroup()
                 .addGroup(panFondoRosaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panFondoRosaLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(panFondoBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67)
+                        .addComponent(botonRegresar))
                     .addGroup(panFondoRosaLayout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(txtTitulo)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addGap(29, 29, 29)
+                        .addGroup(panFondoRosaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTitulo)
+                            .addComponent(panFondoBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         panFondoRosaLayout.setVerticalGroup(
             panFondoRosaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,8 +107,10 @@ public class JFormaPago extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtTitulo)
                 .addGap(18, 18, 18)
-                .addComponent(panFondoBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addComponent(panFondoBlanco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -115,7 +128,7 @@ public class JFormaPago extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        JCambio jc = new JCambio();
+        FormEfectivo jc = new FormEfectivo();
         jc.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPagarActionPerformed
@@ -124,7 +137,12 @@ public class JFormaPago extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPagar2ActionPerformed
 
+    private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonRegresarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton botonRegresar;
     private javax.swing.JButton btnPagar;
     private javax.swing.JButton btnPagar2;
     private javax.swing.JPanel panFondoBlanco;
