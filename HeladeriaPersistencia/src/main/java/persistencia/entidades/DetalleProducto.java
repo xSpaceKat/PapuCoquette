@@ -1,6 +1,7 @@
 package persistencia.entidades;
 
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -8,6 +9,7 @@ import java.util.List;
  */
 public class DetalleProducto {
 
+    private ObjectId _id;
     private Float total;
     private Integer cantidad;
     private Boolean topping;
@@ -21,6 +23,22 @@ public class DetalleProducto {
         this.cantidad = cantidad;
         this.topping = topping;
         this.productosAdquiridos = productosAdquiridos;
+    }
+
+    public DetalleProducto(ObjectId _id, Float total, Integer cantidad, Boolean topping, List<Producto> productosAdquiridos) {
+        this._id = _id;
+        this.total = total;
+        this.cantidad = cantidad;
+        this.topping = topping;
+        this.productosAdquiridos = productosAdquiridos;
+    }
+
+    public ObjectId getId() {
+        return _id;
+    }
+
+    public void setId(ObjectId _id) {
+        this._id = _id;
     }
 
     public List<Producto> getProductosAdquiridos() {

@@ -2,6 +2,7 @@ package persistencia.entidades;
 
 import java.util.Date;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -9,6 +10,7 @@ import java.util.List;
  */
 public class Pedido {
 
+    private ObjectId _idMongo;
     private Integer id;
     private Date fecha;
     private Float totalPedido;
@@ -22,6 +24,22 @@ public class Pedido {
         this.fecha = fecha;
         this.totalPedido = totalPedido;
         this.detalles = detalles;
+    }
+
+    public Pedido(ObjectId _idMongo, Integer id, Date fecha, Float totalPedido, List<Pedido> detalles) {
+        this._idMongo = _idMongo;
+        this.id = id;
+        this.fecha = fecha;
+        this.totalPedido = totalPedido;
+        this.detalles = detalles;
+    }
+
+    public ObjectId getIdMongo() {
+        return _idMongo;
+    }
+
+    public void setIdMongo(ObjectId _idMongo) {
+        this._idMongo = _idMongo;
     }
 
     public List<Pedido> getDetalles() {

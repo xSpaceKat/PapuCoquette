@@ -1,6 +1,7 @@
 package persistencia.entidades;
 
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -8,6 +9,7 @@ import java.util.List;
  */
 public class Producto {
 
+    private ObjectId _id;
     private String nombre;
     private List<Tamaño> tamano;
     private List<Sabores> sabores;
@@ -19,6 +21,21 @@ public class Producto {
         this.nombre = nombre;
         this.tamano = tamano;
         this.sabores = sabores;
+    }
+
+    public Producto(ObjectId _id, String nombre, List<Tamaño> tamano, List<Sabores> sabores) {
+        this._id = _id;
+        this.nombre = nombre;
+        this.tamano = tamano;
+        this.sabores = sabores;
+    }
+
+    public ObjectId getId() {
+        return _id;
+    }
+
+    public void setId(ObjectId _id) {
+        this._id = _id;
     }
 
     public String getNombre() {
