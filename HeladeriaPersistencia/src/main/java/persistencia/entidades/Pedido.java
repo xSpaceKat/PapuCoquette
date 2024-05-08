@@ -1,82 +1,59 @@
 package persistencia.entidades;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 /**
  *
  * @author Katt
  */
-@Entity
-@Table(name = "Pedido")
-public class Pedido implements Serializable {
+public class Pedido {
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "subtotal", nullable = false)
-    private Float subtotal;
-
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, mappedBy = "pedido")
-    private List<DetalleProducto> detallesPedido;
+    private Integer id;
+    private Date fecha;
+    private Float totalPedido;
+    private List<Pedido> detalles;
 
     public Pedido() {
-        detallesPedido = new ArrayList<>();
     }
 
-    public Pedido(Long id, Float subtotal) {
+    public Pedido(Integer id, Date fecha, Float totalPedido, List<Pedido> detalles) {
         this.id = id;
-        this.subtotal = subtotal;
-        detallesPedido = new ArrayList<>();
+        this.fecha = fecha;
+        this.totalPedido = totalPedido;
+        this.detalles = detalles;
     }
 
-    public Pedido(Float subtotal) {
-        this.subtotal = subtotal;
-        detallesPedido = new ArrayList<>();
+    public List<Pedido> getDetalles() {
+        return detalles;
     }
 
-    public Long getId() {
+    public void setDetalles(List<Pedido> detalles) {
+        this.detalles = detalles;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Float getSubtotal() {
-        return subtotal;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setSubtotal(Float subtotal) {
-        this.subtotal = subtotal;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public List<DetalleProducto> getDetallesPedido() {
-        return detallesPedido;
+    public Float getTotalPedido() {
+        return totalPedido;
     }
 
-    public void setDetallesPedido(List<DetalleProducto> detallesPedido) {
-        this.detallesPedido = detallesPedido;
-    }
-
-    public void agregarDetallesProd(DetalleProducto detalle) {
-        this.detallesPedido.add(detalle);
-    }
-
-    @Override
-    public String toString() {
-        return "Pedido{" + "id=" + id + ", subtotal=" + subtotal + ", detallesPedido=" + detallesPedido + '}';
+    public void setTotalPedido(Float totalPedido) {
+        this.totalPedido = totalPedido;
     }
 
 }

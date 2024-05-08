@@ -1,39 +1,29 @@
 package persistencia.dao;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceException;
+import java.util.List;
+import persistencia.entidades.DetalleProducto;
 import persistencia.entidades.Pedido;
-import persistencia.idao.IPedidoDAO;
+import persistencia.excepciones.PersistenciaException;
+import persistencia.interfaces.IPedidoDAO;
 
 /**
  *
- * @author USER
+ * @author Katt
  */
 public class PedidoDAO implements IPedidoDAO {
 
-    @Override
-    public void agregarPedido(Pedido pedido) throws PersistenceException {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConexionPU");
-        EntityManager em = emf.createEntityManager();
+    public Pedido buscarPorID(Pedido pedido) throws PersistenciaException {
+        return null;
+    }
 
-        //pedido.getDetallesPedido();
-        //List<DetallesProducto> k = new List<DetallesProducto>;
-        try {
+    public List<Pedido> consultar() throws PersistenciaException {
+        return null;
+    }
 
-            em.getTransaction().begin();
+    public void guardarPedido(Pedido pedido) throws PersistenciaException {
+    }
 
-            em.persist(pedido);
-
-            em.getTransaction().commit();
-            em.close();
-            emf.close();
-
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-
+    public void guardarDetalleProducto(DetalleProducto detallesProducto, Pedido pedido) throws PersistenciaException {
     }
 
 }

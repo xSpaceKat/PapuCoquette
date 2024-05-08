@@ -1,61 +1,24 @@
 package persistencia.entidades;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import persistencia.Enum.TipoProducto;
+import java.util.List;
 
 /**
  *
  * @author Katt
  */
-@Entity
-@Table(name = "producto")
-public class Producto implements Serializable {
+public class Producto {
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "nombre", nullable = false)
     private String nombre;
-
-    @Column(name = "precio", nullable = false)
-    private Float precio;
-
-    @Column(name = "tipo", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private TipoProducto tipo;
+    private List<Tamaño> tamano;
+    private List<Sabores> sabores;
 
     public Producto() {
     }
 
-    public Producto(Long id, String nombre, Float precio, TipoProducto tipo) {
-        this.id = id;
+    public Producto(String nombre, List<Tamaño> tamano, List<Sabores> sabores) {
         this.nombre = nombre;
-        this.precio = precio;
-        this.tipo = tipo;
-    }
-
-    public Producto(String nombre, Float precio, TipoProducto tipo) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.tipo = tipo;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.tamano = tamano;
+        this.sabores = sabores;
     }
 
     public String getNombre() {
@@ -66,25 +29,20 @@ public class Producto implements Serializable {
         this.nombre = nombre;
     }
 
-    public Float getPrecio() {
-        return precio;
+    public List<Tamaño> getTamano() {
+        return tamano;
     }
 
-    public void setPrecio(Float precio) {
-        this.precio = precio;
+    public void setTamano(List<Tamaño> tamano) {
+        this.tamano = tamano;
     }
 
-    public TipoProducto getTipo() {
-        return tipo;
+    public List<Sabores> getSabores() {
+        return sabores;
     }
 
-    public void setTipo(TipoProducto tipo) {
-        this.tipo = tipo;
-    }
-
-    @Override
-    public String toString() {
-        return "Producto{" + "id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", tipo=" + tipo + '}';
+    public void setSabores(List<Sabores> sabores) {
+        this.sabores = sabores;
     }
 
 }
