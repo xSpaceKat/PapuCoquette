@@ -42,14 +42,6 @@ public class Tamaño {
         this.nombreTamaño = nombreTamaño;
     }
 
-    public String getNombreTam() {
-        return nombreTamaño;
-    }
-
-    public void setNombreTam(String nombreTamaño) {
-        this.nombreTamaño = nombreTamaño;
-    }
-
     public Float getPrecioBase() {
         return precioBase;
     }

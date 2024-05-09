@@ -22,7 +22,7 @@ public class DetalleProductoDAO implements IDetalleProductoDAO {
 
     private final MongoCollection<DetalleProducto> coleccionDetalleProducto;
 
-    public DetalleProductoDAO(MongoCollection<DetalleProducto> coleccionDetalleProducto) {
+    public DetalleProductoDAO() {
         this.coleccionDetalleProducto = ConexionBD.getDatabase().getCollection("DetalleProducto", DetalleProducto.class);
     }
 

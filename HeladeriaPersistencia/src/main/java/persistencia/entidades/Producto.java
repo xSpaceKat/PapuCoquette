@@ -12,18 +12,18 @@ public class Producto {
     private ObjectId _id;
     private String nombre;
     private List<Tamaño> tamano;
-    private List<Sabores> sabores;
+    private List<String> sabores;
 
     public Producto() {
     }
 
-    public Producto(String nombre, List<Tamaño> tamano, List<Sabores> sabores) {
+    public Producto(String nombre, List<Tamaño> tamano, List<String> sabores) {
         this.nombre = nombre;
         this.tamano = tamano;
         this.sabores = sabores;
     }
 
-    public Producto(ObjectId _id, String nombre, List<Tamaño> tamano, List<Sabores> sabores) {
+    public Producto(ObjectId _id, String nombre, List<Tamaño> tamano, List<String> sabores) {
         this._id = _id;
         this.nombre = nombre;
         this.tamano = tamano;
@@ -54,11 +54,11 @@ public class Producto {
         this.tamano = tamano;
     }
 
-    public List<Sabores> getSabores() {
+    public List<String> getSabores() {
         return sabores;
     }
 
-    public void setSabores(List<Sabores> sabores) {
+    public void setSabores(List<String> sabores) {
         this.sabores = sabores;
     }
 

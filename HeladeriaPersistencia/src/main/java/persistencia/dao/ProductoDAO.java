@@ -19,8 +19,8 @@ import persistencia.interfaces.IProductoDAO;
 public class ProductoDAO implements IProductoDAO {
 
     private final MongoCollection<Producto> coleccionProducto;
-
-    public ProductoDAO(MongoCollection<Producto> coleccionProducto) {
+    
+    public ProductoDAO() {
         this.coleccionProducto = ConexionBD.getDatabase().getCollection("Producto", Producto.class);
     }
 
