@@ -128,17 +128,21 @@ public class JFormaPago extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        /*FormEfectivo jc = new FormEfectivo();
+        FormEfectivo jc = new FormEfectivo();
         jc.setVisible(true);
-        this.dispose();*/
+        this.dispose();
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void btnPagar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagar2ActionPerformed
-        // TODO add your handling code here:
+        FormTarjeta f = new FormTarjeta();
+        f.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnPagar2ActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
-        // TODO add your handling code here:
+        JMenuPrincipal s = new JMenuPrincipal();
+        s.setVisible(true);
+        dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

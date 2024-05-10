@@ -1,5 +1,7 @@
 package presentacion;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author Katt
@@ -192,18 +194,20 @@ public class FormEfectivo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-        // TODO add your handling code here:
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.' && evt.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+            evt.consume();
+        }
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         JMenuPrincipal s = new JMenuPrincipal();
         s.setVisible(true);
-        
+
         dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFinalizarActionPerformed
-        
+        // recibo recibo recibo y validaciones
     }//GEN-LAST:event_botonFinalizarActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

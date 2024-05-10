@@ -14,7 +14,6 @@ import persistencia.dao.ProductoDAO;
 import persistencia.entidades.DetalleProducto;
 import persistencia.entidades.Pedido;
 import persistencia.entidades.Producto;
-import persistencia.entidades.Sabores;
 import persistencia.entidades.Tamaño;
 import persistencia.excepciones.PersistenciaException;
 import persistencia.interfaces.IDetalleProductoDAO;
