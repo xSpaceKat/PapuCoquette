@@ -2,6 +2,8 @@ package presentacion;
 
 import com.mycompany.heladeriaagregar.CasoAgregar;
 import com.mycompany.heladeriaagregarinteraz.ICasoAgregar;
+import com.mycompany.heladeriaconsultar.CasoConsultar;
+import com.mycompany.iheladeriaconsultar.ICasoConsultar;
 import dto.DetalleProductoDTO;
 import dto.PedidoDTO;
 import dto.ProductoDTO;
@@ -21,29 +23,27 @@ public class JMenuPrincipal extends javax.swing.JFrame {
     private List<DetalleProductoDTO> listaDetallesProductos;
     private List <ProductoDTO> productosDTO;
     private ICasoAgregar casoAgregar;
+    private ICasoConsultar casoConsultar;
+    List<ProductoDTO> productoDTOs;
 
-    /**
-     * Creates new form JMenuPrincipal
-     *
-     * @param listaDetallesProductos
-     */
+    
+            
     public JMenuPrincipal() {
         this.listaDetallesProductos = listaDetallesProductos;
         this.casoAgregar = new CasoAgregar();
         initComponents();
-        List<String> productos=new ArrayList<>();
-        productos.add("Nieve");
-        productos.add("Conos");
-        productos.add("Sabritas");
-        productos.add("Paletas");
+        this.setLocationRelativeTo(null);
+        casoConsultar=new CasoConsultar();
+        productoDTOs=casoConsultar.consultarTodosProductos();
         
-        for(int i=0;i<productos.size();i++){
-            JButton boton = new JButton(productos.get(i));
+        
+        for(int i=0;i<productoDTOs.size();i++){
+            JButton boton = new JButton(productoDTOs.get(i).getNombre());
             boton.setPreferredSize(new Dimension(230, 120)); 
             boton.addActionListener(new ActionListener() {
                 
                 public void actionPerformed(ActionEvent e) {
-                ProductoAdquirido adquirido=new ProductoAdquirido(boton.getText(), listaDetallesProductos);         
+                ProductoAdquirido adquirido=new ProductoAdquirido(productoPorNombre(boton.getText()), listaDetallesProductos);         
                             
                     
                 }
@@ -51,6 +51,15 @@ public class JMenuPrincipal extends javax.swing.JFrame {
             panel.add(boton);
         }
         
+    }
+    
+    public ProductoDTO productoPorNombre(String nombre){
+        for(ProductoDTO p: productoDTOs){
+            if(p.getNombre().equals(nombre)){
+                return p;
+            }
+        }
+        return null;
     }
 
     /**

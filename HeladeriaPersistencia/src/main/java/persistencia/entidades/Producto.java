@@ -12,7 +12,7 @@ public class Producto {
 
     private ObjectId _id;
     private String nombre;
-    private List<Tamaño> tamano;
+    private List<Tamano> tamano;
     private List<String> sabores;
 
     public Producto() {
@@ -20,13 +20,13 @@ public class Producto {
         this.tamano = new ArrayList<>();
     }
 
-    public Producto(String nombre, List<Tamaño> tamano, List<String> sabores) {
+    public Producto(String nombre, List<Tamano> tamano, List<String> sabores) {
         this.nombre = nombre;
         this.tamano = tamano;
         this.sabores = sabores;
     }
 
-    public Producto(ObjectId _id, String nombre, List<Tamaño> tamano, List<String> sabores) {
+    public Producto(ObjectId _id, String nombre, List<Tamano> tamano, List<String> sabores) {
         this._id = _id;
         this.nombre = nombre;
         this.tamano = tamano;
@@ -49,11 +49,11 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public List<Tamaño> getTamano() {
+    public List<Tamano> getTamano() {
         return tamano;
     }
 
-    public void setTamano(List<Tamaño> tamano) {
+    public void setTamano(List<Tamano> tamano) {
         this.tamano = tamano;
     }
 
@@ -64,5 +64,13 @@ public class Producto {
     public void setSabores(List<String> sabores) {
         this.sabores = sabores;
     }
+
+    @Override
+    public String toString() {
+        return "Producto{" + "_id=" + _id + ", nombre=" + nombre + ", tamano=" + tamano + ", sabores=" + sabores + '}';
+    }
+    
+    
+    
 
 }

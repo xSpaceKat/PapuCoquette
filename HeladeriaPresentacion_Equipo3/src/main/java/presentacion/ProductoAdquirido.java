@@ -2,7 +2,14 @@ package presentacion;
 
 import dto.DetalleProductoDTO;
 import dto.ProductoDTO;
+import dto.TamanoDTO;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JCheckBox;
+import persistencia.entidades.DetalleProducto;
 
 /**
  *
@@ -10,21 +17,92 @@ import java.util.List;
  */
 public class ProductoAdquirido extends javax.swing.JFrame {
 
-    private String producto;
+    private ProductoDTO productoDTO;
     private List<DetalleProductoDTO> listaDetallesProductos;
     private DetalleProductoDTO detalleProductoDTO;
+    private String tamano;
+    private Float precio;
+    private String sabor;
 
     /**
      * Creates new form DetallesProducto
      */
-    public ProductoAdquirido(String producto, List<DetalleProductoDTO> listaDetallesProductos) {
+    public ProductoAdquirido(ProductoDTO productoDTO, List<DetalleProductoDTO> listaDetallesProductos) {
         this.listaDetallesProductos = listaDetallesProductos;
-        this.producto = producto;
+        this.productoDTO = productoDTO;
         this.detalleProductoDTO = new DetalleProductoDTO();
         initComponents();
-        txtNombreProducto.setText(producto);
+        
+        ActionListener listenerTam = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                // Desseleccionar los demás checkboxes cuando uno es seleccionado
+                if (e.getSource() instanceof JCheckBox) {
+                    JCheckBox selectedCheckBox = (JCheckBox) e.getSource();
+                    if (selectedCheckBox.isSelected()) {
+                        tamano=selectedCheckBox.getName();
+                        precio=Float.parseFloat(obtenerPrecio(selectedCheckBox.getText()));
+                        for (Component component : panelTamano.getComponents()) {
+                            if (component instanceof JCheckBox && component != selectedCheckBox) {
+                                ((JCheckBox) component).setSelected(false);
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        
+        
+        List<TamanoDTO> tamanos=productoDTO.getTamano();
+        for(TamanoDTO t:tamanos){
+            JCheckBox checkbox=new JCheckBox(t.getNombreTamano()+" $"+t.getPrecioBase());
+            checkbox.setName(t.getNombreTamano());
+            checkbox.setPreferredSize(new Dimension(340, 50));
+            checkbox.addActionListener(listenerTam);
+            panelTamano.add(checkbox);
+        }
+        ActionListener listenerSab = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                if (e.getSource() instanceof JCheckBox) {
+                    JCheckBox selectedCheckBox = (JCheckBox) e.getSource();
+                    if (selectedCheckBox.isSelected()) {
+                        sabor=selectedCheckBox.getText();
+                        for (Component component : panelSabor.getComponents()) {
+                            if (component instanceof JCheckBox && component != selectedCheckBox) {
+                                ((JCheckBox) component).setSelected(false);
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        List<String> sabores=productoDTO.getSabores();
+        for(String s:sabores){
+            JCheckBox checkbox=new JCheckBox(s);
+            checkbox.setPreferredSize(new Dimension(340, 50));
+            checkbox.addActionListener(listenerSab);
+            panelSabor.add(checkbox);
+        }
+        
+        
+        this.setLocationRelativeTo(null);
+        txtNombreProducto.setText(productoDTO.getNombre());
         this.setVisible(true);
+        
 
+    }
+    public  String obtenerPrecio(String texto) {
+        int indiceSignoDolar = texto.indexOf("$");
+        if (indiceSignoDolar != -1 && indiceSignoDolar < texto.length() - 1) {
+            String textoDespuesDelSignoDolar = texto.substring(indiceSignoDolar + 1);
+            textoDespuesDelSignoDolar = textoDespuesDelSignoDolar.trim();
+            return textoDespuesDelSignoDolar;
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -38,6 +116,7 @@ public class ProductoAdquirido extends javax.swing.JFrame {
 
         btnGrupTamaño = new javax.swing.ButtonGroup();
         btnGrupSabores = new javax.swing.ButtonGroup();
+        jScrollPane1 = new javax.swing.JScrollPane();
         panFondoRosa = new javax.swing.JPanel();
         panFondoBlanco = new javax.swing.JPanel();
         panLogo = new javax.swing.JPanel();
@@ -45,17 +124,9 @@ public class ProductoAdquirido extends javax.swing.JFrame {
         txtNombreProducto = new javax.swing.JLabel();
         panSeparador1 = new javax.swing.JPanel();
         txtNombreProducto1 = new javax.swing.JLabel();
-        radTamChico = new javax.swing.JRadioButton();
-        radTamMediano = new javax.swing.JRadioButton();
-        radTamGrande = new javax.swing.JRadioButton();
         btnCancelar = new javax.swing.JButton();
         panSeparador2 = new javax.swing.JPanel();
         txtNombreProducto2 = new javax.swing.JLabel();
-        radTamSabor1 = new javax.swing.JRadioButton();
-        radTamSabor2 = new javax.swing.JRadioButton();
-        radTamSabor3 = new javax.swing.JRadioButton();
-        radTamSabor4 = new javax.swing.JRadioButton();
-        radTamSabor5 = new javax.swing.JRadioButton();
         panSeparador16 = new javax.swing.JPanel();
         txtNombreProducto3 = new javax.swing.JLabel();
         radTamToping = new javax.swing.JRadioButton();
@@ -63,6 +134,10 @@ public class ProductoAdquirido extends javax.swing.JFrame {
         txtCantidad = new javax.swing.JLabel();
         txfCantidad = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        panelTamano = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        panelSabor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,21 +176,6 @@ public class ProductoAdquirido extends javax.swing.JFrame {
         txtNombreProducto1.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         txtNombreProducto1.setText("Tamaño");
 
-        radTamChico.setBackground(new java.awt.Color(255, 255, 255));
-        btnGrupTamaño.add(radTamChico);
-        radTamChico.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        radTamChico.setText("Chico ");
-
-        radTamMediano.setBackground(new java.awt.Color(255, 255, 255));
-        btnGrupTamaño.add(radTamMediano);
-        radTamMediano.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        radTamMediano.setText("Mediano");
-
-        radTamGrande.setBackground(new java.awt.Color(255, 255, 255));
-        btnGrupTamaño.add(radTamGrande);
-        radTamGrande.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        radTamGrande.setText("Grande");
-
         btnCancelar.setBackground(new java.awt.Color(226, 183, 252));
         btnCancelar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -139,41 +199,11 @@ public class ProductoAdquirido extends javax.swing.JFrame {
         txtNombreProducto2.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         txtNombreProducto2.setText("Sabores");
 
-        radTamSabor1.setBackground(new java.awt.Color(255, 255, 255));
-        btnGrupSabores.add(radTamSabor1);
-        radTamSabor1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        radTamSabor1.setText("Vainilla");
-
-        radTamSabor2.setBackground(new java.awt.Color(255, 255, 255));
-        btnGrupSabores.add(radTamSabor2);
-        radTamSabor2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        radTamSabor2.setText("Chocolate");
-
-        radTamSabor3.setBackground(new java.awt.Color(255, 255, 255));
-        btnGrupSabores.add(radTamSabor3);
-        radTamSabor3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        radTamSabor3.setText("Fresa");
-        radTamSabor3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radTamSabor3ActionPerformed(evt);
-            }
-        });
-
-        radTamSabor4.setBackground(new java.awt.Color(255, 255, 255));
-        btnGrupSabores.add(radTamSabor4);
-        radTamSabor4.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        radTamSabor4.setText("Platano");
-
-        radTamSabor5.setBackground(new java.awt.Color(255, 255, 255));
-        btnGrupSabores.add(radTamSabor5);
-        radTamSabor5.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        radTamSabor5.setText("Chicle");
-
         javax.swing.GroupLayout panSeparador16Layout = new javax.swing.GroupLayout(panSeparador16);
         panSeparador16.setLayout(panSeparador16Layout);
         panSeparador16Layout.setHorizontalGroup(
             panSeparador16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 369, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         panSeparador16Layout.setVerticalGroup(
             panSeparador16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,6 +216,11 @@ public class ProductoAdquirido extends javax.swing.JFrame {
         radTamToping.setBackground(new java.awt.Color(255, 255, 255));
         radTamToping.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         radTamToping.setText("Si");
+        radTamToping.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radTamTopingActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panSeparador17Layout = new javax.swing.GroupLayout(panSeparador17);
         panSeparador17.setLayout(panSeparador17Layout);
@@ -202,6 +237,11 @@ public class ProductoAdquirido extends javax.swing.JFrame {
         txtCantidad.setText("Cantidad");
 
         txfCantidad.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txfCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfCantidadActionPerformed(evt);
+            }
+        });
 
         btnAceptar.setBackground(new java.awt.Color(226, 183, 252));
         btnAceptar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
@@ -212,14 +252,20 @@ public class ProductoAdquirido extends javax.swing.JFrame {
             }
         });
 
+        panelTamano.setLayout(new java.awt.GridLayout(0, 1));
+        jScrollPane2.setViewportView(panelTamano);
+
+        panelSabor.setLayout(new java.awt.GridLayout(0, 1));
+        jScrollPane3.setViewportView(panelSabor);
+
         javax.swing.GroupLayout panFondoBlancoLayout = new javax.swing.GroupLayout(panFondoBlanco);
         panFondoBlanco.setLayout(panFondoBlancoLayout);
         panFondoBlancoLayout.setHorizontalGroup(
             panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panFondoBlancoLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panFondoBlancoLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(panSeparador1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panFondoBlancoLayout.createSequentialGroup()
@@ -228,52 +274,46 @@ public class ProductoAdquirido extends javax.swing.JFrame {
                                 .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panFondoBlancoLayout.createSequentialGroup()
                                         .addComponent(txtNombreProducto)
-                                        .addGap(0, 17, Short.MAX_VALUE))
-                                    .addGroup(panFondoBlancoLayout.createSequentialGroup()
-                                        .addComponent(txtProducto)
-                                        .addGap(8, 146, Short.MAX_VALUE))))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(txtProducto)))
+                            .addComponent(panSeparador17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panSeparador2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panSeparador16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panSeparador17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(panFondoBlancoLayout.createSequentialGroup()
-                        .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panFondoBlancoLayout.createSequentialGroup()
-                                .addGap(148, 148, 148)
-                                .addComponent(txtNombreProducto1))
-                            .addGroup(panFondoBlancoLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(radTamMediano)
-                                    .addComponent(radTamChico, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(radTamGrande, javax.swing.GroupLayout.Alignment.LEADING)))
-                            .addGroup(panFondoBlancoLayout.createSequentialGroup()
-                                .addGap(142, 142, 142)
-                                .addComponent(txtNombreProducto2))
-                            .addGroup(panFondoBlancoLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
                                 .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(radTamSabor2)
-                                    .addComponent(radTamSabor1)
-                                    .addComponent(radTamSabor3)
-                                    .addComponent(radTamSabor4)
-                                    .addComponent(radTamSabor5)))
-                            .addGroup(panFondoBlancoLayout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(radTamToping))
-                            .addGroup(panFondoBlancoLayout.createSequentialGroup()
-                                .addGap(145, 145, 145)
-                                .addComponent(txtNombreProducto3))
-                            .addGroup(panFondoBlancoLayout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCantidad))
-                                .addGap(18, 18, 18)
-                                .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                    .addGroup(panFondoBlancoLayout.createSequentialGroup()
+                                        .addGap(142, 142, 142)
+                                        .addComponent(txtNombreProducto1))
+                                    .addGroup(panFondoBlancoLayout.createSequentialGroup()
+                                        .addGap(139, 139, 139)
+                                        .addComponent(txtNombreProducto3))
+                                    .addGroup(panFondoBlancoLayout.createSequentialGroup()
+                                        .addGap(39, 39, 39)
+                                        .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtCantidad))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(panFondoBlancoLayout.createSequentialGroup()
+                                        .addGap(19, 19, 19)
+                                        .addComponent(radTamToping)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(panSeparador16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(panFondoBlancoLayout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(txtNombreProducto2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(panFondoBlancoLayout.createSequentialGroup()
+                .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panFondoBlancoLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panFondoBlancoLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         panFondoBlancoLayout.setVerticalGroup(
             panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,27 +329,15 @@ public class ProductoAdquirido extends javax.swing.JFrame {
                 .addComponent(panSeparador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNombreProducto1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(radTamChico)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(radTamMediano)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(radTamGrande)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(panSeparador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNombreProducto2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(radTamSabor1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(radTamSabor2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(radTamSabor3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(radTamSabor4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(radTamSabor5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addComponent(panSeparador16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNombreProducto3)
@@ -321,7 +349,7 @@ public class ProductoAdquirido extends javax.swing.JFrame {
                 .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txfCantidad)
                     .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -364,21 +392,32 @@ public class ProductoAdquirido extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void radTamSabor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radTamSabor3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radTamSabor3ActionPerformed
-
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         //JOptionPane.showMessageDialog(rootPane, "Se agrego el producto correctamente");
-
+        Integer cantidad=Integer.parseInt(txfCantidad.getText());
+        DetalleProducto detalleProducto=new DetalleProducto(productoDTO.getNombre(),sabor,tamano,precio,cantidad,radTamToping.isSelected());
+        System.out.println(detalleProducto);
+        
+        listaDetallesProductos.add(detalleProductoDTO);
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void radTamTopingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radTamTopingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radTamTopingActionPerformed
+
+    private void txfCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfCantidadActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.ButtonGroup btnGrupSabores;
     private javax.swing.ButtonGroup btnGrupTamaño;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel panFondoBlanco;
     private javax.swing.JPanel panFondoRosa;
     private javax.swing.JPanel panLogo;
@@ -386,14 +425,8 @@ public class ProductoAdquirido extends javax.swing.JFrame {
     private javax.swing.JPanel panSeparador16;
     private javax.swing.JPanel panSeparador17;
     private javax.swing.JPanel panSeparador2;
-    private javax.swing.JRadioButton radTamChico;
-    private javax.swing.JRadioButton radTamGrande;
-    private javax.swing.JRadioButton radTamMediano;
-    private javax.swing.JRadioButton radTamSabor1;
-    private javax.swing.JRadioButton radTamSabor2;
-    private javax.swing.JRadioButton radTamSabor3;
-    private javax.swing.JRadioButton radTamSabor4;
-    private javax.swing.JRadioButton radTamSabor5;
+    private javax.swing.JPanel panelSabor;
+    private javax.swing.JPanel panelTamano;
     private javax.swing.JRadioButton radTamToping;
     private javax.swing.JTextField txfCantidad;
     private javax.swing.JLabel txtCantidad;

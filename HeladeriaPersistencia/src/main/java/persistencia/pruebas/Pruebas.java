@@ -14,8 +14,7 @@ import persistencia.dao.ProductoDAO;
 import persistencia.entidades.DetalleProducto;
 import persistencia.entidades.Pedido;
 import persistencia.entidades.Producto;
-import persistencia.entidades.Sabores;
-import persistencia.entidades.Tamaño;
+import persistencia.entidades.Tamano;
 import persistencia.excepciones.PersistenciaException;
 import persistencia.interfaces.IDetalleProductoDAO;
 import persistencia.interfaces.IPedidoDAO;
@@ -33,48 +32,30 @@ public class Pruebas {
      */
     public static void main(String[] args) throws PersistenciaException {
         
-//        IProductoDAO productoDAO = new ProductoDAO();
-//        
-//        Producto producto = new Producto();
-        
-//        producto.setNombre("Conos");
-//
-//        String [] sabores = {"Uva", "Limon", "Azul"};
-//        producto.setSabores(Arrays.asList(sabores));
-//        
-//        List<Tamaño> listTamaño = new ArrayList<>();
-//        Tamaño tamaño = new Tamaño();       
-//        tamaño.setNombreTamaño("grande");
-//        tamaño.setPrecioBase(50F);
-//        
-//        Tamaño tamaño2 = new Tamaño();
-//        tamaño2.setNombreTamaño("pequeño");
-//        tamaño2.setPrecioBase(25F);
-//        
-//        listTamaño.add(tamaño);
-//        listTamaño.add(tamaño2);
-//        
-//        
-
-//        producto.setTamano(listTamaño);
+          IProductoDAO productoDAO = new ProductoDAO();
         
         
-        IDetalleProductoDAO detalleProductoDAO = new DetalleProductoDAO();
         
+        List<String> sabores =new ArrayList<>();
+        sabores.add("Uva");
+        sabores.add("Sandia");
+        sabores.add("Fresa");
         
-        DetalleProducto detalleProductoVendido = new DetalleProducto("Conos", "Uva", "Grande", 65f, 2, true);
-        
-        IPedidoDAO pedidoDAO = new PedidoDAO();
-        
-        List<DetalleProducto> asd = new ArrayList<>();
-        
-        asd.add(detalleProductoVendido);
-        
-        Pedido pedido = new Pedido();
-        
-        pedido.setFecha(new GregorianCalendar().getTime());
-        pedido.setId(1);
-        pedido.setDetalles(asd);
+        List<Tamano> listTamano = new ArrayList<>();
+        Tamano tamano1 = new Tamano();       
+        tamano1.setNombreTamano("grande");
+        tamano1.setPrecioBase(50F);
+        Tamano tamano2 = new Tamano();
+        tamano2.setNombreTamano("pequeño");
+        tamano2.setPrecioBase(25F);
+        listTamano.add(tamano1);
+        listTamano.add(tamano2);
+        productoDAO.guardarProducto(new Producto("Conos", listTamano, sabores));
+        productoDAO.guardarProducto(new Producto("Paletas", listTamano, sabores));
+        productoDAO.guardarProducto(new Producto("Helados", listTamano, sabores));
+        productoDAO.guardarProducto(new Producto("Chimichangas", listTamano, sabores));
+        productoDAO.guardarProducto(new Producto("Raspados", listTamano, sabores));
+        productoDAO.guardarProducto(new Producto("Gorditas", listTamano, sabores));
         
         
         

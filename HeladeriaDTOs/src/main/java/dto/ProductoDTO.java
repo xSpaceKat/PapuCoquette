@@ -1,5 +1,6 @@
 package dto;
 
+import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
@@ -8,27 +9,17 @@ import org.bson.types.ObjectId;
  */
 public class ProductoDTO {
 
-    private ObjectId _id;
     private String nombre;
-    private String tamano;
-    private String sabor;
+    private List<TamanoDTO> tamano;
+    private List<String> sabores;
 
     public ProductoDTO() {
     }
 
-    public ProductoDTO(ObjectId _id, String nombre, String tamano, String sabor) {
-        this._id = _id;
+    public ProductoDTO(String nombre, List<TamanoDTO> tamano, List<String> sabores) {
         this.nombre = nombre;
         this.tamano = tamano;
-        this.sabor = sabor;
-    }
-
-    public ObjectId getId() {
-        return _id;
-    }
-
-    public void setId(ObjectId _id) {
-        this._id = _id;
+        this.sabores = sabores;
     }
 
     public String getNombre() {
@@ -39,24 +30,32 @@ public class ProductoDTO {
         this.nombre = nombre;
     }
 
-    public String getTamano() {
+    public List<TamanoDTO> getTamano() {
         return tamano;
     }
 
-    public void setTamano(String tamano) {
+    public void setTamano(List<TamanoDTO> tamano) {
         this.tamano = tamano;
     }
 
-    public String getSabor() {
-        return sabor;
+    public List<String> getSabores() {
+        return sabores;
     }
 
-    public void setSabor(String sabor) {
-        this.sabor = sabor;
+    public void setSabores(List<String> sabores) {
+        this.sabores = sabores;
     }
+    
+    
+    
 
+    @Override
     public String toString() {
-        return "ProductoDTO{" + "_id=" + _id + ", nombre=" + nombre + ", tamano=" + tamano + ", sabor=" + sabor + '}';
+        return "ProductoDTO{" + "nombre=" + nombre + ", tamano=" + tamano + ", sabores=" + sabores + '}';
     }
+    
+    
+    
+    
 
 }

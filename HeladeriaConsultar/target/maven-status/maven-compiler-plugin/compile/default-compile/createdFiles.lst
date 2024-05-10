@@ -1,2 +1,2 @@
-com\mycompany\heladeriaagregar\CasoAgregar.class
-com\mycompany\heladeriaagregarinteraz\ICasoAgregar.class
+com\mycompany\iheladeriaconsultar\ICasoConsultar.class
+com\mycompany\heladeriaconsultar\CasoConsultar.class
