@@ -1,78 +1,47 @@
 package dto;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author Katt
  */
 public class DetalleProductoDTO {
 
-    private String sabores;
-    private String tamanio;
-    private Boolean toppings;
-    private Float precioVenta;
+    private ObjectId _id;
+    private Float total;
     private Integer cantidad;
-    private ProductoDTO producto;
-    private PedidoDTO pedido;
+    private Boolean topping;
+    private List<ProductoDTO> productosAdquiridos;
 
     public DetalleProductoDTO() {
+        this.productosAdquiridos = new ArrayList<>();
     }
 
-    public DetalleProductoDTO(String sabores, String tamanio, Boolean toppings, Float precioVenta, Integer cantidad, ProductoDTO producto, PedidoDTO pedido) {
-        this.sabores = sabores;
-        this.tamanio = tamanio;
-        this.toppings = toppings;
-        this.precioVenta = precioVenta;
+    public DetalleProductoDTO(ObjectId _id, Float total, Integer cantidad, Boolean topping, List<ProductoDTO> productosAdquiridos) {
+        this._id = _id;
+        this.total = total;
         this.cantidad = cantidad;
-        this.producto = producto;
-        this.pedido = pedido;
+        this.topping = topping;
+        this.productosAdquiridos = productosAdquiridos;
     }
 
-    public String getSabores() {
-        return sabores;
+    public ObjectId getId() {
+        return _id;
     }
 
-    public void setSabores(String sabores) {
-        this.sabores = sabores;
+    public void setId(ObjectId _id) {
+        this._id = _id;
     }
 
-    public String getTamanio() {
-        return tamanio;
+    public Float getTotal() {
+        return total;
     }
 
-    public void setTamanio(String tamanio) {
-        this.tamanio = tamanio;
-    }
-
-    public Boolean getToppings() {
-        return toppings;
-    }
-
-    public void setToppings(Boolean toppings) {
-        this.toppings = toppings;
-    }
-
-    public Float getPrecioVenta() {
-        return precioVenta;
-    }
-
-    public void setPrecioVenta(Float precioVenta) {
-        this.precioVenta = precioVenta;
-    }
-
-    public ProductoDTO getProducto() {
-        return producto;
-    }
-
-    public void setProducto(ProductoDTO producto) {
-        this.producto = producto;
-    }
-
-    public PedidoDTO getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(PedidoDTO pedido) {
-        this.pedido = pedido;
+    public void setTotal(Float total) {
+        this.total = total;
     }
 
     public Integer getCantidad() {
@@ -83,9 +52,24 @@ public class DetalleProductoDTO {
         this.cantidad = cantidad;
     }
 
-    @Override
+    public Boolean getTopping() {
+        return topping;
+    }
+
+    public void setTopping(Boolean topping) {
+        this.topping = topping;
+    }
+
+    public List<ProductoDTO> getProductosAdquiridos() {
+        return productosAdquiridos;
+    }
+
+    public void setProductosAdquiridos(List<ProductoDTO> productosAdquiridos) {
+        this.productosAdquiridos = productosAdquiridos;
+    }
+
     public String toString() {
-        return "DetalleProductoDTO{" + "sabores=" + sabores + ", tamanio=" + tamanio + ", toppings=" + toppings + ", precioVenta=" + precioVenta + ", producto=" + producto + ", pedido=" + pedido + '}';
+        return "DetalleProductoDTO{" + "_id=" + _id + ", total=" + total + ", cantidad=" + cantidad + ", topping=" + topping + ", productosAdquiridos=" + productosAdquiridos + '}';
     }
 
 }

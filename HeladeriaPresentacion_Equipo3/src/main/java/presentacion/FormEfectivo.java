@@ -50,6 +50,7 @@ public class FormEfectivo extends javax.swing.JFrame {
         txtTitulo3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         txtTitulo3.setText("Cambio $0.0");
 
+<<<<<<< Updated upstream
         cantidad.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         cantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,6 +60,12 @@ public class FormEfectivo extends javax.swing.JFrame {
         cantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 cantidadKeyTyped(evt);
+=======
+        jTextField1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+>>>>>>> Stashed changes
             }
         });
 
@@ -158,6 +165,7 @@ public class FormEfectivo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
+<<<<<<< Updated upstream
 
     }//GEN-LAST:event_btnPagarActionPerformed
 
@@ -176,6 +184,20 @@ public class FormEfectivo extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_cantidadKeyTyped
+=======
+        
+    }//GEN-LAST:event_btnPagarActionPerformed
+
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        JMenuPrincipal jmp = new JMenuPrincipal();
+        jmp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+>>>>>>> Stashed changes
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelar;

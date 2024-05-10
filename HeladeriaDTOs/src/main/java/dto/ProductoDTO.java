@@ -1,22 +1,34 @@
 package dto;
 
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author Katt
  */
 public class ProductoDTO {
 
+    private ObjectId _id;
     private String nombre;
-    private Float precio;
-    private String tipo;
+    private String tamano;
+    private String sabor;
 
     public ProductoDTO() {
     }
 
-    public ProductoDTO(String nombre, Float precio, String tipo) {
+    public ProductoDTO(ObjectId _id, String nombre, String tamano, String sabor) {
+        this._id = _id;
         this.nombre = nombre;
-        this.precio = precio;
-        this.tipo = tipo;
+        this.tamano = tamano;
+        this.sabor = sabor;
+    }
+
+    public ObjectId getId() {
+        return _id;
+    }
+
+    public void setId(ObjectId _id) {
+        this._id = _id;
     }
 
     public String getNombre() {
@@ -27,25 +39,24 @@ public class ProductoDTO {
         this.nombre = nombre;
     }
 
-    public Float getPrecio() {
-        return precio;
+    public String getTamano() {
+        return tamano;
     }
 
-    public void setPrecio(Float precio) {
-        this.precio = precio;
+    public void setTamano(String tamano) {
+        this.tamano = tamano;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getSabor() {
+        return sabor;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setSabor(String sabor) {
+        this.sabor = sabor;
     }
 
-    @Override
     public String toString() {
-        return "ProductoDTO{" + "nombre=" + nombre + ", precio=" + precio + ", tipo=" + tipo + '}';
+        return "ProductoDTO{" + "_id=" + _id + ", nombre=" + nombre + ", tamano=" + tamano + ", sabor=" + sabor + '}';
     }
 
 }

@@ -1,5 +1,6 @@
 package persistencia.entidades;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -14,19 +15,20 @@ public class Pedido {
     private Integer id;
     private Date fecha;
     private Float totalPedido;
-    private List<Pedido> detalles;
+    private List<DetalleProducto> detalles;
 
     public Pedido() {
+        this.detalles = new ArrayList<>();
     }
 
-    public Pedido(Integer id, Date fecha, Float totalPedido, List<Pedido> detalles) {
+    public Pedido(Integer id, Date fecha, Float totalPedido, List<DetalleProducto> detalles) {
         this.id = id;
         this.fecha = fecha;
         this.totalPedido = totalPedido;
         this.detalles = detalles;
     }
 
-    public Pedido(ObjectId _idMongo, Integer id, Date fecha, Float totalPedido, List<Pedido> detalles) {
+    public Pedido(ObjectId _idMongo, Integer id, Date fecha, Float totalPedido, List<DetalleProducto> detalles) {
         this._idMongo = _idMongo;
         this.id = id;
         this.fecha = fecha;
@@ -42,11 +44,11 @@ public class Pedido {
         this._idMongo = _idMongo;
     }
 
-    public List<Pedido> getDetalles() {
+    public List<DetalleProducto> getDetalles() {
         return detalles;
     }
 
-    public void setDetalles(List<Pedido> detalles) {
+    public void setDetalles(List<DetalleProducto> detalles) {
         this.detalles = detalles;
     }
 

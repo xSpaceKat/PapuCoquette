@@ -1,7 +1,8 @@
 package dto;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -9,25 +10,60 @@ import java.util.List;
  */
 public class PedidoDTO {
 
-    private Float subtotal;
+    private ObjectId _idMongo;
+    private Integer id;
+    private Date fecha;
+    private Float totalPedido;
     private List<DetalleProductoDTO> detalles;
 
     public PedidoDTO() {
-        detalles = new ArrayList<>();
     }
 
-    public PedidoDTO(Float subtotal, List<DetalleProductoDTO> detalles) {
-        this.subtotal = subtotal;
+    public PedidoDTO(ObjectId _idMongo, Integer id, Date fecha, Float totalPedido, List<DetalleProductoDTO> detalles) {
+        this._idMongo = _idMongo;
+        this.id = id;
+        this.fecha = fecha;
+        this.totalPedido = totalPedido;
         this.detalles = detalles;
-        detalles = new ArrayList<>();
     }
 
-    public Float getSubtotal() {
-        return subtotal;
+    public PedidoDTO(Integer id, Date fecha, Float totalPedido, List<DetalleProductoDTO> detalles) {
+        this.id = id;
+        this.fecha = fecha;
+        this.totalPedido = totalPedido;
+        this.detalles = detalles;
     }
 
-    public void setSubtotal(Float subtotal) {
-        this.subtotal = subtotal;
+    public ObjectId getIdMongo() {
+        return _idMongo;
+    }
+
+    public void setIdMongo(ObjectId _idMongo) {
+        this._idMongo = _idMongo;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Float getTotalPedido() {
+        return totalPedido;
+    }
+
+    public void setTotalPedido(Float totalPedido) {
+        this.totalPedido = totalPedido;
     }
 
     public List<DetalleProductoDTO> getDetalles() {
@@ -38,9 +74,8 @@ public class PedidoDTO {
         this.detalles = detalles;
     }
 
-    @Override
     public String toString() {
-        return "PedidoDTO{" + "subtotal=" + subtotal + ", detalles=" + detalles + '}';
+        return "PedidoDTO{" + "_idMongo=" + _idMongo + ", id=" + id + ", fecha=" + fecha + ", totalPedido=" + totalPedido + ", detalles=" + detalles + '}';
     }
 
 }

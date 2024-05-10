@@ -164,8 +164,12 @@
                 </Property>
               </Properties>
               <Events>
+<<<<<<< Updated upstream
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cantidadActionPerformed"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cantidadKeyTyped"/>
+=======
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+>>>>>>> Stashed changes
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnPagar">

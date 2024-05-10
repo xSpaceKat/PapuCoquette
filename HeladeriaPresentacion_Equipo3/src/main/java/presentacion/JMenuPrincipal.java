@@ -20,7 +20,7 @@ public class JMenuPrincipal extends javax.swing.JFrame {
      *
      * @param listaDetallesProductos
      */
-    public JMenuPrincipal(List<DetalleProductoDTO> listaDetallesProductos) {
+    public JMenuPrincipal() {
         this.listaDetallesProductos = listaDetallesProductos;
         this.casoAgregar = new CasoAgregar();
         initComponents();

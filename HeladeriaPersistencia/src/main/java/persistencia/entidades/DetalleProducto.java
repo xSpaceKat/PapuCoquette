@@ -1,5 +1,6 @@
 package persistencia.entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -16,6 +17,7 @@ public class DetalleProducto {
     private List<Producto> productosAdquiridos;
 
     public DetalleProducto() {
+        this.productosAdquiridos = new ArrayList<>();
     }
 
     public DetalleProducto(Float total, Integer cantidad, Boolean topping, List<Producto> productosAdquiridos) {

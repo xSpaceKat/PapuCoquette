@@ -1,5 +1,6 @@
 package persistencia.entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -15,6 +16,8 @@ public class Producto {
     private List<String> sabores;
 
     public Producto() {
+        this.sabores = new ArrayList<>();
+        this.tamano = new ArrayList<>();
     }
 
     public Producto(String nombre, List<Tamaño> tamano, List<String> sabores) {
