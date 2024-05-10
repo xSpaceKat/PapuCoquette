@@ -25,8 +25,8 @@ public class JFormaPago extends javax.swing.JFrame {
         panFondoRosa = new javax.swing.JPanel();
         txtTitulo = new javax.swing.JLabel();
         panFondoBlanco = new javax.swing.JPanel();
-        btnPagar = new javax.swing.JButton();
-        btnPagar2 = new javax.swing.JButton();
+        btnEfectivo = new javax.swing.JButton();
+        btnTarjeta = new javax.swing.JButton();
         botonRegresar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,21 +38,21 @@ public class JFormaPago extends javax.swing.JFrame {
 
         panFondoBlanco.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnPagar.setBackground(new java.awt.Color(226, 183, 252));
-        btnPagar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        btnPagar.setText("Efectivo");
-        btnPagar.addActionListener(new java.awt.event.ActionListener() {
+        btnEfectivo.setBackground(new java.awt.Color(226, 183, 252));
+        btnEfectivo.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        btnEfectivo.setText("Efectivo");
+        btnEfectivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPagarActionPerformed(evt);
+                btnEfectivoActionPerformed(evt);
             }
         });
 
-        btnPagar2.setBackground(new java.awt.Color(226, 183, 252));
-        btnPagar2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        btnPagar2.setText("Tarjeta");
-        btnPagar2.addActionListener(new java.awt.event.ActionListener() {
+        btnTarjeta.setBackground(new java.awt.Color(226, 183, 252));
+        btnTarjeta.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        btnTarjeta.setText("Tarjeta");
+        btnTarjeta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPagar2ActionPerformed(evt);
+                btnTarjetaActionPerformed(evt);
             }
         });
 
@@ -62,9 +62,9 @@ public class JFormaPago extends javax.swing.JFrame {
             panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFondoBlancoLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(btnPagar2, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                .addComponent(btnTarjeta, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                 .addGap(30, 30, 30)
-                .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
         panFondoBlancoLayout.setVerticalGroup(
@@ -72,8 +72,8 @@ public class JFormaPago extends javax.swing.JFrame {
             .addGroup(panFondoBlancoLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPagar2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
@@ -127,24 +127,28 @@ public class JFormaPago extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
+    private void btnEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEfectivoActionPerformed
         FormEfectivo jc = new FormEfectivo();
         jc.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnPagarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnEfectivoActionPerformed
 
-    private void btnPagar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPagar2ActionPerformed
+    private void btnTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTarjetaActionPerformed
+        FormTarjeta w = new FormTarjeta();
+        w.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnTarjetaActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
-        // TODO add your handling code here:
+        JMenuPrincipal q = new JMenuPrincipal();
+        q.setVisible(true);
+        dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botonRegresar;
-    private javax.swing.JButton btnPagar;
-    private javax.swing.JButton btnPagar2;
+    private javax.swing.JButton btnEfectivo;
+    private javax.swing.JButton btnTarjeta;
     private javax.swing.JPanel panFondoBlanco;
     private javax.swing.JPanel panFondoRosa;
     private javax.swing.JLabel txtTitulo;

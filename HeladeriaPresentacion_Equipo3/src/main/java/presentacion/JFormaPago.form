@@ -96,9 +96,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="btnPagar2" pref="128" max="32767" attributes="0"/>
+                      <Component id="btnTarjeta" pref="128" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="btnPagar" min="-2" pref="117" max="-2" attributes="0"/>
+                      <Component id="btnEfectivo" min="-2" pref="117" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -108,8 +108,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnPagar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="btnPagar2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnEfectivo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnTarjeta" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="48" max="32767" attributes="0"/>
                   </Group>
@@ -117,7 +117,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btnPagar">
+            <Component class="javax.swing.JButton" name="btnEfectivo">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="fc" green="b7" red="e2" type="rgb"/>
@@ -128,10 +128,10 @@
                 <Property name="text" type="java.lang.String" value="Efectivo"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPagarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEfectivoActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnPagar2">
+            <Component class="javax.swing.JButton" name="btnTarjeta">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="fc" green="b7" red="e2" type="rgb"/>
@@ -142,7 +142,7 @@
                 <Property name="text" type="java.lang.String" value="Tarjeta"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPagar2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTarjetaActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

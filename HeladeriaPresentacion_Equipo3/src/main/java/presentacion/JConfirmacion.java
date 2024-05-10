@@ -39,6 +39,11 @@ public class JConfirmacion extends javax.swing.JFrame {
         botonAceptar.setBackground(new java.awt.Color(226, 183, 252));
         botonAceptar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         botonAceptar.setText("Aceptar");
+        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAceptarActionPerformed(evt);
+            }
+        });
 
         botonCancelar.setBackground(new java.awt.Color(226, 183, 252));
         botonCancelar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
@@ -114,8 +119,18 @@ public class JConfirmacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        // TODO add your handling code here:
+        JMenuPrincipal cc = new JMenuPrincipal();
+        cc.setVisible(true);
+        dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
+        // Hacer que reciba un parametro del pedido y que valide si no esta en
+        // nulo para poder avanzar a la siguiente pantalla
+        JFormaPago j = new JFormaPago();
+        j.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_botonAceptarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAceptar;
