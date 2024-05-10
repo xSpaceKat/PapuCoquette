@@ -28,7 +28,7 @@ public class FormEfectivo extends javax.swing.JFrame {
         txtTitulo1 = new javax.swing.JLabel();
         txtTitulo2 = new javax.swing.JLabel();
         txtTitulo3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        cantidad = new javax.swing.JTextField();
         btnPagar = new javax.swing.JButton();
         botonCancelar = new javax.swing.JButton();
 
@@ -50,7 +50,17 @@ public class FormEfectivo extends javax.swing.JFrame {
         txtTitulo3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         txtTitulo3.setText("Cambio $0.0");
 
-        jTextField1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        cantidad.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        cantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cantidadActionPerformed(evt);
+            }
+        });
+        cantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cantidadKeyTyped(evt);
+            }
+        });
 
         btnPagar.setBackground(new java.awt.Color(226, 183, 252));
         btnPagar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
@@ -88,7 +98,7 @@ public class FormEfectivo extends javax.swing.JFrame {
                         .addGroup(panFondoBlancoLayout.createSequentialGroup()
                             .addComponent(txtTitulo2)
                             .addGap(18, 18, 18)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(txtTitulo3)))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
@@ -100,7 +110,7 @@ public class FormEfectivo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTitulo2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtTitulo3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
@@ -148,19 +158,29 @@ public class FormEfectivo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        //JMenuPrincipal jmp = new JMenuPrincipal();
-        //jmp.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        // TODO add your handling code here:
+//        JMenuPrincipal jmp = new JMenuPrincipal();
+//        jmp.setVisible(true);
+//        dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void cantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cantidadActionPerformed
+
+    private void cantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantidadKeyTyped
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_cantidadKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton btnPagar;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField cantidad;
     private javax.swing.JPanel panFondoBlanco;
     private javax.swing.JPanel panFondoRosa;
     private javax.swing.JLabel txtTitulo;
