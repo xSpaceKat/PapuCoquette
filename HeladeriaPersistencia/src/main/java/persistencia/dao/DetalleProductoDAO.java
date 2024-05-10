@@ -53,17 +53,7 @@ public class DetalleProductoDAO implements IDetalleProductoDAO {
         }
     }
 
-    public void actualizarProducto(DetalleProducto detallesProducto) throws PersistenciaException {
-        Bson filtroID = Filters.eq("_id", detallesProducto.getId());
-
-        Bson actualizacionDatos = Updates.combine(Updates.set("total", detallesProducto.getTotal()), Updates.set("cantidad", detallesProducto.getCantidad()), Updates.set("topping", detallesProducto.getTopping()));
-
-        try {
-            coleccionDetalleProducto.updateOne(filtroID, actualizacionDatos);
-        } catch (MongoException e) {
-            throw new PersistenciaException("No se pudo actualizar el detalle producto" + e);
-        }
-    }
+   
 
     // Si no sirve, es por la variable id, quitar y poner directo el ObjectId
     public void guardarProducto(Producto producto, DetalleProducto detallesProducto) throws PersistenciaException {

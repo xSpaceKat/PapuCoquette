@@ -64,13 +64,15 @@ public class Pruebas {
         
         productosas.setNombre("Conos");
         String [] sabores = {"Uva"};
+        
         producto.setSabores(Arrays.asList(sabores));
         
         
-        detalleProducto.setProductosAdquiridos(productosAdquiridos);
+        DetalleProducto detalleProductoVendido=new DetalleProducto("Conos", "Uva", "Grande", 65f, 2);
+        detalleProducto.getPrecioTotal();
         
         
-        detalleProductoDAO.guardarDetalleProducto();
+        detalleProductoDAO.guardarDetalleProducto(detalleProductoVendido);
         
     }
     
