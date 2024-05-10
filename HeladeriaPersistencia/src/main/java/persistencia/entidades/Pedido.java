@@ -21,19 +21,27 @@ public class Pedido {
         this.detalles = new ArrayList<>();
     }
 
-    public Pedido(Integer id, Date fecha, Float totalPedido, List<DetalleProducto> detalles) {
+    public Pedido(Integer id, Date fecha,List<DetalleProducto> detalles) {
         this.id = id;
         this.fecha = fecha;
         this.totalPedido = totalPedido;
         this.detalles = detalles;
+        this.totalPedido=0f;
+        for(DetalleProducto dp:detalles){
+            totalPedido+=dp.getprecioTotal();
+        }
     }
 
-    public Pedido(ObjectId _idMongo, Integer id, Date fecha, Float totalPedido, List<DetalleProducto> detalles) {
+    public Pedido(ObjectId _idMongo, Integer id, Date fecha, List<DetalleProducto> detalles) {
         this._idMongo = _idMongo;
         this.id = id;
         this.fecha = fecha;
-        this.totalPedido = totalPedido;
         this.detalles = detalles;
+        this.totalPedido=0f;
+        for(DetalleProducto dp:detalles){
+            totalPedido+=dp.getprecioTotal();
+        }
+        
     }
 
     public ObjectId getIdMongo() {
@@ -75,5 +83,6 @@ public class Pedido {
     public void setTotalPedido(Float totalPedido) {
         this.totalPedido = totalPedido;
     }
+    
 
 }

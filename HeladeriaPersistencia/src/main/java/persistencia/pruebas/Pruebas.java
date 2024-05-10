@@ -6,11 +6,13 @@ package persistencia.pruebas;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.GregorianCalendar;
 import java.util.List;
 import persistencia.dao.DetalleProductoDAO;
 import persistencia.dao.PedidoDAO;
 import persistencia.dao.ProductoDAO;
 import persistencia.entidades.DetalleProducto;
+import persistencia.entidades.Pedido;
 import persistencia.entidades.Producto;
 import persistencia.entidades.Sabores;
 import persistencia.entidades.Tamaño;
@@ -31,9 +33,9 @@ public class Pruebas {
      */
     public static void main(String[] args) throws PersistenciaException {
         
-        IProductoDAO productoDAO = new ProductoDAO();
-        
-        Producto producto = new Producto();
+//        IProductoDAO productoDAO = new ProductoDAO();
+//        
+//        Producto producto = new Producto();
         
 //        producto.setNombre("Conos");
 //
@@ -53,27 +55,33 @@ public class Pruebas {
 //        listTamaño.add(tamaño2);
 //        
 //        
+
 //        producto.setTamano(listTamaño);
         
         
         IDetalleProductoDAO detalleProductoDAO = new DetalleProductoDAO();
         
-        DetalleProducto detalleProducto = new DetalleProducto();
         
-        Producto productosas = new Producto();
+        DetalleProducto detalleProductoVendido = new DetalleProducto("Conos", "Uva", "Grande", 65f, 2, true);
         
-        productosas.setNombre("Conos");
-        String [] sabores = {"Uva"};
+        IPedidoDAO pedidoDAO = new PedidoDAO();
         
-        producto.setSabores(Arrays.asList(sabores));
+        List<DetalleProducto> asd = new ArrayList<>();
+        
+        asd.add(detalleProductoVendido);
+        
+        Pedido pedido = new Pedido();
+        
+        pedido.setFecha(new GregorianCalendar().getTime());
+        pedido.setId(1);
+        pedido.setDetalles(asd);
         
         
-        DetalleProducto detalleProductoVendido=new DetalleProducto("Conos", "Uva", "Grande", 65f, 2);
-        detalleProducto.getPrecioTotal();
         
         
-        detalleProductoDAO.guardarDetalleProducto(detalleProductoVendido);
         
+            
+
     }
     
 }

@@ -4,7 +4,13 @@ import com.mycompany.heladeriaagregar.CasoAgregar;
 import com.mycompany.heladeriaagregarinteraz.ICasoAgregar;
 import dto.DetalleProductoDTO;
 import dto.PedidoDTO;
+import dto.ProductoDTO;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
 
 /**
  *
@@ -13,6 +19,7 @@ import java.util.List;
 public class JMenuPrincipal extends javax.swing.JFrame {
 
     private List<DetalleProductoDTO> listaDetallesProductos;
+    private List <ProductoDTO> productosDTO;
     private ICasoAgregar casoAgregar;
 
     /**
@@ -24,6 +31,26 @@ public class JMenuPrincipal extends javax.swing.JFrame {
         this.listaDetallesProductos = listaDetallesProductos;
         this.casoAgregar = new CasoAgregar();
         initComponents();
+        List<String> productos=new ArrayList<>();
+        productos.add("Nieve");
+        productos.add("Conos");
+        productos.add("Sabritas");
+        productos.add("Paletas");
+        
+        for(int i=0;i<productos.size();i++){
+            JButton boton = new JButton(productos.get(i));
+            boton.setPreferredSize(new Dimension(230, 120)); 
+            boton.addActionListener(new ActionListener() {
+                
+                public void actionPerformed(ActionEvent e) {
+                ProductoAdquirido adquirido=new ProductoAdquirido(boton.getText(), listaDetallesProductos);         
+                            
+                    
+                }
+            });
+            panel.add(boton);
+        }
+        
     }
 
     /**
@@ -40,15 +67,8 @@ public class JMenuPrincipal extends javax.swing.JFrame {
         panFondo = new javax.swing.JPanel();
         txtTitulo = new javax.swing.JLabel();
         panOpciones = new javax.swing.JPanel();
-        panConos = new javax.swing.JPanel();
-        panImgCono = new javax.swing.JPanel();
-        txtConos = new javax.swing.JLabel();
-        panVasos = new javax.swing.JPanel();
-        panImgVasos = new javax.swing.JPanel();
-        txtVasos = new javax.swing.JLabel();
-        panBebidas = new javax.swing.JPanel();
-        panImgBebidas = new javax.swing.JPanel();
-        txtBebidas = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        panel = new javax.swing.JPanel();
         PanTicket = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabTicket = new javax.swing.JTable();
@@ -80,162 +100,24 @@ public class JMenuPrincipal extends javax.swing.JFrame {
 
         panOpciones.setBackground(new java.awt.Color(255, 255, 255));
 
-        panConos.setBackground(new java.awt.Color(226, 183, 252));
-        panConos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panConosMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panImgConoLayout = new javax.swing.GroupLayout(panImgCono);
-        panImgCono.setLayout(panImgConoLayout);
-        panImgConoLayout.setHorizontalGroup(
-            panImgConoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        panImgConoLayout.setVerticalGroup(
-            panImgConoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        txtConos.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        txtConos.setText("Conos");
-
-        javax.swing.GroupLayout panConosLayout = new javax.swing.GroupLayout(panConos);
-        panConos.setLayout(panConosLayout);
-        panConosLayout.setHorizontalGroup(
-            panConosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panConosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panImgCono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtConos)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panConosLayout.setVerticalGroup(
-            panConosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panConosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panImgCono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(panConosLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(txtConos)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        panVasos.setBackground(new java.awt.Color(226, 183, 252));
-        panVasos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panVasosMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panImgVasosLayout = new javax.swing.GroupLayout(panImgVasos);
-        panImgVasos.setLayout(panImgVasosLayout);
-        panImgVasosLayout.setHorizontalGroup(
-            panImgVasosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        panImgVasosLayout.setVerticalGroup(
-            panImgVasosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        txtVasos.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        txtVasos.setText("Vasos");
-
-        javax.swing.GroupLayout panVasosLayout = new javax.swing.GroupLayout(panVasos);
-        panVasos.setLayout(panVasosLayout);
-        panVasosLayout.setHorizontalGroup(
-            panVasosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panVasosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panImgVasos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtVasos)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panVasosLayout.setVerticalGroup(
-            panVasosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panVasosLayout.createSequentialGroup()
-                .addGroup(panVasosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panVasosLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(panImgVasos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panVasosLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(txtVasos)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        panBebidas.setBackground(new java.awt.Color(226, 183, 252));
-        panBebidas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panBebidasMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panImgBebidasLayout = new javax.swing.GroupLayout(panImgBebidas);
-        panImgBebidas.setLayout(panImgBebidasLayout);
-        panImgBebidasLayout.setHorizontalGroup(
-            panImgBebidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        panImgBebidasLayout.setVerticalGroup(
-            panImgBebidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        txtBebidas.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        txtBebidas.setText("Bebidas");
-
-        javax.swing.GroupLayout panBebidasLayout = new javax.swing.GroupLayout(panBebidas);
-        panBebidas.setLayout(panBebidasLayout);
-        panBebidasLayout.setHorizontalGroup(
-            panBebidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panBebidasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panImgBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtBebidas)
-                .addContainerGap(44, Short.MAX_VALUE))
-        );
-        panBebidasLayout.setVerticalGroup(
-            panBebidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panBebidasLayout.createSequentialGroup()
-                .addGroup(panBebidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panBebidasLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(panImgBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panBebidasLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(txtBebidas)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        panel.setLayout(new java.awt.GridLayout(0, 1));
+        jScrollPane3.setViewportView(panel);
 
         javax.swing.GroupLayout panOpcionesLayout = new javax.swing.GroupLayout(panOpciones);
         panOpciones.setLayout(panOpcionesLayout);
         panOpcionesLayout.setHorizontalGroup(
             panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panOpcionesLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(panBebidas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panVasos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panConos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         panOpcionesLayout.setVerticalGroup(
             panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panOpcionesLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(panConos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panVasos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(panBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         PanTicket.setBackground(new java.awt.Color(255, 255, 255));
@@ -330,14 +212,13 @@ public class JMenuPrincipal extends javax.swing.JFrame {
         panFondoLayout.setHorizontalGroup(
             panFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panFondoLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(panFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTitulo)
                     .addGroup(panFondoLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(txtTitulo))
-                    .addGroup(panFondoLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addGap(6, 6, 6)
                         .addComponent(panOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30)
+                .addGap(36, 36, 36)
                 .addComponent(PanTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -345,11 +226,11 @@ public class JMenuPrincipal extends javax.swing.JFrame {
             panFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panFondoLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(panFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PanTicket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PanTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panFondoLayout.createSequentialGroup()
                         .addComponent(txtTitulo)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -368,28 +249,9 @@ public class JMenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void panConosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panConosMouseClicked
-        DetallesProducto dt = new DetallesProducto("Conos", listaDetallesProductos);
-        dt.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_panConosMouseClicked
-
-    private void panVasosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panVasosMouseClicked
-        DetallesProducto dt = new DetallesProducto("Vasos", listaDetallesProductos);
-        dt.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_panVasosMouseClicked
-
-    private void panBebidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panBebidasMouseClicked
-        DetallesProducto dt = new DetallesProducto("Bebidas", listaDetallesProductos);
-        dt.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_panBebidasMouseClicked
-
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        PedidoDTO pedidoDTO = new PedidoDTO(10F, listaDetallesProductos);
-
-        casoAgregar.AgregarPedido(pedidoDTO);
+        
+        
 
         JFormaPago jfp = new JFormaPago();
         jfp.setVisible(true);
@@ -401,23 +263,16 @@ public class JMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnPagar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JPanel panBebidas;
-    private javax.swing.JPanel panConos;
     private javax.swing.JPanel panFondo;
     private javax.swing.JPanel panHeaderCarito;
-    private javax.swing.JPanel panImgBebidas;
-    private javax.swing.JPanel panImgCono;
-    private javax.swing.JPanel panImgVasos;
     private javax.swing.JPanel panOpciones;
-    private javax.swing.JPanel panVasos;
+    private javax.swing.JPanel panel;
     private javax.swing.JTable tabTicket;
-    private javax.swing.JLabel txtBebidas;
     private javax.swing.JLabel txtCobro;
-    private javax.swing.JLabel txtConos;
     private javax.swing.JLabel txtHeaderPapuCarrito;
     private javax.swing.JLabel txtTitulo;
     private javax.swing.JLabel txtTotal;
-    private javax.swing.JLabel txtVasos;
     // End of variables declaration//GEN-END:variables
 }
