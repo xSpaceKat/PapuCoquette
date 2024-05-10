@@ -21,7 +21,7 @@ public class PedidoDAO implements IPedidoDAO {
 
     private final MongoCollection<Pedido> coleccionPedido;
 
-    public PedidoDAO(MongoCollection<Pedido> coleccionPedido) {
+    public PedidoDAO() {
         this.coleccionPedido = ConexionBD.getDatabase().getCollection("Pedido", Pedido.class);
     }
 

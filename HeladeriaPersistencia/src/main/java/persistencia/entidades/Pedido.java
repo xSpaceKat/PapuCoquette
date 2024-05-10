@@ -34,6 +34,7 @@ public class Pedido {
         this.fecha = fecha;
         this.totalPedido = totalPedido;
         this.detalles = detalles;
+        
     }
 
     public ObjectId getIdMongo() {
@@ -75,5 +76,6 @@ public class Pedido {
     public void setTotalPedido(Float totalPedido) {
         this.totalPedido = totalPedido;
     }
+    
 
 }

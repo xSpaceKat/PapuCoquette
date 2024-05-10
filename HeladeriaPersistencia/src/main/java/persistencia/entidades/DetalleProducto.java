@@ -17,6 +17,7 @@ public class DetalleProducto {
     private Float tamanoPrecio;
     private Integer cantidad;
     private Boolean topping;
+    private Float precioTotal;
 
     public DetalleProducto() {
     }
@@ -31,12 +32,19 @@ public class DetalleProducto {
         this.topping = topping;
     }
 
-    public DetalleProducto(String nombreProducto, String sabor, String tamano, Float tamanoPrecio, Integer cantidad) {
+    public DetalleProducto(String nombreProducto, String sabor, String tamano, Float tamanoPrecio, Integer cantidad, Boolean topping) {
         this.nombreProducto = nombreProducto;
         this.sabor = sabor;
         this.tamano = tamano;
         this.tamanoPrecio = tamanoPrecio;
         this.cantidad = cantidad;
+        this.topping = topping;
+        if (topping){
+           this.precioTotal = (tamanoPrecio*cantidad)+(5*cantidad); 
+        }
+        else{
+            this.precioTotal = (tamanoPrecio*cantidad);
+        }
     }
 
     public ObjectId getId() {
@@ -94,12 +102,14 @@ public class DetalleProducto {
     public void setTopping(Boolean topping) {
         this.topping = topping;
     }
-    
-    public Float getPrecioTotal(){
-        return (tamanoPrecio*cantidad);
-        
+
+    public Float getprecioTotal() {
+        return precioTotal;
     }
-    
+
+    public void setprecioTotal(Float precioTotal) {
+        this.precioTotal = precioTotal;
+    }
 
     @Override
     public String toString() {
