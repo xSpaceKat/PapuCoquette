@@ -8,25 +8,22 @@ import java.util.List;
  *
  * @author natas
  */
-public class DetallesProducto extends javax.swing.JFrame {
+public class ProductoAdquirido extends javax.swing.JFrame {
 
     private String producto;
-    private ProductoDTO productoDTO=new ProductoDTO("PapuNieve", 12.5f, "Cono");
     private List<DetalleProductoDTO> listaDetallesProductos;
     private DetalleProductoDTO detalleProductoDTO;
 
     /**
      * Creates new form DetallesProducto
      */
-    public DetallesProducto(String producto, List<DetalleProductoDTO> listaDetallesProductos) {
+    public ProductoAdquirido(String producto, List<DetalleProductoDTO> listaDetallesProductos) {
         this.listaDetallesProductos = listaDetallesProductos;
         this.producto = producto;
         this.detalleProductoDTO = new DetalleProductoDTO();
-
         initComponents();
-
         txtNombreProducto.setText(producto);
-        detalleProductoDTO.setProducto(productoDTO);
+        this.setVisible(true);
 
     }
 
@@ -363,8 +360,7 @@ public class DetallesProducto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        JMenuPrincipal jmp = new JMenuPrincipal(listaDetallesProductos);
-        jmp.setVisible(true);
+        
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -375,44 +371,6 @@ public class DetallesProducto extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         //JOptionPane.showMessageDialog(rootPane, "Se agrego el producto correctamente");
 
-        //tamaño
-        if (radTamChico.isSelected()) {
-            detalleProductoDTO.setTamanio("Chico");
-        } else if (radTamMediano.isSelected()) {
-            detalleProductoDTO.setTamanio("Mediano");
-        } else if (radTamGrande.isSelected()) {
-            detalleProductoDTO.setTamanio("Grande");
-        }
-
-        //sabor
-        if (radTamSabor1.isSelected()) {
-            detalleProductoDTO.setSabores("Vainilla");
-        } else if (radTamSabor2.isSelected()) {
-            detalleProductoDTO.setSabores("Chocolate");
-        } else if (radTamSabor3.isSelected()) {
-            detalleProductoDTO.setSabores("Fresa");
-        } else if (radTamSabor4.isSelected()) {
-            detalleProductoDTO.setSabores("Platano");
-        } else if (radTamSabor5.isSelected()) {
-            detalleProductoDTO.setSabores("Chicle");
-        }
-
-        //toping
-        if (radTamToping.isSelected()) {
-            detalleProductoDTO.setToppings(true);
-        } else {
-            detalleProductoDTO.setToppings(false);
-        }
-
-        //cantidad
-        detalleProductoDTO.setCantidad(Integer.parseInt(txfCantidad.getText()));
-        detalleProductoDTO.setCantidad(15*detalleProductoDTO.getCantidad());
-
-        //se agrega a la lista de detallesproducots
-        listaDetallesProductos.add(detalleProductoDTO);
-
-        JMenuPrincipal jmp = new JMenuPrincipal(listaDetallesProductos);
-        jmp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 

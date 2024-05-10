@@ -128,9 +128,9 @@ public class JFormaPago extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        FormEfectivo jc = new FormEfectivo();
+        /*FormEfectivo jc = new FormEfectivo();
         jc.setVisible(true);
-        this.dispose();
+        this.dispose();*/
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void btnPagar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagar2ActionPerformed
