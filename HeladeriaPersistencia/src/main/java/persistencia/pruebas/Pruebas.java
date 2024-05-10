@@ -55,6 +55,7 @@ public class Pruebas {
 //        listTamaño.add(tamaño2);
 //        
 //        
+
 //        producto.setTamano(listTamaño);
         
         
