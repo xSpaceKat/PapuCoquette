@@ -4,6 +4,8 @@
  */
 package presentacion;
 
+import dto.ProductoDTO;
+
 /**
  *
  * @author Berry
@@ -198,7 +200,11 @@ public class FromAgregarNombre extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        // TODO add your handling code here:
+        ProductoDTO productoDTO = new ProductoDTO();
+        productoDTO.setNombre(txfNombreDelProdcuto.getText());
+        FormAgregarSabores FAT = new FormAgregarSabores(productoDTO);
+        FAT.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnPagar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagar4ActionPerformed

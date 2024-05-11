@@ -13,15 +13,17 @@ import java.util.List;
  *
  * @author Berry
  */
-public class FormAgregarSabores extends javax.swing.JFrame {
-
+public class FormAgregarTamanos extends javax.swing.JFrame {
+    
     private ProductoDTO productoDTO;
+    private List<TamanoDTO> tamanosDTO;
     
     /**
-     * Creates new form FormAgregarTamaños
+     * Creates new form FormAgregarSabores
      */
-    public FormAgregarSabores(ProductoDTO productoDTO) {
+    public FormAgregarTamanos(ProductoDTO productoDTO) {
         this.productoDTO = productoDTO;
+        this.tamanosDTO = new ArrayList<>();
         initComponents();
     }
 
@@ -39,11 +41,15 @@ public class FormAgregarSabores extends javax.swing.JFrame {
         txtAgregarProducto = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JLabel();
         panSeparador = new javax.swing.JPanel();
-        txtSabores = new javax.swing.JLabel();
-        txfSabores = new javax.swing.JTextField();
+        txtNombreDelProducto = new javax.swing.JLabel();
+        txfNombreDelProdcuto = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JLabel();
+        txfPrecio = new javax.swing.JTextField();
         panSeparador2 = new javax.swing.JPanel();
-        btnSiguiente = new javax.swing.JButton();
+        btnFinalizar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        txtDescripcion1 = new javax.swing.JLabel();
+        btnAgregarProducto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,7 +61,7 @@ public class FormAgregarSabores extends javax.swing.JFrame {
         txtAgregarProducto.setText("Agregar Producto");
 
         txtDescripcion.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtDescripcion.setText("Separa las opciones con una coma sin espacio");
+        txtDescripcion.setText("Solo pon un tamaño y su precio");
 
         panSeparador.setBackground(new java.awt.Color(233, 215, 248));
 
@@ -70,10 +76,15 @@ public class FormAgregarSabores extends javax.swing.JFrame {
             .addGap(0, 8, Short.MAX_VALUE)
         );
 
-        txtSabores.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        txtSabores.setText("Sabores");
+        txtNombreDelProducto.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        txtNombreDelProducto.setText("Nombre de Tamaño");
 
-        txfSabores.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txfNombreDelProdcuto.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+
+        txtPrecio.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        txtPrecio.setText("Precio");
+
+        txfPrecio.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
         panSeparador2.setBackground(new java.awt.Color(233, 215, 248));
 
@@ -81,19 +92,19 @@ public class FormAgregarSabores extends javax.swing.JFrame {
         panSeparador2.setLayout(panSeparador2Layout);
         panSeparador2Layout.setHorizontalGroup(
             panSeparador2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
+            .addGap(0, 422, Short.MAX_VALUE)
         );
         panSeparador2Layout.setVerticalGroup(
             panSeparador2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 8, Short.MAX_VALUE)
         );
 
-        btnSiguiente.setBackground(new java.awt.Color(226, 183, 252));
-        btnSiguiente.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        btnSiguiente.setText("Siguiente");
-        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+        btnFinalizar.setBackground(new java.awt.Color(226, 183, 252));
+        btnFinalizar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        btnFinalizar.setText("Finalizar producto");
+        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSiguienteActionPerformed(evt);
+                btnFinalizarActionPerformed(evt);
             }
         });
 
@@ -106,38 +117,61 @@ public class FormAgregarSabores extends javax.swing.JFrame {
             }
         });
 
+        txtDescripcion1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtDescripcion1.setText("Para agregar otro selecciona Agregar otro tamaño");
+
+        btnAgregarProducto.setBackground(new java.awt.Color(226, 183, 252));
+        btnAgregarProducto.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        btnAgregarProducto.setText("Agregar otro producto");
+        btnAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarProductoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panOpcionesLayout = new javax.swing.GroupLayout(panOpciones);
         panOpciones.setLayout(panOpcionesLayout);
         panOpcionesLayout.setHorizontalGroup(
             panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panOpcionesLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(txtDescripcion)
-                .addGap(83, 83, 83))
             .addGroup(panOpcionesLayout.createSequentialGroup()
                 .addGroup(panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panOpcionesLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(panSeparador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panOpcionesLayout.createSequentialGroup()
-                            .addGap(131, 131, 131)
-                            .addComponent(txtAgregarProducto))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panOpcionesLayout.createSequentialGroup()
-                            .addGap(39, 39, 39)
-                            .addComponent(txfSabores, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panOpcionesLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(panSeparador2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(panOpcionesLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
                         .addGroup(panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panOpcionesLayout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addComponent(txtSabores)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panOpcionesLayout.createSequentialGroup()
+                                .addGap(131, 131, 131)
+                                .addComponent(txtAgregarProducto))
+                            .addGroup(panOpcionesLayout.createSequentialGroup()
+                                .addGap(116, 116, 116)
+                                .addComponent(txtNombreDelProducto))
+                            .addGroup(panOpcionesLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(panSeparador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panOpcionesLayout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(txtDescripcion1))
+                            .addGroup(panOpcionesLayout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addGroup(panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(panOpcionesLayout.createSequentialGroup()
+                                .addGap(113, 113, 113)
+                                .addComponent(txtDescripcion)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(panSeparador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panOpcionesLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panOpcionesLayout.createSequentialGroup()
+                        .addGroup(panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txfNombreDelProdcuto, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panOpcionesLayout.createSequentialGroup()
+                        .addComponent(txtPrecio)
+                        .addGap(176, 176, 176))))
         );
         panOpcionesLayout.setVerticalGroup(
             panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,16 +180,24 @@ public class FormAgregarSabores extends javax.swing.JFrame {
                 .addComponent(txtAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtDescripcion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
+                .addComponent(txtDescripcion1)
+                .addGap(18, 18, 18)
                 .addComponent(panSeparador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(txtSabores)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txfSabores)
-                .addGap(108, 108, 108)
+                .addComponent(txtNombreDelProducto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txfNombreDelProdcuto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtPrecio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txfPrecio)
+                .addGap(29, 29, 29)
                 .addComponent(panSeparador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
@@ -182,9 +224,7 @@ public class FormAgregarSabores extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,31 +236,40 @@ public class FormAgregarSabores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        String[] saboresArray = txfSabores.getText().split(",");
-        List<String> sabores = new ArrayList<>();
-        
-        for (String sabor : saboresArray) {
-            sabores.add(sabor.trim());
-        }
-        
-        productoDTO.setSabores(sabores);
-    }//GEN-LAST:event_btnSiguienteActionPerformed
+    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
+        productoDTO.setTamano(tamanosDTO);
+    }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
+        TamanoDTO tamano = new TamanoDTO();
+        
+        tamano.setNombreTamano(txfNombreDelProdcuto.getText());
+        tamano.setPrecioBase(Float.parseFloat(txfPrecio.getText()));
+
+        tamanosDTO.add(tamano);
+        
+        txfNombreDelProdcuto.setText("");
+        txfPrecio.setText("");
+    }//GEN-LAST:event_btnAgregarProductoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnSiguiente;
+    private javax.swing.JButton btnFinalizar;
     private javax.swing.JPanel panFondo;
     private javax.swing.JPanel panOpciones;
     private javax.swing.JPanel panSeparador;
     private javax.swing.JPanel panSeparador2;
-    private javax.swing.JTextField txfSabores;
+    private javax.swing.JTextField txfNombreDelProdcuto;
+    private javax.swing.JTextField txfPrecio;
     private javax.swing.JLabel txtAgregarProducto;
     private javax.swing.JLabel txtDescripcion;
-    private javax.swing.JLabel txtSabores;
+    private javax.swing.JLabel txtDescripcion1;
+    private javax.swing.JLabel txtNombreDelProducto;
+    private javax.swing.JLabel txtPrecio;
     // End of variables declaration//GEN-END:variables
 }
