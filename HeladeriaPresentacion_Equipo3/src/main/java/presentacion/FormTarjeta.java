@@ -1,6 +1,9 @@
 package presentacion;
 
+import dto.PagoTarjetaDTO;
+import interfaces.IPagoConTarjeta;
 import javax.swing.JOptionPane;
+import pagarTarjeta.PagoConTarjeta;
 
 /**
  *
@@ -8,11 +11,16 @@ import javax.swing.JOptionPane;
  */
 public class FormTarjeta extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormTarjeta
-     */
+    // C A M B I O S
+    // Traer el pedido para el precioTotal
+    // Realizar el recibo
+    IPagoConTarjeta ipago = new PagoConTarjeta();
+    PagoTarjetaDTO dto = new PagoTarjetaDTO();
+
     public FormTarjeta() {
         initComponents();
+        this.ipago = new PagoConTarjeta();
+        this.dto = new PagoTarjetaDTO();
     }
 
     /**
@@ -36,7 +44,7 @@ public class FormTarjeta extends javax.swing.JFrame {
         vencimiento = new javax.swing.JTextField();
         cvv = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        txtCambio = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         botonCancelar = new javax.swing.JToggleButton();
         botonAceptar = new javax.swing.JToggleButton();
@@ -121,8 +129,8 @@ public class FormTarjeta extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel7.setText("TOTAL:");
 
-        jLabel8.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        jLabel8.setText("$");
+        txtCambio.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        txtCambio.setText("$");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -151,7 +159,7 @@ public class FormTarjeta extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel8)
+                .addComponent(txtCambio)
                 .addGap(79, 79, 79))
         );
         jPanel2Layout.setVerticalGroup(
@@ -179,7 +187,7 @@ public class FormTarjeta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                    .addComponent(txtCambio))
                 .addGap(29, 29, 29))
         );
 
@@ -268,6 +276,12 @@ public class FormTarjeta extends javax.swing.JFrame {
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         if (numTarjeta.getText().isBlank() || vencimiento.getText().isBlank() || cvv.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Error! Registre los campos vacios");
+        } else {
+            verificarDatos();
+            guardarDatos();
+            ipago.calcularCambio(dto);
+            // quitar el setText y ponerlo arriba cuando cree el pedido
+            txtCambio.setText("$ " + dto.getPrecioTotal().toString());
         }
         // Recibo recibo cual recibo ajjjj
     }//GEN-LAST:event_botonAceptarActionPerformed
@@ -278,7 +292,7 @@ public class FormTarjeta extends javax.swing.JFrame {
 
     private void numTarjetaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numTarjetaKeyTyped
         if (numTarjeta.getText().length() >= 19) {
-            JOptionPane.showMessageDialog(null, "Error, el formato de la tarjeta es de: 'XXXX-XXXX-XXXX'");
+            JOptionPane.showMessageDialog(null, "Error, el formato de la tarjeta es de: 'XXXX-XXXX-XXXX-XXXX'");
             evt.consume();
         } else {
             if (!Character.isDigit(evt.getKeyChar())) {
@@ -318,6 +332,25 @@ public class FormTarjeta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cvvKeyTyped
 
+    private void verificarDatos() {
+        if (numTarjeta.getText().length() < 19) {
+            JOptionPane.showMessageDialog(null, "Faltan Caracteres en Numero de Tarjeta");
+        }
+        if (vencimiento.getText().length() < 5) {
+            JOptionPane.showMessageDialog(null, "Faltan Caracteres en Fecha de Vencimiento");
+        }
+        if (cvv.getText().length() < 3) {
+            JOptionPane.showMessageDialog(null, "Faltan Caracteres en el CVV");
+        }
+    }
+
+    private void guardarDatos() {
+        dto.setNumTarjeta(numTarjeta.getText());
+        dto.setFechaVencimiento(vencimiento.getText());
+        dto.setCvv(Integer.parseInt(cvv.getText()));
+        dto.setPrecioTotal(40.5f);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botonAceptar;
     private javax.swing.JToggleButton botonCancelar;
@@ -329,11 +362,11 @@ public class FormTarjeta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField numTarjeta;
+    private javax.swing.JLabel txtCambio;
     private javax.swing.JTextField vencimiento;
     // End of variables declaration//GEN-END:variables
 }

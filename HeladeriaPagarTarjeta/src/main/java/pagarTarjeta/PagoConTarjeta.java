@@ -46,12 +46,11 @@ public class PagoConTarjeta implements IPagoConTarjeta {
     public PagoTarjetaDTO verificarFechaVencimiento(PagoTarjetaDTO tarjeta) {
         try {
             for (int i = 0; i < fechasVencimiento.length; i++) {
-                verificarTarjeta(tarjeta);
                 if (fechasVencimiento[i].equals(tarjeta.getFechaVencimiento())) {
                     return tarjeta;
                 }
             }
-            JOptionPane.showMessageDialog(null, "No se encontro la fecha de vencimiento, intente de nuevo");
+            JOptionPane.showMessageDialog(null, "No se encontro la tarjeta, pruebe otra vez");
         } catch (Exception e) {
             Logger.getLogger(PagoConTarjeta.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -61,13 +60,11 @@ public class PagoConTarjeta implements IPagoConTarjeta {
     public PagoTarjetaDTO verificarCvv(PagoTarjetaDTO tarjeta) {
         try {
             for (int i = 0; i < cvv.length; i++) {
-                verificarTarjeta(tarjeta);
-                verificarFechaVencimiento(tarjeta);
                 if (cvv[i].equals(tarjeta.getCvv())) {
                     return tarjeta;
                 }
             }
-            JOptionPane.showMessageDialog(null, "No se encontro el cvv, intente de nuevo");
+            JOptionPane.showMessageDialog(null, "No se encontro la tarjeta, pruebe otra vez");
         } catch (Exception e) {
             Logger.getLogger(PagoConTarjeta.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -76,20 +73,29 @@ public class PagoConTarjeta implements IPagoConTarjeta {
 
     public PagoTarjetaDTO verificarDinero(PagoTarjetaDTO tarjeta) {
         try {
+            boolean peso = false;
+            boolean pluma = true;
             for (int i = 0; i < 10; i++) {
                 if (tarjetas[i].equals(tarjeta.getNumTarjeta())) {
                     if (fechasVencimiento[i].equals(tarjeta.getFechaVencimiento())) {
                         if (cvv[i].equals(tarjeta.getCvv())) {
                             if (dinero[i] < tarjeta.getPrecioTotal()) {
                                 JOptionPane.showMessageDialog(null, "No contiene dinero suficiente!");
+                                peso = true;
                             } else {
+                                numero = i;
                                 return tarjeta;
                             }
                         }
                     }
                 }
             }
-            JOptionPane.showMessageDialog(null, "ERROR! No se pudo verificar su monto de tarjeta");
+            if (peso = false) {
+                JOptionPane.showMessageDialog(null, "ERROR! No se pudo verificar su monto de tarjeta");
+            }
+            if (pluma = true) {
+                JOptionPane.showMessageDialog(null, "No se encontro la tarjeta, pruebe otra vez");
+            }
         } catch (Exception e) {
             Logger.getLogger(PagoConTarjeta.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -99,15 +105,10 @@ public class PagoConTarjeta implements IPagoConTarjeta {
     public PagoTarjetaDTO calcularCambio(PagoTarjetaDTO tarjeta) {
         verificarDinero(tarjeta);
         Float manuel = tarjeta.getPrecioTotal();
-        int is = 0;
-        for (int i = 0; i < 10; i++) {
-            verificarTarjeta(tarjeta);
-            verificarFechaVencimiento(tarjeta);
-            verificarCvv(tarjeta);
-            is = i;
-        }
-        Float kat = dinero[is];
+        int i = numero;
+        Float kat = dinero[i];
         tarjeta.setCambbio(kat - manuel);
+        dinero[i] = tarjeta.getCambbio();
         return tarjeta;
     }
 
