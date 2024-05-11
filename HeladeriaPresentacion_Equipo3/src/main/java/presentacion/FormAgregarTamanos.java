@@ -238,6 +238,8 @@ public class FormAgregarTamanos extends javax.swing.JFrame {
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         productoDTO.setTamano(tamanosDTO);
+        
+        
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
