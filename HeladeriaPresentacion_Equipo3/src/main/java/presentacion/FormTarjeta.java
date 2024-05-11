@@ -112,6 +112,11 @@ public class FormTarjeta extends javax.swing.JFrame {
                 cvvActionPerformed(evt);
             }
         });
+        cvv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cvvKeyTyped(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel7.setText("TOTAL:");
@@ -246,16 +251,17 @@ public class FormTarjeta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void vencimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vencimientoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_vencimientoActionPerformed
 
     private void cvvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cvvActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cvvActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         JMenuPrincipal t = new JMenuPrincipal();
         t.setVisible(true);
+
         dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
@@ -267,30 +273,50 @@ public class FormTarjeta extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAceptarActionPerformed
 
     private void numTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numTarjetaActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_numTarjetaActionPerformed
 
     private void numTarjetaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numTarjetaKeyTyped
-        if (!Character.isDigit(evt.getKeyChar())) {
+        if (numTarjeta.getText().length() >= 19) {
+            JOptionPane.showMessageDialog(null, "Error, el formato de la tarjeta es de: 'XXXX-XXXX-XXXX'");
             evt.consume();
         } else {
-            if ((numTarjeta.getText().length() + 1) % 5 == 0 && numTarjeta.getText().length() < 19) {
-                String text = numTarjeta.getText();
-                StringBuilder newText = new StringBuilder(text);
-                newText.insert(text.length() - 1, "-");
-                numTarjeta.setText(newText.toString());
+            if (!Character.isDigit(evt.getKeyChar())) {
+                evt.consume();
+            } else {
+                if (numTarjeta.getText().length() == 4 || numTarjeta.getText().length() == 9 || numTarjeta.getText().length() == 14) {
+                    numTarjeta.setText(numTarjeta.getText() + "-");
+                }
             }
-        }
-        if (numTarjeta.getText().length() > 19) {
-            evt.consume();
         }
     }//GEN-LAST:event_numTarjetaKeyTyped
 
     private void vencimientoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_vencimientoKeyTyped
-        if (!Character.isDigit(evt.getKeyChar())) {
+        if (vencimiento.getText().length() >= 5) {
+            JOptionPane.showMessageDialog(null, "Error! El formato de fecha es: 'MES/DIA' con digitos");
             evt.consume();
+        } else {
+            if (!Character.isDigit(evt.getKeyChar())) {
+                evt.consume();
+            } else {
+                String text = vencimiento.getText().replaceAll("/", "");
+                if (text.length() == 2) {
+                    vencimiento.setText(vencimiento.getText() + "/");
+                }
+            }
         }
     }//GEN-LAST:event_vencimientoKeyTyped
+
+    private void cvvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cvvKeyTyped
+        if (cvv.getText().length() >= 3) {
+            JOptionPane.showMessageDialog(null, "Error! El cvv solo debe contener 3 digitos");
+            evt.consume();
+        } else {
+            if (!Character.isDigit(evt.getKeyChar())) {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_cvvKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botonAceptar;
