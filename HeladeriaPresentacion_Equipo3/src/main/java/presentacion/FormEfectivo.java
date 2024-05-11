@@ -1,6 +1,10 @@
 package presentacion;
 
+import dto.PagoEfectivoDTO;
+import interfaces.IPagoConEfectivo;
+import static java.lang.Float.parseFloat;
 import javax.swing.JOptionPane;
+import pagarEfectivo.PagoConEfectivo;
 
 /**
  *
@@ -8,11 +12,16 @@ import javax.swing.JOptionPane;
  */
 public class FormEfectivo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormEfectivo
-     */
+    // C A M B I O S
+    // Traer el pedido para el precioTotal
+    // Realizar el recibo 
+    PagoEfectivoDTO efectivo = new PagoEfectivoDTO();
+    IPagoConEfectivo ipago = new PagoConEfectivo();
+
     public FormEfectivo() {
         initComponents();
+        this.efectivo = new PagoEfectivoDTO();
+        this.ipago = new PagoConEfectivo();
     }
 
     /**
@@ -32,7 +41,7 @@ public class FormEfectivo extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         cantidad = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        txtCambio = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         botonCancelar = new javax.swing.JToggleButton();
         botonFinalizar = new javax.swing.JToggleButton();
@@ -85,8 +94,8 @@ public class FormEfectivo extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Comic Sans MS", 0, 20)); // NOI18N
-        jLabel6.setText("$0.00");
+        txtCambio.setFont(new java.awt.Font("Comic Sans MS", 0, 20)); // NOI18N
+        txtCambio.setText("$0.00");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -107,7 +116,7 @@ public class FormEfectivo extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
+                            .addComponent(txtCambio)
                             .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
@@ -125,7 +134,7 @@ public class FormEfectivo extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(txtCambio))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -211,13 +220,28 @@ public class FormEfectivo extends javax.swing.JFrame {
     private void botonFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFinalizarActionPerformed
         if (cantidad.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Error! Ingrese la cantidad de pago");
+        } else {
+            guardarDatos();
+            ipago.calcularCambio(efectivo);
+            txtCambio.setText(efectivo.getCambio().toString());
         }
         // recibo recibo recibo y validaciones
     }//GEN-LAST:event_botonFinalizarActionPerformed
 
     private void cantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadActionPerformed
-
+        if (cantidad.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Error! Ingrese la cantidad de pago");
+        } else {
+            guardarDatos();
+            ipago.calcularCambio(efectivo);
+            txtCambio.setText("$ " + efectivo.getCambio().toString());
+        }
     }//GEN-LAST:event_cantidadActionPerformed
+
+    private void guardarDatos() {
+        efectivo.setPrecioTotal(40.5f);
+        efectivo.setCantidadPagar(parseFloat(cantidad.getText()));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botonCancelar;
@@ -228,9 +252,9 @@ public class FormEfectivo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel txtCambio;
     // End of variables declaration//GEN-END:variables
 }

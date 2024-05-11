@@ -7,14 +7,24 @@ package dto;
 public class PagoEfectivoDTO {
 
     private Float cambio;
+    private Float cantidadPagar;
     private Float precioTotal;
 
     public PagoEfectivoDTO() {
     }
 
-    public PagoEfectivoDTO(Float cambio, Float precioTotal) {
+    public PagoEfectivoDTO(Float cambio, Float cantidadPagar, Float precioTotal) {
         this.cambio = cambio;
+        this.cantidadPagar = cantidadPagar;
         this.precioTotal = precioTotal;
+    }
+
+    public Float getCantidadPagar() {
+        return cantidadPagar;
+    }
+
+    public void setCantidadPagar(Float cantidadPagar) {
+        this.cantidadPagar = cantidadPagar;
     }
 
     public Float getCambio() {

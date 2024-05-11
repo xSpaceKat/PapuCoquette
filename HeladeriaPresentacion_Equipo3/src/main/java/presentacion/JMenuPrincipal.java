@@ -5,12 +5,10 @@ import com.mycompany.heladeriaagregarinteraz.ICasoAgregar;
 import com.mycompany.heladeriaconsultar.CasoConsultar;
 import com.mycompany.iheladeriaconsultar.ICasoConsultar;
 import dto.DetalleProductoDTO;
-import dto.PedidoDTO;
 import dto.ProductoDTO;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 
@@ -21,41 +19,37 @@ import javax.swing.JButton;
 public class JMenuPrincipal extends javax.swing.JFrame {
 
     private List<DetalleProductoDTO> listaDetallesProductos;
-    private List <ProductoDTO> productosDTO;
+    private List<ProductoDTO> productosDTO;
     private ICasoAgregar casoAgregar;
     private ICasoConsultar casoConsultar;
     List<ProductoDTO> productoDTOs;
 
-    
-            
     public JMenuPrincipal() {
         this.listaDetallesProductos = listaDetallesProductos;
         this.casoAgregar = new CasoAgregar();
         initComponents();
         this.setLocationRelativeTo(null);
-        casoConsultar=new CasoConsultar();
-        productoDTOs=casoConsultar.consultarTodosProductos();
-        
-        
-        for(int i=0;i<productoDTOs.size();i++){
+        casoConsultar = new CasoConsultar();
+        productoDTOs = casoConsultar.consultarTodosProductos();
+
+        for (int i = 0; i < productoDTOs.size(); i++) {
             JButton boton = new JButton(productoDTOs.get(i).getNombre());
-            boton.setPreferredSize(new Dimension(230, 120)); 
+            boton.setPreferredSize(new Dimension(230, 120));
             boton.addActionListener(new ActionListener() {
-                
+
                 public void actionPerformed(ActionEvent e) {
-                ProductoAdquirido adquirido=new ProductoAdquirido(productoPorNombre(boton.getText()), listaDetallesProductos);         
-                            
-                    
+                    ProductoAdquirido adquirido = new ProductoAdquirido(productoPorNombre(boton.getText()), listaDetallesProductos);
+
                 }
             });
             panel.add(boton);
         }
-        
+
     }
-    
-    public ProductoDTO productoPorNombre(String nombre){
-        for(ProductoDTO p: productoDTOs){
-            if(p.getNombre().equals(nombre)){
+
+    public ProductoDTO productoPorNombre(String nombre) {
+        for (ProductoDTO p : productoDTOs) {
+            if (p.getNombre().equals(nombre)) {
                 return p;
             }
         }
@@ -259,10 +253,7 @@ public class JMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        
-        
-
-        JFormaPago jfp = new JFormaPago();
+        JConfirmacion jfp = new JConfirmacion();
         jfp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPagarActionPerformed
