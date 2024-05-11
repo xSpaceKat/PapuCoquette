@@ -7,6 +7,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JCheckBox;
 import persistencia.entidades.DetalleProducto;
@@ -23,14 +24,18 @@ public class ProductoAdquirido extends javax.swing.JFrame {
     private String tamano;
     private Float precio;
     private String sabor;
+    JMenuPrincipal menu;
 
     /**
      * Creates new form DetallesProducto
      */
     public ProductoAdquirido(ProductoDTO productoDTO, List<DetalleProductoDTO> listaDetallesProductos) {
+        this.menu=menu;
         this.listaDetallesProductos = listaDetallesProductos;
         this.productoDTO = productoDTO;
         this.detalleProductoDTO = new DetalleProductoDTO();
+                
+                
         initComponents();
         
         ActionListener listenerTam = new ActionListener() {
@@ -395,10 +400,12 @@ public class ProductoAdquirido extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         //JOptionPane.showMessageDialog(rootPane, "Se agrego el producto correctamente");
         Integer cantidad=Integer.parseInt(txfCantidad.getText());
-        DetalleProducto detalleProducto=new DetalleProducto(productoDTO.getNombre(),sabor,tamano,precio,cantidad,radTamToping.isSelected());
-        System.out.println(detalleProducto);
+        DetalleProductoDTO detalleProducto=new DetalleProductoDTO(productoDTO.getNombre(),sabor,tamano,precio,cantidad,radTamToping.isSelected());
         
-        listaDetallesProductos.add(detalleProductoDTO);
+        listaDetallesProductos.add(detalleProducto);
+        JMenuPrincipal menu=new JMenuPrincipal();
+        menu.actualizarTable(listaDetallesProductos);
+        menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 

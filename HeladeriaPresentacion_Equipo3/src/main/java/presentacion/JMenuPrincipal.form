@@ -218,7 +218,7 @@
                         <Column editable="true" title="Tama&#xf1;o" type="java.lang.Object"/>
                         <Column editable="true" title="Toping" type="java.lang.Object"/>
                         <Column editable="true" title="Cantidad" type="java.lang.Object"/>
-                        <Column editable="true" title="Precio" type="java.lang.Object"/>
+                        <Column editable="true" title="PrecioTotal" type="java.lang.Object"/>
                       </Table>
                     </Property>
                   </Properties>

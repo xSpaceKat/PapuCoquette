@@ -10,38 +10,62 @@ import org.bson.types.ObjectId;
  */
 public class DetalleProductoDTO {
 
-    private ObjectId _id;
-    private Float total;
+    private String nombreProducto;
+    private String sabor;
+    private String tamano;
+    private Float tamanoPrecio;
     private Integer cantidad;
     private Boolean topping;
-    private List<ProductoDTO> productosAdquiridos;
+    private Float precioTotal;
 
-    public DetalleProductoDTO() {
-        this.productosAdquiridos = new ArrayList<>();
-    }
-
-    public DetalleProductoDTO(ObjectId _id, Float total, Integer cantidad, Boolean topping, List<ProductoDTO> productosAdquiridos) {
-        this._id = _id;
-        this.total = total;
+    public DetalleProductoDTO(String nombreProducto, String sabor, String tamano, Float tamanoPrecio, Integer cantidad, Boolean topping) {
+        this.nombreProducto = nombreProducto;
+        this.sabor = sabor;
+        this.tamano = tamano;
+        this.tamanoPrecio = tamanoPrecio;
         this.cantidad = cantidad;
         this.topping = topping;
-        this.productosAdquiridos = productosAdquiridos;
+        if (topping){
+           this.precioTotal = (tamanoPrecio*cantidad)+(5*cantidad); 
+        }
+        else{
+            this.precioTotal = (tamanoPrecio*cantidad);
+        }
     }
 
-    public ObjectId getId() {
-        return _id;
+    public DetalleProductoDTO() {
     }
 
-    public void setId(ObjectId _id) {
-        this._id = _id;
+    public String getNombreProducto() {
+        return nombreProducto;
     }
 
-    public Float getTotal() {
-        return total;
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
     }
 
-    public void setTotal(Float total) {
-        this.total = total;
+    public String getSabor() {
+        return sabor;
+    }
+
+    public void setSabor(String sabor) {
+        this.sabor = sabor;
+    }
+
+    public String getTamano() {
+        return tamano;
+    }
+
+    public void setTamano(String tamano) {
+        this.tamano = tamano;
+    }
+
+    public Float getTamanoPrecio() {
+        return tamanoPrecio;
+    }
+
+    public void setTamanoPrecio(Float tamanoPrecio) {
+        this.tamanoPrecio = tamanoPrecio;
     }
 
     public Integer getCantidad() {
@@ -60,16 +84,19 @@ public class DetalleProductoDTO {
         this.topping = topping;
     }
 
-    public List<ProductoDTO> getProductosAdquiridos() {
-        return productosAdquiridos;
+    public Float getPrecioTotal() {
+        return precioTotal;
     }
 
-    public void setProductosAdquiridos(List<ProductoDTO> productosAdquiridos) {
-        this.productosAdquiridos = productosAdquiridos;
+    public void setPrecioTotal(Float precioTotal) {
+        this.precioTotal = precioTotal;
     }
 
+    @Override
     public String toString() {
-        return "DetalleProductoDTO{" + "_id=" + _id + ", total=" + total + ", cantidad=" + cantidad + ", topping=" + topping + ", productosAdquiridos=" + productosAdquiridos + '}';
+        return "DetalleProductoDTO{" + "nombreProducto=" + nombreProducto + ", sabor=" + sabor + ", tamano=" + tamano + ", tamanoPrecio=" + tamanoPrecio + ", cantidad=" + cantidad + ", topping=" + topping + ", precioTotal=" + precioTotal + '}';
     }
+
+    
 
 }

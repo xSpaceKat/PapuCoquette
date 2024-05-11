@@ -57,12 +57,6 @@ public class Pruebas {
         productoDAO.guardarProducto(new Producto("Raspados", listTamano, sabores));
         productoDAO.guardarProducto(new Producto("Gorditas", listTamano, sabores));
         
-        
-        
-        
-        
-            
-
     }
     
 }
