@@ -1,6 +1,5 @@
 package presentacion;
 
-import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -195,7 +194,9 @@ public class FormEfectivo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantidadKeyTyped
-        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.' && evt.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        } else if (evt.getKeyChar() == '.' && cantidad.getText().contains(".")) {
             evt.consume();
         }
     }//GEN-LAST:event_cantidadKeyTyped

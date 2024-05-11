@@ -8,13 +8,13 @@ import dto.PagoTarjetaDTO;
  */
 public interface IPagoConTarjeta {
 
-    public PagoTarjetaDTO verficarTarejta(PagoTarjetaDTO tarjeta);
+    public PagoTarjetaDTO verificarTarjeta(PagoTarjetaDTO tarjeta);
 
     public PagoTarjetaDTO verificarFechaVencimiento(PagoTarjetaDTO tarjeta);
 
-    public PagoTarjetaDTO verficarCvv(PagoTarjetaDTO tarjeta);
+    public PagoTarjetaDTO verificarCvv(PagoTarjetaDTO tarjeta);
 
-    public PagoTarjetaDTO verficarDinero(PagoTarjetaDTO tarjeta);
+    public PagoTarjetaDTO verificarDinero(PagoTarjetaDTO tarjeta);
 
     public PagoTarjetaDTO calcularCambio(PagoTarjetaDTO tarjeta);
 
