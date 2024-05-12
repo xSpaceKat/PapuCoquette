@@ -2,11 +2,20 @@ package persistencia.dao;
 
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import org.bson.conversions.Bson;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
 import org.bson.types.ObjectId;
 import persistencia.conexion.ConexionBD;
 import persistencia.entidades.DetalleProducto;
@@ -53,8 +62,6 @@ public class DetalleProductoDAO implements IDetalleProductoDAO {
         }
     }
 
-   
-
     // Si no sirve, es por la variable id, quitar y poner directo el ObjectId
     public void guardarProducto(Producto producto, DetalleProducto detallesProducto) throws PersistenciaException {
         try {
@@ -65,6 +72,38 @@ public class DetalleProductoDAO implements IDetalleProductoDAO {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    public JasperPrint ImprimirReporte() throws PersistenciaException, JRException {
+        // Obtener la instancia de la base de datos MongoDB
+        MongoDatabase database = ConexionBD.getDatabase();
+
+        // Instanciar el DAO de DetalleProducto
+        DetalleProductoDAO detalleProductoDAO = new DetalleProductoDAO();
+
+        // Obtener los detalles de producto según el parámetro de filtro
+        DetalleProducto detallesProducto = new DetalleProducto();
+        // Realizar la búsqueda de los detalles de producto
+        detallesProducto = detalleProductoDAO.buscarPorID(detallesProducto);
+
+        // Convertir los detalles de producto a una lista de JavaBeans (o cualquier formato compatible con JasperReports)
+        List<DetalleProducto> dataList = new ArrayList<>();
+        dataList.add(detallesProducto);
+
+        // Cargar el archivo JasperReport
+        InputStream is = getClass().getResourceAsStream("/Recibo/Recibo.jasper");
+        if (is == null) {
+            return null;
+        }
+
+        try {
+            JasperReport jr = (JasperReport) JRLoader.loadObject(is);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, new JRBeanCollectionDataSource(dataList));
+            return jp;
+        } catch (JRException ex) {
+            Logger.getLogger(DetalleProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }

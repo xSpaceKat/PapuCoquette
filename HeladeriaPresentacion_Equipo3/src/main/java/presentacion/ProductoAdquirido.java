@@ -7,10 +7,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JCheckBox;
-import persistencia.entidades.DetalleProducto;
 
 /**
  *
@@ -30,24 +28,23 @@ public class ProductoAdquirido extends javax.swing.JFrame {
      * Creates new form DetallesProducto
      */
     public ProductoAdquirido(ProductoDTO productoDTO, List<DetalleProductoDTO> listaDetallesProductos) {
-        this.menu=menu;
+        this.menu = menu;
         this.listaDetallesProductos = listaDetallesProductos;
         this.productoDTO = productoDTO;
         this.detalleProductoDTO = new DetalleProductoDTO();
-                
-                
+
         initComponents();
-        
+
         ActionListener listenerTam = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
                 // Desseleccionar los demás checkboxes cuando uno es seleccionado
                 if (e.getSource() instanceof JCheckBox) {
                     JCheckBox selectedCheckBox = (JCheckBox) e.getSource();
                     if (selectedCheckBox.isSelected()) {
-                        tamano=selectedCheckBox.getName();
-                        precio=Float.parseFloat(obtenerPrecio(selectedCheckBox.getText()));
+                        tamano = selectedCheckBox.getName();
+                        precio = Float.parseFloat(obtenerPrecio(selectedCheckBox.getText()));
                         for (Component component : panelTamano.getComponents()) {
                             if (component instanceof JCheckBox && component != selectedCheckBox) {
                                 ((JCheckBox) component).setSelected(false);
@@ -57,11 +54,10 @@ public class ProductoAdquirido extends javax.swing.JFrame {
                 }
             }
         };
-        
-        
-        List<TamanoDTO> tamanos=productoDTO.getTamano();
-        for(TamanoDTO t:tamanos){
-            JCheckBox checkbox=new JCheckBox(t.getNombreTamano()+" $"+t.getPrecioBase());
+
+        List<TamanoDTO> tamanos = productoDTO.getTamano();
+        for (TamanoDTO t : tamanos) {
+            JCheckBox checkbox = new JCheckBox(t.getNombreTamano() + " $" + t.getPrecioBase());
             checkbox.setName(t.getNombreTamano());
             checkbox.setPreferredSize(new Dimension(340, 50));
             checkbox.addActionListener(listenerTam);
@@ -70,11 +66,11 @@ public class ProductoAdquirido extends javax.swing.JFrame {
         ActionListener listenerSab = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
                 if (e.getSource() instanceof JCheckBox) {
                     JCheckBox selectedCheckBox = (JCheckBox) e.getSource();
                     if (selectedCheckBox.isSelected()) {
-                        sabor=selectedCheckBox.getText();
+                        sabor = selectedCheckBox.getText();
                         for (Component component : panelSabor.getComponents()) {
                             if (component instanceof JCheckBox && component != selectedCheckBox) {
                                 ((JCheckBox) component).setSelected(false);
@@ -84,22 +80,21 @@ public class ProductoAdquirido extends javax.swing.JFrame {
                 }
             }
         };
-        List<String> sabores=productoDTO.getSabores();
-        for(String s:sabores){
-            JCheckBox checkbox=new JCheckBox(s);
+        List<String> sabores = productoDTO.getSabores();
+        for (String s : sabores) {
+            JCheckBox checkbox = new JCheckBox(s);
             checkbox.setPreferredSize(new Dimension(340, 50));
             checkbox.addActionListener(listenerSab);
             panelSabor.add(checkbox);
         }
-        
-        
+
         this.setLocationRelativeTo(null);
         txtNombreProducto.setText(productoDTO.getNombre());
         this.setVisible(true);
-        
 
     }
-    public  String obtenerPrecio(String texto) {
+
+    public String obtenerPrecio(String texto) {
         int indiceSignoDolar = texto.indexOf("$");
         if (indiceSignoDolar != -1 && indiceSignoDolar < texto.length() - 1) {
             String textoDespuesDelSignoDolar = texto.substring(indiceSignoDolar + 1);
@@ -379,17 +374,18 @@ public class ProductoAdquirido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        
+
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         //JOptionPane.showMessageDialog(rootPane, "Se agrego el producto correctamente");
-        Integer cantidad=Integer.parseInt(txfCantidad.getText());
-        DetalleProductoDTO detalleProducto=new DetalleProductoDTO(productoDTO.getNombre(),sabor,tamano,precio,cantidad,radTamToping.isSelected());
-        
+        // Se agrego de mientras 33 de flotante
+        Integer cantidad = Integer.parseInt(txfCantidad.getText());
+        DetalleProductoDTO detalleProducto = new DetalleProductoDTO(productoDTO.getNombre(), sabor, tamano, precio, cantidad, radTamToping.isSelected(), 33.0f);
+
         listaDetallesProductos.add(detalleProducto);
-        JMenuPrincipal menu=new JMenuPrincipal();
+        JMenuPrincipal menu = new JMenuPrincipal();
         menu.actualizarTable(listaDetallesProductos);
         menu.setVisible(true);
         this.dispose();

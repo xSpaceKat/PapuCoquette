@@ -1,23 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package persistencia.pruebas;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.GregorianCalendar;
 import java.util.List;
-import persistencia.dao.DetalleProductoDAO;
-import persistencia.dao.PedidoDAO;
 import persistencia.dao.ProductoDAO;
-import persistencia.entidades.DetalleProducto;
-import persistencia.entidades.Pedido;
 import persistencia.entidades.Producto;
 import persistencia.entidades.Tamano;
 import persistencia.excepciones.PersistenciaException;
-import persistencia.interfaces.IDetalleProductoDAO;
-import persistencia.interfaces.IPedidoDAO;
 import persistencia.interfaces.IProductoDAO;
 
 /**

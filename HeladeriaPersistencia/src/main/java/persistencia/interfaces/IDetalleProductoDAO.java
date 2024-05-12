@@ -1,6 +1,8 @@
 package persistencia.interfaces;
 
 import java.util.List;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperPrint;
 import persistencia.entidades.DetalleProducto;
 import persistencia.entidades.Producto;
 import persistencia.excepciones.PersistenciaException;
@@ -17,7 +19,8 @@ public interface IDetalleProductoDAO {
 
     public void guardarDetalleProducto(DetalleProducto detallesProducto) throws PersistenciaException;
 
-
     public void guardarProducto(Producto producto, DetalleProducto detallesProducto) throws PersistenciaException;
+    
+    public JasperPrint ImprimirReporte() throws PersistenciaException, JRException;
 
 }
