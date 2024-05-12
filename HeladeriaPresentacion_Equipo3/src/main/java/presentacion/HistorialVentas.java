@@ -4,16 +4,22 @@
  */
 package presentacion;
 
+import Caso.CasoConsultarVentas;
+import Interfaz.ICasoConsultarVenta;
+import com.mycompany.heladeriaconsultar.CasoConsultar;
+import javax.swing.table.DefaultTableModel;
+import persistencia.excepciones.PersistenciaException;
+
 /**
  *
  * @author Ximena
  */
-public class HistorilVentas extends javax.swing.JFrame {
+public class HistorialVentas extends javax.swing.JFrame {
 
     /**
      * Creates new form HistorilVentas
      */
-    public HistorilVentas() {
+    public HistorialVentas() {
         initComponents();
     }
 
@@ -85,6 +91,11 @@ public class HistorilVentas extends javax.swing.JFrame {
 
         botonRegresar.setBackground(new java.awt.Color(255, 255, 255));
         botonRegresar.setText("Regresar");
+        botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -126,6 +137,19 @@ public class HistorilVentas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+        ConsultarVentas2 cv = new ConsultarVentas2();
+        cv.setVisible(true);
+    }//GEN-LAST:event_botonRegresarActionPerformed
+
+    public void tabla() throws PersistenciaException{
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Fecha");
+        modelo.addColumn("VentaTotal");
+        
+        ICasoConsultarVenta hv = new CasoConsultarVentas();
+        hv.historial();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonRegresar;
