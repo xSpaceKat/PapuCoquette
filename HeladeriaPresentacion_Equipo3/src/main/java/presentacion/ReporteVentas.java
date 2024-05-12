@@ -48,8 +48,18 @@ public class ReporteVentas extends javax.swing.JFrame {
 
         botonImprimir.setBackground(new java.awt.Color(255, 255, 255));
         botonImprimir.setText("Imprimir");
+        botonImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonImprimirActionPerformed(evt);
+            }
+        });
 
         botonRegresar.setText("Regresar");
+        botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegresarActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -177,6 +187,15 @@ public class ReporteVentas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImprimirActionPerformed
+        
+    }//GEN-LAST:event_botonImprimirActionPerformed
+
+    private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+        ConsultarVentas2 cv = new ConsultarVentas2();
+        cv.setVisible(true);
+    }//GEN-LAST:event_botonRegresarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

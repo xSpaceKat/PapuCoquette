@@ -78,4 +78,5 @@ public class PedidoDTO {
         return "PedidoDTO{" + "_idMongo=" + _idMongo + ", id=" + id + ", fecha=" + fecha + ", totalPedido=" + totalPedido + ", detalles=" + detalles + '}';
     }
 
+    
 }
