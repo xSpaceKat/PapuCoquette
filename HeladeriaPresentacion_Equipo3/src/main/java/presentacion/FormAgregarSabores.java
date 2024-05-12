@@ -8,6 +8,7 @@ import dto.ProductoDTO;
 import dto.TamanoDTO;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,7 +17,7 @@ import java.util.List;
 public class FormAgregarSabores extends javax.swing.JFrame {
 
     private ProductoDTO productoDTO;
-    
+
     /**
      * Creates new form FormAgregarTamaños
      */
@@ -74,6 +75,11 @@ public class FormAgregarSabores extends javax.swing.JFrame {
         txtSabores.setText("Sabores");
 
         txfSabores.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txfSabores.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfSaboresKeyTyped(evt);
+            }
+        });
 
         panSeparador2.setBackground(new java.awt.Color(233, 215, 248));
 
@@ -199,17 +205,33 @@ public class FormAgregarSabores extends javax.swing.JFrame {
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         String[] saboresArray = txfSabores.getText().split(",");
         List<String> sabores = new ArrayList<>();
-        
+
         for (String sabor : saboresArray) {
             sabores.add(sabor.trim());
         }
-        
+
         productoDTO.setSabores(sabores);
+        FormAgregarTamanos fat = new FormAgregarTamanos(productoDTO);
+        fat.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        int opcion = JOptionPane.showConfirmDialog(null, "Seguro que quieres salirte?", "Confirmación", JOptionPane.YES_NO_OPTION);
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            JMenuPrincipal jmp = new JMenuPrincipal();
+            jmp.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txfSaboresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfSaboresKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(c) && c != ',' && c != '\b') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txfSaboresKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

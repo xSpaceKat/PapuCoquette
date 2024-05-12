@@ -193,6 +193,9 @@
                   <Font name="Comic Sans MS" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txfSaboresKeyTyped"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="panSeparador2">
               <Properties>

@@ -8,6 +8,9 @@ import dto.ProductoDTO;
 import dto.TamanoDTO;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import org.itson.bdavanzadas.heladeriaagregarproducto.CasoAgregarProducto;
+import org.itson.bdavanzadas.heladeriaagregarproductointerfaces.ICasoAgregarProducto;
 
 /**
  *
@@ -122,7 +125,7 @@ public class FormAgregarTamanos extends javax.swing.JFrame {
 
         btnAgregarProducto.setBackground(new java.awt.Color(226, 183, 252));
         btnAgregarProducto.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        btnAgregarProducto.setText("Agregar otro producto");
+        btnAgregarProducto.setText("Agregar otro Tamaño");
         btnAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarProductoActionPerformed(evt);
@@ -239,18 +242,29 @@ public class FormAgregarTamanos extends javax.swing.JFrame {
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         productoDTO.setTamano(tamanosDTO);
         
+        ICasoAgregarProducto casoAgregarProducto = new CasoAgregarProducto();
         
+        casoAgregarProducto.AgregarProducto(productoDTO);
+        JMenuPrincipal jmp = new JMenuPrincipal();
+        jmp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        int opcion = JOptionPane.showConfirmDialog(null, "Seguro que quieres salirte?", "Confirmación", JOptionPane.YES_NO_OPTION);
+        
+        if (opcion == JOptionPane.YES_OPTION) {
+            JMenuPrincipal jmp = new JMenuPrincipal();
+            jmp.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
         TamanoDTO tamano = new TamanoDTO();
         
         tamano.setNombreTamano(txfNombreDelProdcuto.getText());
-        tamano.setPrecioBase(Float.parseFloat(txfPrecio.getText()));
+        tamano.setPrecioBase(Float.valueOf(txfPrecio.getText()));
 
         tamanosDTO.add(tamano);
         

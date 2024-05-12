@@ -5,17 +5,18 @@
 package presentacion;
 
 import dto.ProductoDTO;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Berry
  */
-public class FromAgregarNombre extends javax.swing.JFrame {
+public class FormAgregarNombre extends javax.swing.JFrame {
 
     /**
      * Creates new form FromAgregarNombre
      */
-    public FromAgregarNombre() {
+    public FormAgregarNombre() {
         initComponents();
     }
 
@@ -200,11 +201,16 @@ public class FromAgregarNombre extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        ProductoDTO productoDTO = new ProductoDTO();
-        productoDTO.setNombre(txfNombreDelProdcuto.getText());
-        FormAgregarSabores FAT = new FormAgregarSabores(productoDTO);
-        FAT.setVisible(true);
-        this.dispose();
+        if(txfNombreDelProdcuto.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "El nombre esta vacio D:");
+        }
+        else{
+            ProductoDTO productoDTO = new ProductoDTO();
+            productoDTO.setNombre(txfNombreDelProdcuto.getText());
+            FormAgregarSabores FAT = new FormAgregarSabores(productoDTO);
+            FAT.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnPagar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagar4ActionPerformed
@@ -212,7 +218,13 @@ public class FromAgregarNombre extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPagar4ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        int opcion = JOptionPane.showConfirmDialog(null, "Seguro que quieres salirte?", "Confirmación", JOptionPane.YES_NO_OPTION);
+        
+        if (opcion == JOptionPane.YES_OPTION) {
+            JMenuPrincipal jmp = new JMenuPrincipal();
+            jmp.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
