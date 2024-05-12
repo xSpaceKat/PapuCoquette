@@ -4,14 +4,17 @@
  */
 package interfacesNegocio;
 
-import dto.ConsultarVentasDTO;
+import dto.PedidoDTO;
+import java.util.List;
+import persistencia.excepciones.PersistenciaException;
 
 /**
  *
  * @author Ximena
  */
 public interface IConsultaVentas {
-     public void consultarVentas(ConsultarVentasDTO consultarVentas);
+     public List<PedidoDTO> consultarVentas() throws PersistenciaException;
      
      public void historial();
+     
 }

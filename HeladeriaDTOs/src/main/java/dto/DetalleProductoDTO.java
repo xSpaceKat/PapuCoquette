@@ -18,7 +18,7 @@ public class DetalleProductoDTO {
     private Boolean topping;
     private Float precioTotal;
 
-    public DetalleProductoDTO(String nombreProducto, String sabor, String tamano, Float tamanoPrecio, Integer cantidad, Boolean topping) {
+    public DetalleProductoDTO(String nombreProducto, String sabor, String tamano, Float tamanoPrecio, Integer cantidad, Boolean topping, Float precioTotal) {
         this.nombreProducto = nombreProducto;
         this.sabor = sabor;
         this.tamano = tamano;

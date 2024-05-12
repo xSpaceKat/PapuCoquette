@@ -29,5 +29,5 @@ public class ConsultarProductos implements IConsultarProductos{
             productosDTO.add(conversor.DAOaDTO(p));
         }
         return productosDTO;
-    }
+    } 
 }
