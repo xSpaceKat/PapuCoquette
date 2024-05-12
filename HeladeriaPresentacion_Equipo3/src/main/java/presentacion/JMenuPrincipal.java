@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,11 +30,11 @@ public class JMenuPrincipal extends javax.swing.JFrame {
         this.listaDetallesProductos = new ArrayList<>();
         this.casoAgregar = new CasoAgregar();
         initComponents();
-        
+
         this.setLocationRelativeTo(null);
         casoConsultar = new CasoConsultar();
         productoDTOs = casoConsultar.consultarTodosProductos();
-        JMenuPrincipal menu=this;
+        JMenuPrincipal menu = this;
 
         for (int i = 0; i < productoDTOs.size(); i++) {
             JButton boton = new JButton(productoDTOs.get(i).getNombre());
@@ -45,13 +44,12 @@ public class JMenuPrincipal extends javax.swing.JFrame {
                 public void actionPerformed(ActionEvent e) {
                     ProductoAdquirido adquirido = new ProductoAdquirido(productoPorNombre(boton.getText()), listaDetallesProductos);
                     menu.dispose();
-                    
 
                 }
             });
             panel.add(boton);
         }
-
+        actualizarTable(listaDetallesProductos);
     }
 
     public ProductoDTO productoPorNombre(String nombre) {
@@ -62,23 +60,18 @@ public class JMenuPrincipal extends javax.swing.JFrame {
         }
         return null;
     }
-    public void actualizarTable(List<DetalleProductoDTO> lista){
-        this.listaDetallesProductos=lista;
-        DefaultTableModel modeloTabla = new DefaultTableModel();
-        
+
+    public void actualizarTable(List<DetalleProductoDTO> lista) {
+        DefaultTableModel modeloTabla;
+        String titulo[] = {"Nombre", "Sabor", "Tamaño", "Topping", "Cantidad", "PrecioTotal"};
+        modeloTabla = new DefaultTableModel(null, titulo);
+
         modeloTabla.setRowCount(0);
-        for (DetalleProductoDTO d: lista) {
-            String topping;
-            System.out.println(d);
-            if(d.getTopping()==true){
-                topping="Si";
-            }else{
-                topping="No";
-            }
-            Object[] fila = {d.getNombreProducto(),d.getSabor(),d.getTamano(),topping,d.getCantidad(),d.getPrecioTotal()};
+        for (DetalleProductoDTO d : lista) {
+            Object[] fila = {d.getNombreProducto(), d.getSabor(), d.getTamano(), d.getTopping(), d.getCantidad(), d.getPrecioTotal()};
             modeloTabla.addRow(fila);
         }
-        this.tabTicket=new JTable(modeloTabla);
+        tabTicket.setModel(modeloTabla);
     }
 
     /**
@@ -161,7 +154,22 @@ public class JMenuPrincipal extends javax.swing.JFrame {
             new String [] {
                 "Nombre", "Sabor", "Tamaño", "Toping", "Cantidad", "PrecioTotal"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Float.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tabTicket);
 
         panHeaderCarito.setBackground(new java.awt.Color(233, 215, 248));
