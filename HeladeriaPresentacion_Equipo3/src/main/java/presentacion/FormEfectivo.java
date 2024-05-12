@@ -228,6 +228,9 @@ public class FormEfectivo extends javax.swing.JFrame {
             ipago.calcularCambio(efectivo);
             txtCambio.setText(efectivo.getCambio().toString());
             dumb.imprimir();
+            JMenuPrincipal j = new JMenuPrincipal();
+            j.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_botonFinalizarActionPerformed
 
