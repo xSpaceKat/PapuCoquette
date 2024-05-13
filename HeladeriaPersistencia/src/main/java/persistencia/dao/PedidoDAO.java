@@ -5,7 +5,9 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 import persistencia.conexion.ConexionBD;
 import persistencia.entidades.DetalleProducto;
@@ -63,4 +65,14 @@ public class PedidoDAO implements IPedidoDAO {
         }
     }
 
+    public List<Pedido> listaPedidos(Date fecha) {
+        Bson filtro = Filters.eq("fecha", fecha);
+        try {
+            List<Pedido> resultados = coleccionPedido.find(filtro).into(new ArrayList<>());
+            return resultados;
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        return null;
+    }
 }

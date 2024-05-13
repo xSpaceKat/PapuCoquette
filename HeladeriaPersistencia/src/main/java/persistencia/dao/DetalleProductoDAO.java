@@ -1,14 +1,14 @@
 package persistencia.dao;
 
-//import com.itextpdf.io.font.constants.StandardFonts;
-//import com.itextpdf.kernel.colors.ColorConstants;
-//import com.itextpdf.kernel.font.PdfFont;
-//import com.itextpdf.kernel.font.PdfFontFactory;
-//import com.itextpdf.kernel.pdf.PdfDocument;
-//import com.itextpdf.kernel.pdf.PdfWriter;
-//import com.itextpdf.layout.Document;
-//import com.itextpdf.layout.Style;
-//import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.kernel.colors.ColorConstants;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.Style;
+import com.itextpdf.layout.element.Paragraph;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
@@ -78,35 +78,35 @@ public class DetalleProductoDAO implements IDetalleProductoDAO {
         }
     }
 
-//    public void ImprimirReporte() throws PersistenciaException, FileNotFoundException {
-//        PdfFont code = null;
-//        List<DetalleProducto> p = consultar();
-//        try {
-//            code = PdfFontFactory.createFont(StandardFonts.COURIER_BOLD);
-//        } catch (IOException ex) {
-//            Logger.getLogger(DetalleProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        Style style = new Style()
-//                .setFont(code)
-//                .setFontSize(14)
-//                .setFontColor(ColorConstants.BLACK)
-//                .setBackgroundColor(ColorConstants.LIGHT_GRAY);
-//
-//        try (Document document = new Document(new PdfDocument(new PdfWriter("./Recibo.pdf")))) {
-//            document.add(new Paragraph("PAPU COQUETTE").addStyle(style));
-//            document.add(new Paragraph("COMPRA").addStyle(style));
-//            document.add(new Paragraph(new GregorianCalendar().toString()).addStyle(style));
-//            for (DetalleProducto detalle : p) {
-//                document.add(new Paragraph("Nombre del Producto: " + detalle.getNombreProducto()).addStyle(style));
-//                document.add(new Paragraph("Cantidad: " + detalle.getCantidad().toString()).addStyle(style));
-//                document.add(new Paragraph("Tamaño: " + detalle.getTamano()).addStyle(style));
-//                document.add(new Paragraph("Precio del tamaño: " + detalle.getTamanoPrecio().toString()).addStyle(style));
-//                document.add(new Paragraph("Precio Total: " + detalle.getprecioTotal().toString()).addStyle(style));
-//            }
-//            document.add(new Paragraph("").addStyle(style));
-//            document.add(new Paragraph("Gracias por su compra!").addStyle(style));
-//            document.close();
-//        }
-//    }
+    public void ImprimirReporte() throws PersistenciaException, FileNotFoundException {
+        PdfFont code = null;
+        List<DetalleProducto> p = consultar();
+        try {
+            code = PdfFontFactory.createFont(StandardFonts.COURIER_BOLD);
+        } catch (IOException ex) {
+            Logger.getLogger(DetalleProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Style style = new Style()
+                .setFont(code)
+                .setFontSize(14)
+                .setFontColor(ColorConstants.BLACK)
+                .setBackgroundColor(ColorConstants.LIGHT_GRAY);
+
+        try (Document document = new Document(new PdfDocument(new PdfWriter("./Recibo.pdf")))) {
+            document.add(new Paragraph("PAPU COQUETTE").addStyle(style));
+            document.add(new Paragraph("COMPRA").addStyle(style));
+            document.add(new Paragraph(new GregorianCalendar().toString()).addStyle(style));
+            for (DetalleProducto detalle : p) {
+                document.add(new Paragraph("Nombre del Producto: " + detalle.getNombreProducto()).addStyle(style));
+                document.add(new Paragraph("Cantidad: " + detalle.getCantidad().toString()).addStyle(style));
+                document.add(new Paragraph("Tamaño: " + detalle.getTamano()).addStyle(style));
+                document.add(new Paragraph("Precio del tamaño: " + detalle.getTamanoPrecio().toString()).addStyle(style));
+                document.add(new Paragraph("Precio Total: " + detalle.getprecioTotal().toString()).addStyle(style));
+            }
+            document.add(new Paragraph("").addStyle(style));
+            document.add(new Paragraph("Gracias por su compra!").addStyle(style));
+            document.close();
+        }
+    }
 
 }

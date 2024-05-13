@@ -15,12 +15,6 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>HeladeriaAgregar</artifactId>
             <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.mycompany</groupId>
-                    <artifactId>HeladeriaPersistencia</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -44,13 +38,13 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>HeladeriaPersistencia</artifactId>
+            <artifactId>HeladeriaConsultarVentas</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>HeladeriaConsultarVentas</artifactId>
-            <version>${project.version}</version>
+            <groupId>com.github.lgooddatepicker</groupId>
+            <artifactId>LGoodDatePicker</artifactId>
+            <version>11.2.1</version>
         </dependency>
     </dependencies>
     <properties>

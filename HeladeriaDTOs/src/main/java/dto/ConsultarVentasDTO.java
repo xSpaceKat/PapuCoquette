@@ -16,10 +16,11 @@ public class ConsultarVentasDTO {
     private String nombre;
     private String tamanio;
     private String sabor;
-    private Integer cantidad, costoUnitario, costoTotalProducto, ventaTotal;
+    private Integer cantidad;
+    private Float costoUnitario, costoTotalProducto, ventaTotal;
     private Date fecha;
 
-    public ConsultarVentasDTO(String nombre, String tamanio, String sabor, Integer cantidad, Integer costoUnitario, Integer costoTotalProducto, Integer ventaTotal, Date fecha) {
+    public ConsultarVentasDTO(String nombre, String tamanio, String sabor, Integer cantidad, Float costoUnitario,Float costoTotalProducto, Float ventaTotal, Date fecha) {
         this.nombre = nombre;
         this.tamanio = tamanio;
         this.sabor = sabor;
@@ -62,27 +63,27 @@ public class ConsultarVentasDTO {
         this.cantidad = cantidad;
     }
 
-    public Integer getCostoUnitario() {
+    public Float getCostoUnitario() {
         return costoUnitario;
     }
 
-    public void setCostoUnitario(Integer costoUnitario) {
+    public void setCostoUnitario(Float costoUnitario) {
         this.costoUnitario = costoUnitario;
     }
 
-    public Integer getCostoTotalProducto() {
+    public Float getCostoTotalProducto() {
         return costoTotalProducto;
     }
 
-    public void setCostoTotalProducto(Integer costoTotalProducto) {
+    public void setCostoTotalProducto(Float costoTotalProducto) {
         this.costoTotalProducto = costoTotalProducto;
     }
 
-    public Integer getVentaTotal() {
+    public Float getVentaTotal() {
         return ventaTotal;
     }
 
-    public void setVentaTotal(Integer ventaTotal) {
+    public void setVentaTotal(Float ventaTotal) {
         this.ventaTotal = ventaTotal;
     }
 

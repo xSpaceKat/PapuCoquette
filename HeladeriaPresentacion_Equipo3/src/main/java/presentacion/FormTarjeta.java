@@ -1,8 +1,8 @@
 package presentacion;
 
 import dto.PagoTarjetaDTO;
-import imprimirRecibo.ImprimirRecibo;
-import interfaces.IImprimirRecibo;
+//import imprimirRecibo.ImprimirRecibo;
+//import interfaces.IImprimirRecibo;
 import interfaces.IPagoConTarjeta;
 import javax.swing.JOptionPane;
 import pagarTarjeta.PagoConTarjeta;
@@ -17,13 +17,13 @@ public class FormTarjeta extends javax.swing.JFrame {
     // Traer el pedido para el precioTotal
     IPagoConTarjeta ipago = new PagoConTarjeta();
     PagoTarjetaDTO dto = new PagoTarjetaDTO();
-    IImprimirRecibo dumb = new ImprimirRecibo();
+//    IImprimirRecibo dumb = new ImprimirRecibo();
 
     public FormTarjeta() {
         initComponents();
         this.ipago = new PagoConTarjeta();
         this.dto = new PagoTarjetaDTO();
-        this.dumb = new ImprimirRecibo();
+//        this.dumb = new ImprimirRecibo();
     }
 
     /**
@@ -285,10 +285,7 @@ public class FormTarjeta extends javax.swing.JFrame {
             ipago.calcularCambio(dto);
             // quitar el setText y ponerlo arriba cuando cree el pedido
             txtCambio.setText("$ " + dto.getPrecioTotal().toString());
-            dumb.imprimir();
-            JMenuPrincipal j = new JMenuPrincipal();
-            j.setVisible(true);
-            dispose();
+//            dumb.imprimir();
         }
     }//GEN-LAST:event_botonAceptarActionPerformed
 
