@@ -1,15 +1,20 @@
 package presentacion;
 
+import dto.DetalleProductoDTO;
+import java.util.List;
+
 /**
  *
  * @author Katt
  */
 public class JConfirmacion extends javax.swing.JFrame {
 
+    private List<DetalleProductoDTO> listaDetalleProductos;
     /**
      * Creates new form JConfirmacion
      */
-    public JConfirmacion() {
+    public JConfirmacion(List<DetalleProductoDTO> listaDetalleProductos) {
+        this.listaDetalleProductos = listaDetalleProductos;
         initComponents();
     }
 
@@ -119,7 +124,7 @@ public class JConfirmacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        JMenuPrincipal cc = new JMenuPrincipal();
+        JMenuPrincipal cc = new JMenuPrincipal(listaDetalleProductos);
         cc.setVisible(true);
         dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
@@ -127,7 +132,7 @@ public class JConfirmacion extends javax.swing.JFrame {
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         // Hacer que reciba un parametro del pedido y que valide si no esta en
         // nulo para poder avanzar a la siguiente pantalla
-        JFormaPago j = new JFormaPago();
+        JFormaPago j = new JFormaPago(listaDetalleProductos);
         j.setVisible(true);
         dispose();
     }//GEN-LAST:event_botonAceptarActionPerformed

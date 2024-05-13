@@ -1,15 +1,21 @@
 package presentacion;
 
+import dto.DetalleProductoDTO;
+import java.util.List;
+
 /**
  *
  * @author Berry
  */
 public class JFormaPago extends javax.swing.JFrame {
 
+    private List<DetalleProductoDTO> listaDetalleProductos;
+    
     /**
      * Creates new form JFormaPago
      */
-    public JFormaPago() {
+    public JFormaPago(List<DetalleProductoDTO> listaDetalleProductos) {
+        this.listaDetalleProductos = listaDetalleProductos;
         initComponents();
     }
 
@@ -140,7 +146,7 @@ public class JFormaPago extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPagar2ActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
-        JMenuPrincipal s = new JMenuPrincipal();
+        JMenuPrincipal s = new JMenuPrincipal(listaDetalleProductos);
         s.setVisible(true);
         dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed

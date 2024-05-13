@@ -1,7 +1,7 @@
 package presentacion;
 
 import dto.DetalleProductoDTO;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,8 +14,8 @@ public class MainPrueba {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        List<DetalleProductoDTO> listaDetallesProductos = new LinkedList<>();
-        JMenuPrincipal jmp = new JMenuPrincipal();
+        List<DetalleProductoDTO> listaDetallesProductos = new ArrayList<>();
+        JMenuPrincipal jmp = new JMenuPrincipal(listaDetallesProductos);
         jmp.setVisible(true);
     }
 

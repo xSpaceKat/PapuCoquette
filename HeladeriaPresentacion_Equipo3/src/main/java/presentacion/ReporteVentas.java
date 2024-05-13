@@ -4,16 +4,22 @@
  */
 package presentacion;
 
+import dto.DetalleProductoDTO;
+import java.util.List;
+
 /**
  *
  * @author Ximena
  */
 public class ReporteVentas extends javax.swing.JFrame {
 
+    private List<DetalleProductoDTO> listaDetalleProductos;
+    
     /**
      * Creates new form ReporteVentas
      */
-    public ReporteVentas() {
+    public ReporteVentas(List<DetalleProductoDTO> listaDetalleProductos) {
+        this.listaDetalleProductos = listaDetalleProductos;
         initComponents();
     }
 
@@ -193,7 +199,7 @@ public class ReporteVentas extends javax.swing.JFrame {
     }//GEN-LAST:event_botonImprimirActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
-        ConsultarVentas2 cv = new ConsultarVentas2();
+        ConsultarVentas2 cv = new ConsultarVentas2(listaDetalleProductos);
         cv.setVisible(true);
     }//GEN-LAST:event_botonRegresarActionPerformed
 
