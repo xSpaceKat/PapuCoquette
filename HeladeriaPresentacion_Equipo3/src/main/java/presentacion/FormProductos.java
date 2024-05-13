@@ -98,6 +98,7 @@ public class FormProductos extends javax.swing.JFrame {
     private void anadirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anadirButtonActionPerformed
         // TODO add your handling code here:
         FormAgregarNombre agregarNombre=new FormAgregarNombre();
+        agregarNombre.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_anadirButtonActionPerformed
 
