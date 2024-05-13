@@ -1,25 +1,21 @@
 package persistencia.dao;
 
-import com.itextpdf.io.font.constants.StandardFonts;
-import com.itextpdf.kernel.colors.ColorConstants;
-import com.itextpdf.kernel.font.PdfFont;
-import com.itextpdf.kernel.font.PdfFontFactory;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.Style;
-import com.itextpdf.layout.element.Paragraph;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
 import org.bson.types.ObjectId;
 import persistencia.conexion.ConexionBD;
 import persistencia.entidades.DetalleProducto;
@@ -78,35 +74,36 @@ public class DetalleProductoDAO implements IDetalleProductoDAO {
         }
     }
 
-    public void ImprimirReporte() throws PersistenciaException, FileNotFoundException {
-        PdfFont code = null;
-        List<DetalleProducto> p = consultar();
+    public JasperPrint ImprimirReporte() throws PersistenciaException, JRException {
+        // Obtener la instancia de la base de datos MongoDB
+        MongoDatabase database = ConexionBD.getDatabase();
+
+        // Instanciar el DAO de DetalleProducto
+        DetalleProductoDAO detalleProductoDAO = new DetalleProductoDAO();
+
+        // Obtener los detalles de producto según el parámetro de filtro
+        DetalleProducto detallesProducto = new DetalleProducto();
+        // Realizar la búsqueda de los detalles de producto
+        detallesProducto = detalleProductoDAO.buscarPorID(detallesProducto);
+
+        // Convertir los detalles de producto a una lista de JavaBeans (o cualquier formato compatible con JasperReports)
+        List<DetalleProducto> dataList = new ArrayList<>();
+        dataList.add(detallesProducto);
+
+        // Cargar el archivo JasperReport
+        InputStream is = getClass().getResourceAsStream("/Recibo/Recibo.jasper");
+        if (is == null) {
+            return null;
+        }
+
         try {
-            code = PdfFontFactory.createFont(StandardFonts.COURIER_BOLD);
-        } catch (IOException ex) {
+            JasperReport jr = (JasperReport) JRLoader.loadObject(is);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, new JRBeanCollectionDataSource(dataList));
+            return jp;
+        } catch (JRException ex) {
             Logger.getLogger(DetalleProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Style style = new Style()
-                .setFont(code)
-                .setFontSize(14)
-                .setFontColor(ColorConstants.BLACK)
-                .setBackgroundColor(ColorConstants.LIGHT_GRAY);
-
-        try (Document document = new Document(new PdfDocument(new PdfWriter("./Recibo.pdf")))) {
-            document.add(new Paragraph("PAPU COQUETTE").addStyle(style));
-            document.add(new Paragraph("COMPRA").addStyle(style));
-            document.add(new Paragraph(new GregorianCalendar().toString()).addStyle(style));
-            for (DetalleProducto detalle : p) {
-                document.add(new Paragraph("Nombre del Producto: " + detalle.getNombreProducto()).addStyle(style));
-                document.add(new Paragraph("Cantidad: " + detalle.getCantidad().toString()).addStyle(style));
-                document.add(new Paragraph("Tamaño: " + detalle.getTamano()).addStyle(style));
-                document.add(new Paragraph("Precio del tamaño: " + detalle.getTamanoPrecio().toString()).addStyle(style));
-                document.add(new Paragraph("Precio Total: " + detalle.getprecioTotal().toString()).addStyle(style));
-            }
-            document.add(new Paragraph("").addStyle(style));
-            document.add(new Paragraph("Gracias por su compra!").addStyle(style));
-            document.close();
-        }
+        return null;
     }
 
 }

@@ -5,6 +5,8 @@ import interfacesNegocio.IRealizarRecibo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.RealizarRecibo;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -16,7 +18,8 @@ public class ImprimirRecibo implements IImprimirRecibo {
 
     public void imprimir() {
         try {
-            re.recibo();
+            JasperPrint jp = re.recibo();
+            JasperViewer.viewReport(jp);
         } catch (Exception ex) {
             Logger.getLogger(ImprimirRecibo.class.getName()).log(Level.SEVERE, null, ex);
         }
