@@ -17,6 +17,7 @@ public class FromAgregarNombre extends javax.swing.JFrame {
      */
     public FromAgregarNombre() {
         initComponents();
+        this.setVisible(true);
     }
 
     /**

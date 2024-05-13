@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -379,16 +380,25 @@ public class ProductoAdquirido extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        //JOptionPane.showMessageDialog(rootPane, "Se agrego el producto correctamente");
-        // Se agrego de mientras 33 de flotante
-        Integer cantidad = Integer.parseInt(txfCantidad.getText());
-        DetalleProductoDTO detalleProducto = new DetalleProductoDTO(productoDTO.getNombre(), sabor, tamano, precio, cantidad, radTamToping.isSelected(), 33.0f);
+        try {
+            Integer cantidad = Integer.parseInt(txfCantidad.getText());
+            
+                DetalleProductoDTO detalleProducto = new DetalleProductoDTO(productoDTO.getNombre(), sabor, tamano, precio, cantidad, radTamToping.isSelected(), 33.0f);
 
-        listaDetallesProductos.add(detalleProducto);
-        JMenuPrincipal menu = new JMenuPrincipal();
-        menu.actualizarTable(listaDetallesProductos);
-        menu.setVisible(true);
-        this.dispose();
+                listaDetallesProductos.add(detalleProducto);
+                JMenuPrincipal menu = new JMenuPrincipal();
+
+                menu.actualizarTable(listaDetallesProductos);
+                menu.setVisible(true);
+                this.dispose();
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Escriba la cantidad que desea con números.");
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(this, "Seleccione el tamaño y sabor.");
+        }
+
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void radTamTopingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radTamTopingActionPerformed

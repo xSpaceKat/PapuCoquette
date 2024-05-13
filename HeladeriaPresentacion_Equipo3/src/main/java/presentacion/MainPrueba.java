@@ -16,7 +16,7 @@ public class MainPrueba {
     public static void main(String[] args) {
         List<DetalleProductoDTO> listaDetallesProductos = new LinkedList<>();
         JMenuPrincipal jmp = new JMenuPrincipal();
-        jmp.setVisible(true);
+        
     }
 
 }
