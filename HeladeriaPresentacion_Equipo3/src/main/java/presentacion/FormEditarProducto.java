@@ -4,16 +4,30 @@
  */
 package presentacion;
 
+import com.mycompany.heladeriaconsultar.CasoConsultar;
+import com.mycompany.heladeriaeditarproducto.CasoEditarProducto;
+import com.mycompany.iheladeriaconsultar.ICasoConsultar;
+import com.mycompany.iheladeriaeditarproducto.ICasoEditarProducto;
+import dto.ProductoDTO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USER
  */
 public class FormEditarProducto extends javax.swing.JFrame {
-
+    ICasoConsultar casoConsultar;
+    ProductoDTO productoActual;
+    ICasoEditarProducto casoEditarProducto;
     /**
      * Creates new form FormEditarProducto
      */
     public FormEditarProducto(String nombreProducto) {
+        casoConsultar=new CasoConsultar();
+        casoEditarProducto=new CasoEditarProducto();
+        productoActual=casoConsultar.consultarProducto(nombreProducto);
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -28,11 +42,58 @@ public class FormEditarProducto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        ProductoNombreLabel = new javax.swing.JLabel();
+        regresarButton = new javax.swing.JButton();
+        eliminarButton = new javax.swing.JButton();
+        guardarButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setText("Producto:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
+        getContentPane().add(ProductoNombreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 100, 30));
+
+        regresarButton.setText("Regresar");
+        regresarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(regresarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, -1, -1));
+
+        eliminarButton.setText("Eliminar");
+        eliminarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(eliminarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 620, -1, -1));
+
+        guardarButton.setText("Guadar");
+        getContentPane().add(guardarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 620, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void regresarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarButtonActionPerformed
+        // TODO add your handling code here:
+        FormProductos formProductos=new FormProductos();
+        this.dispose();
+    }//GEN-LAST:event_regresarButtonActionPerformed
+
+    private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            casoEditarProducto.eliminarProducto(productoActual);
+            FormProductos formProductos=new FormProductos();
+            this.dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        
+        }
+    }//GEN-LAST:event_eliminarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -40,5 +101,10 @@ public class FormEditarProducto extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ProductoNombreLabel;
+    private javax.swing.JButton eliminarButton;
+    private javax.swing.JButton guardarButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton regresarButton;
     // End of variables declaration//GEN-END:variables
 }

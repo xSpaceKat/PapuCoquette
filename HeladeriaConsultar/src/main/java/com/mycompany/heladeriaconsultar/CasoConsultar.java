@@ -30,5 +30,16 @@ public class CasoConsultar implements ICasoConsultar{
         return null;
     }
 
+    @Override
+    public ProductoDTO consultarProducto(String nombre) {
+        IConsultarProductos consultarProductos=new ConsultarProductos();
+        try {
+            return consultarProductos.consultarProducto(nombre);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(CasoConsultar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
    
 }

@@ -18,6 +18,7 @@ public class FormAgregarNombre extends javax.swing.JFrame {
      */
     public FormAgregarNombre() {
         initComponents();
+        this.setVisible(true);
     }
 
     /**

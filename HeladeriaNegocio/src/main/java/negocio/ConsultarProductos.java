@@ -30,4 +30,13 @@ public class ConsultarProductos implements IConsultarProductos{
         }
         return productosDTO;
     } 
+
+    @Override
+    public ProductoDTO consultarProducto(String nombre) throws PersistenciaException {
+        IProductoDAO productoDAO=new ProductoDAO();
+        Conversor conversor=new Conversor();
+        Producto producto=new Producto();
+        producto.setNombre(nombre);
+        return conversor.DAOaDTO(productoDAO.buscarPorNombre(producto));
+    }
 }

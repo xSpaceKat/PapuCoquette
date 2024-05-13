@@ -2,16 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package com.mycompany.iheladeriaconsultar;
+package com.mycompany.iheladeriaeditarproducto;
 
 import dto.ProductoDTO;
-import java.util.List;
 
 /**
  *
  * @author USER
  */
-public interface ICasoConsultar {
-    public List<ProductoDTO> consultarTodosProductos();
-    public ProductoDTO consultarProducto(String nombre);
+public interface ICasoEditarProducto {
+    public void eliminarProducto(ProductoDTO productoDTO)throws Exception;
+    public void actualizarProducto(ProductoDTO productoDTO)throws Exception;
+    
 }
