@@ -26,8 +26,8 @@ public class JMenuPrincipal extends javax.swing.JFrame {
     private ICasoConsultar casoConsultar;
     List<ProductoDTO> productoDTOs;
 
-    public JMenuPrincipal(List<DetalleProductoDTO> listaDetalleProductos) {
-        this.listaDetallesProductos = listaDetalleProductos;
+    public JMenuPrincipal() {
+        this.listaDetallesProductos = new ArrayList<>();
         this.casoAgregar = new CasoAgregar();
         initComponents();
 
@@ -98,10 +98,7 @@ public class JMenuPrincipal extends javax.swing.JFrame {
         txtCobro = new javax.swing.JLabel();
         txtTotal = new javax.swing.JLabel();
         btnPagar = new javax.swing.JButton();
-<<<<<<< Updated upstream
-=======
-        btnAgregarProducto = new javax.swing.JButton();
->>>>>>> Stashed changes
+        btnPagar1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -247,18 +244,15 @@ public class JMenuPrincipal extends javax.swing.JFrame {
                 .addGap(13, 13, 13))
         );
 
-<<<<<<< Updated upstream
-=======
-        btnAgregarProducto.setBackground(new java.awt.Color(226, 183, 252));
-        btnAgregarProducto.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        btnAgregarProducto.setText("Agregar un nuevo producto");
-        btnAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
+        btnPagar1.setBackground(new java.awt.Color(226, 183, 252));
+        btnPagar1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        btnPagar1.setText("Agregar un nuevo producto");
+        btnPagar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarProductoActionPerformed(evt);
+                btnPagar1ActionPerformed(evt);
             }
         });
 
->>>>>>> Stashed changes
         javax.swing.GroupLayout panFondoLayout = new javax.swing.GroupLayout(panFondo);
         panFondo.setLayout(panFondoLayout);
         panFondoLayout.setHorizontalGroup(
@@ -269,15 +263,11 @@ public class JMenuPrincipal extends javax.swing.JFrame {
                     .addComponent(txtTitulo)
                     .addGroup(panFondoLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-<<<<<<< Updated upstream
-                        .addComponent(panOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-=======
                         .addGroup(panFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(panOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panFondoLayout.createSequentialGroup()
                                 .addGap(14, 14, 14)
-                                .addComponent(btnAgregarProducto)))))
->>>>>>> Stashed changes
+                                .addComponent(btnPagar1)))))
                 .addGap(36, 36, 36)
                 .addComponent(PanTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
@@ -291,15 +281,10 @@ public class JMenuPrincipal extends javax.swing.JFrame {
                     .addGroup(panFondoLayout.createSequentialGroup()
                         .addComponent(txtTitulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-<<<<<<< Updated upstream
-                        .addComponent(panOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-=======
                         .addComponent(panOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnPagar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(14, Short.MAX_VALUE))
->>>>>>> Stashed changes
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -317,24 +302,21 @@ public class JMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        JConfirmacion jfp = new JConfirmacion(listaDetallesProductos);
+        JConfirmacion jfp = new JConfirmacion();
         jfp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPagarActionPerformed
 
-<<<<<<< Updated upstream
-=======
-    private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
-        FormAgregarNombre fan = new FormAgregarNombre(listaDetallesProductos);
+    private void btnPagar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagar1ActionPerformed
+        FormAgregarNombre fan = new FormAgregarNombre();
         fan.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnAgregarProductoActionPerformed
+    }//GEN-LAST:event_btnPagar1ActionPerformed
 
->>>>>>> Stashed changes
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanTicket;
-    private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JButton btnPagar;
+    private javax.swing.JButton btnPagar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

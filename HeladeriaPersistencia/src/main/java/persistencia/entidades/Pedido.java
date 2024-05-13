@@ -12,6 +12,7 @@ import org.bson.types.ObjectId;
 public class Pedido {
 
     private ObjectId _idMongo;
+    private Integer id;
     private Date fecha;
     private Float totalPedido;
     private List<DetalleProducto> detalles;
@@ -20,8 +21,8 @@ public class Pedido {
         this.detalles = new ArrayList<>();
     }
 
-    
-    public Pedido( Date fecha,List<DetalleProducto> detalles) {
+    public Pedido(Integer id, Date fecha,List<DetalleProducto> detalles) {
+        this.id = id;
         this.fecha = fecha;
         this.totalPedido = totalPedido;
         this.detalles = detalles;
@@ -31,8 +32,9 @@ public class Pedido {
         }
     }
 
-    public Pedido(ObjectId _idMongo, Date fecha, List<DetalleProducto> detalles) {
+    public Pedido(ObjectId _idMongo, Integer id, Date fecha, List<DetalleProducto> detalles) {
         this._idMongo = _idMongo;
+        this.id = id;
         this.fecha = fecha;
         this.detalles = detalles;
         this.totalPedido=0f;
@@ -57,7 +59,15 @@ public class Pedido {
     public void setDetalles(List<DetalleProducto> detalles) {
         this.detalles = detalles;
     }
-    
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Date getFecha() {
         return fecha;
     }
@@ -73,12 +83,6 @@ public class Pedido {
     public void setTotalPedido(Float totalPedido) {
         this.totalPedido = totalPedido;
     }
-
-    @Override
-    public String toString() {
-        return "Pedido{" + "_idMongo=" + _idMongo + ", fecha=" + fecha + ", totalPedido=" + totalPedido + ", detalles=" + detalles + '}';
-    }
-    
     
 
 }
