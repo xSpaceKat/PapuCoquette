@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import dto.DetalleProductoDTO;
 import dto.ProductoDTO;
 import dto.TamanoDTO;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.List;
  */
 public class FormAgregarSabores extends javax.swing.JFrame {
 
+    private List<DetalleProductoDTO> listaDetalleProductos;
     private ProductoDTO productoDTO;
     
     /**
@@ -205,10 +207,26 @@ public class FormAgregarSabores extends javax.swing.JFrame {
         }
         
         productoDTO.setSabores(sabores);
+<<<<<<< Updated upstream
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
+=======
+        FormAgregarTamanos fat = new FormAgregarTamanos(productoDTO, listaDetalleProductos);
+        fat.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnSiguienteActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(null, "Seguro que quieres salirte?", "Confirmación", JOptionPane.YES_NO_OPTION);
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            JMenuPrincipal jmp = new JMenuPrincipal(listaDetalleProductos);
+            jmp.setVisible(true);
+            this.dispose();
+        }
+>>>>>>> Stashed changes
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

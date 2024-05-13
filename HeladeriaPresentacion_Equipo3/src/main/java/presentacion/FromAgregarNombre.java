@@ -4,7 +4,13 @@
  */
 package presentacion;
 
+import dto.DetalleProductoDTO;
 import dto.ProductoDTO;
+<<<<<<< Updated upstream:HeladeriaPresentacion_Equipo3/src/main/java/presentacion/FromAgregarNombre.java
+=======
+import java.util.List;
+import javax.swing.JOptionPane;
+>>>>>>> Stashed changes:HeladeriaPresentacion_Equipo3/src/main/java/presentacion/FormAgregarNombre.java
 
 /**
  *
@@ -12,10 +18,17 @@ import dto.ProductoDTO;
  */
 public class FromAgregarNombre extends javax.swing.JFrame {
 
+    private List<DetalleProductoDTO> listaDetalleProductos;
+    
     /**
      * Creates new form FromAgregarNombre
      */
+<<<<<<< Updated upstream:HeladeriaPresentacion_Equipo3/src/main/java/presentacion/FromAgregarNombre.java
     public FromAgregarNombre() {
+=======
+    public FormAgregarNombre(List<DetalleProductoDTO> listaDetalleProductos) {
+        this.listaDetalleProductos = listaDetalleProductos;
+>>>>>>> Stashed changes:HeladeriaPresentacion_Equipo3/src/main/java/presentacion/FormAgregarNombre.java
         initComponents();
     }
 
@@ -212,7 +225,17 @@ public class FromAgregarNombre extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPagar4ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+<<<<<<< Updated upstream:HeladeriaPresentacion_Equipo3/src/main/java/presentacion/FromAgregarNombre.java
         // TODO add your handling code here:
+=======
+        int opcion = JOptionPane.showConfirmDialog(null, "Seguro que quieres salirte?", "Confirmación", JOptionPane.YES_NO_OPTION);
+        
+        if (opcion == JOptionPane.YES_OPTION) {
+            JMenuPrincipal jmp = new JMenuPrincipal(listaDetalleProductos);
+            jmp.setVisible(true);
+            this.dispose();
+        }
+>>>>>>> Stashed changes:HeladeriaPresentacion_Equipo3/src/main/java/presentacion/FormAgregarNombre.java
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

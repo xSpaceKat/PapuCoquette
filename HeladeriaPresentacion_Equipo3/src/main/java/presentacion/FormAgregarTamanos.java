@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import dto.DetalleProductoDTO;
 import dto.ProductoDTO;
 import dto.TamanoDTO;
 import java.util.ArrayList;
@@ -15,14 +16,16 @@ import java.util.List;
  */
 public class FormAgregarTamanos extends javax.swing.JFrame {
     
+    private List<DetalleProductoDTO> listaDetalleProductos;
     private ProductoDTO productoDTO;
     private List<TamanoDTO> tamanosDTO;
     
     /**
      * Creates new form FormAgregarSabores
      */
-    public FormAgregarTamanos(ProductoDTO productoDTO) {
+    public FormAgregarTamanos(ProductoDTO productoDTO, List<DetalleProductoDTO> listaDetalleProductos) {
         this.productoDTO = productoDTO;
+        this.listaDetalleProductos = listaDetalleProductos;
         this.tamanosDTO = new ArrayList<>();
         initComponents();
     }
@@ -85,6 +88,11 @@ public class FormAgregarTamanos extends javax.swing.JFrame {
         txtPrecio.setText("Precio");
 
         txfPrecio.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txfPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfPrecioKeyTyped(evt);
+            }
+        });
 
         panSeparador2.setBackground(new java.awt.Color(233, 215, 248));
 
@@ -162,7 +170,7 @@ public class FormAgregarTamanos extends javax.swing.JFrame {
                     .addComponent(panSeparador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panOpcionesLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addGroup(panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panOpcionesLayout.createSequentialGroup()
                         .addGroup(panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,10 +248,27 @@ public class FormAgregarTamanos extends javax.swing.JFrame {
         productoDTO.setTamano(tamanosDTO);
         
         
+<<<<<<< Updated upstream
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
+=======
+        casoAgregarProducto.AgregarProducto(productoDTO);
+        JMenuPrincipal jmp = new JMenuPrincipal(listaDetalleProductos);
+        jmp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnFinalizarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(null, "Seguro que quieres salirte?", "Confirmación", JOptionPane.YES_NO_OPTION);
+        
+        if (opcion == JOptionPane.YES_OPTION) {
+            JMenuPrincipal jmp = new JMenuPrincipal(listaDetalleProductos);
+            jmp.setVisible(true);
+            this.dispose();
+        }
+>>>>>>> Stashed changes
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
@@ -257,6 +282,13 @@ public class FormAgregarTamanos extends javax.swing.JFrame {
         txfNombreDelProdcuto.setText("");
         txfPrecio.setText("");
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
+
+    private void txfPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfPrecioKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txfPrecioKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProducto;
