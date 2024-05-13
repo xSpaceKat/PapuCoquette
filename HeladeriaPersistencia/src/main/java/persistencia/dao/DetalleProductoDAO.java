@@ -77,7 +77,7 @@ public class DetalleProductoDAO implements IDetalleProductoDAO {
             System.out.println(e);
         }
     }
-//
+
 //    public void ImprimirReporte() throws PersistenciaException, FileNotFoundException {
 //        PdfFont code = null;
 //        List<DetalleProducto> p = consultar();
@@ -108,10 +108,5 @@ public class DetalleProductoDAO implements IDetalleProductoDAO {
 //            document.close();
 //        }
 //    }
-
-    @Override
-    public void ImprimirReporte() throws PersistenciaException, FileNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 }

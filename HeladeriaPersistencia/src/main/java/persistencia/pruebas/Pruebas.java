@@ -1,16 +1,13 @@
 package persistencia.pruebas;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import org.bson.types.ObjectId;
 import persistencia.dao.DetalleProductoDAO;
 import persistencia.dao.PedidoDAO;
 import persistencia.dao.ProductoDAO;
 import persistencia.entidades.DetalleProducto;
 import persistencia.entidades.Pedido;
-import persistencia.entidades.Producto;
 import persistencia.entidades.Tamano;
 import persistencia.excepciones.PersistenciaException;
 import persistencia.interfaces.IDetalleProductoDAO;
@@ -48,25 +45,38 @@ public class Pruebas {
         tamano2.setPrecioBase(25F);
         listTamano.add(tamano1);
         listTamano.add(tamano2);
-        productoDAO.guardarProducto(new Producto("Conos", listTamano, sabores));
-        productoDAO.guardarProducto(new Producto("Paletas", listTamano, sabores));
-        productoDAO.guardarProducto(new Producto("Helados", listTamano, sabores));
-        productoDAO.guardarProducto(new Producto("Chimichangas", listTamano, sabores));
-        productoDAO.guardarProducto(new Producto("Raspados", listTamano, sabores));
-        productoDAO.guardarProducto(new Producto("Gorditas", listTamano, sabores));
+//        productoDAO.guardarProducto(new Producto("Conos", listTamano, sabores));
+//        productoDAO.guardarProducto(new Producto("Paletas", listTamano, sabores));
+//        productoDAO.guardarProducto(new Producto("Helados", listTamano, sabores));
+//        productoDAO.guardarProducto(new Producto("Chimichangas", listTamano, sabores));
+//        productoDAO.guardarProducto(new Producto("Raspados", listTamano, sabores));
+//        productoDAO.guardarProducto(new Producto("Gorditas", listTamano, sabores));
 
-        DetalleProducto detalles1 = new DetalleProducto(new ObjectId(), "Conos", "Uva", "Grande", 25.0f, 2, true);
-        DetalleProducto detalles2 = new DetalleProducto(new ObjectId(), "Conos", "Fresa", "Chico", 10.0f, 1, false);
-        DetalleProducto detalles3 = new DetalleProducto(new ObjectId(), "Paletas", "Sandia", "Chico", 10.5f, 3, true);
+        DetalleProducto da = new DetalleProducto("Conos", "Uva", "Grande", 25.0f, 2, true);
+        DetalleProducto de = new DetalleProducto("Conos", "Fresa", "Chico", 10.0f, 1, false);
+        DetalleProducto di = new DetalleProducto("Paletas", "Sandia", "Chico", 10.5f, 3, true);
 
-        List<DetalleProducto> listadetalles = new ArrayList<>();
+        detallesDAO.guardarDetalleProducto(da);
+        detallesDAO.guardarDetalleProducto(de);
+        detallesDAO.guardarDetalleProducto(di);
 
-        listadetalles.add(detalles2);
-        listadetalles.add(detalles3);
+        List<DetalleProducto> kek = new ArrayList<>();
 
-        Pedido a = new Pedido(new ObjectId(),new Date(2024, 5, 13), listadetalles);
-        Pedido b = new Pedido(new ObjectId(),new Date(2024, 5, 13), listadetalles);
-        Pedido c = new Pedido(new ObjectId(),new Date(2024, 5, 13), listadetalles);
+        kek.add(de);
+        kek.add(di);
+
+        List<DetalleProducto> kok = new ArrayList<>();
+
+        kok.add(da);
+
+        List<DetalleProducto> kik = new ArrayList<>();
+
+        kik.add(da);
+        kik.add(di);
+
+        Pedido a = new Pedido(1, new GregorianCalendar().getTime(), kek);
+        Pedido b = new Pedido(2, new GregorianCalendar().getTime(), kok);
+        Pedido c = new Pedido(3, new GregorianCalendar().getTime(), kik);
 
         pedidoDAO.guardarPedido(a);
         pedidoDAO.guardarPedido(b);

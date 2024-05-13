@@ -6,7 +6,6 @@ package Interfaz;
 
 import dto.ConsultarVentasDTO;
 import dto.PedidoDTO;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,7 +13,7 @@ import java.util.List;
  * @author Ximena
  */
 public interface ICasoConsultarVenta {
-     public List<PedidoDTO> consultarVentas(Date fecha);
+     public List<PedidoDTO> consultarVentas();
      
      public void historial();
 }

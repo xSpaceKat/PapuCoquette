@@ -11,6 +11,7 @@ import org.bson.types.ObjectId;
 public class PedidoDTO {
 
     private ObjectId _idMongo;
+    private Integer id;
     private Date fecha;
     private Float totalPedido;
     private List<DetalleProductoDTO> detalles;
@@ -18,16 +19,16 @@ public class PedidoDTO {
     public PedidoDTO() {
     }
 
-    public PedidoDTO(ObjectId _idMongo,  Date fecha, Float totalPedido, List<DetalleProductoDTO> detalles) {
+    public PedidoDTO(ObjectId _idMongo, Integer id, Date fecha, Float totalPedido, List<DetalleProductoDTO> detalles) {
         this._idMongo = _idMongo;
-
+        this.id = id;
         this.fecha = fecha;
         this.totalPedido = totalPedido;
         this.detalles = detalles;
     }
 
-    public PedidoDTO(Date fecha, Float totalPedido, List<DetalleProductoDTO> detalles) {
-
+    public PedidoDTO(Integer id, Date fecha, Float totalPedido, List<DetalleProductoDTO> detalles) {
+        this.id = id;
         this.fecha = fecha;
         this.totalPedido = totalPedido;
         this.detalles = detalles;
@@ -39,6 +40,14 @@ public class PedidoDTO {
 
     public void setIdMongo(ObjectId _idMongo) {
         this._idMongo = _idMongo;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Date getFecha() {
@@ -65,9 +74,8 @@ public class PedidoDTO {
         this.detalles = detalles;
     }
 
-    @Override
     public String toString() {
-        return "PedidoDTO{" + "_idMongo=" + _idMongo + ", fecha=" + fecha + ", totalPedido=" + totalPedido + ", detalles=" + detalles + '}';
+        return "PedidoDTO{" + "_idMongo=" + _idMongo + ", id=" + id + ", fecha=" + fecha + ", totalPedido=" + totalPedido + ", detalles=" + detalles + '}';
     }
 
     

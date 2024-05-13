@@ -30,12 +30,6 @@ public class DetalleProducto {
         this.tamanoPrecio = tamanoPrecio;
         this.cantidad = cantidad;
         this.topping = topping;
-        if (topping){
-           this.precioTotal = (tamanoPrecio*cantidad)+(5*cantidad); 
-        }
-        else{
-            this.precioTotal = (tamanoPrecio*cantidad);
-        }
     }
 
     public DetalleProducto(String nombreProducto, String sabor, String tamano, Float tamanoPrecio, Integer cantidad, Boolean topping) {

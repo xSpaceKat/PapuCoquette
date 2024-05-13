@@ -52,7 +52,7 @@ public class Conversor {
         for (DetalleProducto detalle : pedido.getDetalles()) {
             detallesDTO.add(DAOaDTO(detalle));
         }
-        return new PedidoDTO(pedido.getIdMongo(), pedido.getFecha(), pedido.getTotalPedido(), detallesDTO);
+        return new PedidoDTO(pedido.getId(), pedido.getFecha(), pedido.getTotalPedido(), detallesDTO);
     }
 
     private DetalleProductoDTO DAOaDTO(DetalleProducto detalle) {

@@ -5,21 +5,18 @@
 package persistencia.pruebas;
 
 import java.util.Date;
-import org.bouncycastle.math.Primes;
+import java.util.GregorianCalendar;
 import persistencia.dao.PedidoDAO;
-import persistencia.excepciones.PersistenciaException;
 
 /**
  *
  * @author Ximena
  */
 public class pruebas2 {
-    public static void main(String[] args) throws PersistenciaException {
+    public static void main(String[] args) {
         Date fecha = new Date(2024, 5, 13);
-        
         PedidoDAO cv = new PedidoDAO();
         
-//        System.out.println(cv.listaPedidos(fecha));
-        System.out.println(cv.listaDetalles(cv.listaPedidos(fecha)));
+        System.out.println(cv.listaPedidos(fecha));
     }
 }
