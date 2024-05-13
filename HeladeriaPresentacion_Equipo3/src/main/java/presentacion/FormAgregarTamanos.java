@@ -121,9 +121,9 @@ public class FormAgregarTamanos extends javax.swing.JFrame {
         txtDescripcion1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         txtDescripcion1.setText("Para agregar otro selecciona Agregar otro tamaño");
 
+        btnAgregarProducto.setText("Agregar otro Tamaño");
         btnAgregarProducto.setBackground(new java.awt.Color(226, 183, 252));
         btnAgregarProducto.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        btnAgregarProducto.setText("Agregar otro producto");
         btnAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarProductoActionPerformed(evt);
