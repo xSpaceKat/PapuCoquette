@@ -385,7 +385,7 @@ public class ProductoAdquirido extends javax.swing.JFrame {
         DetalleProductoDTO detalleProducto = new DetalleProductoDTO(productoDTO.getNombre(), sabor, tamano, precio, cantidad, radTamToping.isSelected(), 33.0f);
 
         listaDetallesProductos.add(detalleProducto);
-        JMenuPrincipal menu = new JMenuPrincipal(listaDetallesProductos);
+        JMenuPrincipal menu = new JMenuPrincipal();
         menu.actualizarTable(listaDetallesProductos);
         menu.setVisible(true);
         this.dispose();

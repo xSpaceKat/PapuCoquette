@@ -4,23 +4,18 @@
  */
 package presentacion;
 
-import dto.DetalleProductoDTO;
-import java.util.List;
-
 /**
  *
  * @author Ximena
  */
 public class ConsultarVentas2 extends javax.swing.JFrame {
     
-    private List<DetalleProductoDTO> listaDetalleProductos;
+    
 
     /**
      * Creates new form ConsultarVentas2
      */
-    public ConsultarVentas2(List<DetalleProductoDTO> listaDetalleProductos) {
-        this.listaDetalleProductos = listaDetalleProductos;
-                
+    public ConsultarVentas2() {
         initComponents();
     }
 
@@ -147,7 +142,7 @@ public class ConsultarVentas2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
-        JMenuPrincipal mp = new JMenuPrincipal(listaDetalleProductos);
+        JMenuPrincipal mp = new JMenuPrincipal();
         mp.setVisible(true);
     }//GEN-LAST:event_botonRegresarActionPerformed
 
