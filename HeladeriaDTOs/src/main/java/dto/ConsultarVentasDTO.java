@@ -20,7 +20,7 @@ public class ConsultarVentasDTO {
     private Float costoUnitario, costoTotalProducto, ventaTotal;
     private Date fecha;
 
-    public ConsultarVentasDTO(String nombre, String tamanio, String sabor, Integer cantidad, Float costoUnitario,Float costoTotalProducto, Float ventaTotal, Date fecha) {
+    public ConsultarVentasDTO(String nombre, String tamanio, String sabor, Integer cantidad, Float costoUnitario, Float costoTotalProducto, Float ventaTotal, Date fecha) {
         this.nombre = nombre;
         this.tamanio = tamanio;
         this.sabor = sabor;
@@ -97,7 +97,9 @@ public class ConsultarVentasDTO {
 
     @Override
     public String toString() {
-        return "ConsultarVentas{" + "nombre=" + nombre + ", tamanio=" + tamanio + ", sabor=" + sabor + ", cantidad=" + cantidad + ", costoUnitario=" + costoUnitario + ", costoTotalProducto=" + costoTotalProducto + ", ventaTotal=" + ventaTotal + ", fecha=" + fecha + '}';
+        return "ConsultarVentasDTO{" + "nombre=" + nombre + ", tamanio=" + tamanio + ", sabor=" + sabor + ", cantidad=" + cantidad + ", costoUnitario=" + costoUnitario + ", costoTotalProducto=" + costoTotalProducto + ", ventaTotal=" + ventaTotal + ", fecha=" + fecha + '}';
     }
+
+    
     
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import org.bson.types.ObjectId;
 import persistencia.dao.DetalleProductoDAO;
 import persistencia.dao.PedidoDAO;
 import persistencia.dao.ProductoDAO;
@@ -54,9 +55,9 @@ public class Pruebas {
         productoDAO.guardarProducto(new Producto("Raspados", listTamano, sabores));
         productoDAO.guardarProducto(new Producto("Gorditas", listTamano, sabores));
 
-        DetalleProducto detalles1 = new DetalleProducto("Conos", "Uva", "Grande", 25.0f, 2, true);
-        DetalleProducto detalles2 = new DetalleProducto("Conos", "Fresa", "Chico", 10.0f, 1, false);
-        DetalleProducto detalles3 = new DetalleProducto("Paletas", "Sandia", "Chico", 10.5f, 3, true);
+        DetalleProducto detalles1 = new DetalleProducto(new ObjectId(), "Conos", "Uva", "Grande", 25.0f, 2, true);
+        DetalleProducto detalles2 = new DetalleProducto(new ObjectId(), "Conos", "Fresa", "Chico", 10.0f, 1, false);
+        DetalleProducto detalles3 = new DetalleProducto(new ObjectId(), "Paletas", "Sandia", "Chico", 10.5f, 3, true);
 
 
 

@@ -64,8 +64,9 @@ public class PedidoDAO implements IPedidoDAO {
             System.out.println("No se pudo agregar el Detalle de Producto" + e);
         }
     }
-
-    public List<Pedido> listaPedidos(Date fecha) {
+    
+    @Override
+    public List<Pedido> listaPedidos(Date fecha) throws PersistenciaException {
         Bson filtro = Filters.eq("fecha", fecha);
         try {
             List<Pedido> resultados = coleccionPedido.find(filtro).into(new ArrayList<>());
@@ -74,5 +75,16 @@ public class PedidoDAO implements IPedidoDAO {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         return null;
+    }
+
+    @Override
+    public List<DetalleProducto> listaDetalles(List<Pedido> listaPedidos) throws PersistenciaException {
+       List<DetalleProducto> listaDetalles = new ArrayList<>();
+
+    for (Pedido pedido : listaPedidos) { 
+        List<DetalleProducto> detallesPedido = pedido.getDetalles();
+        listaDetalles.addAll(detallesPedido);
+    }
+    return listaDetalles;
     }
 }
