@@ -18,6 +18,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import negocio.EditarProducto;
 
 /**
  *
@@ -370,7 +371,8 @@ public class JMenuPrincipal extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        
+        FormEliminarDetallesProducto eliminarDetallesProducto=new FormEliminarDetallesProducto(listaDetallesProductos);
+        this.dispose();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

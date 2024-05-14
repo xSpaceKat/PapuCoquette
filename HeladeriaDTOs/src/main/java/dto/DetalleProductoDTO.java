@@ -94,7 +94,7 @@ public class DetalleProductoDTO {
 
     @Override
     public String toString() {
-        return "DetalleProductoDTO{" + "nombreProducto=" + nombreProducto + ", sabor=" + sabor + ", tamano=" + tamano + ", tamanoPrecio=" + tamanoPrecio + ", cantidad=" + cantidad + ", topping=" + topping + ", precioTotal=" + precioTotal + '}';
+        return "Producto:" + nombreProducto + " | Sabor:" + sabor + " | Tamaño=" + tamano + " | Cantidad=" + cantidad + " | Topping=" + topping + " | precioTotal=" + precioTotal;
     }
 
     
