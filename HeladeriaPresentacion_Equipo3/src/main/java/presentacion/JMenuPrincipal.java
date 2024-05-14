@@ -6,7 +6,9 @@ import com.mycompany.heladeriaconsultar.CasoConsultar;
 import com.mycompany.iheladeriaconsultar.ICasoConsultar;
 import dto.DetalleProductoDTO;
 import dto.ProductoDTO;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -39,6 +41,9 @@ public class JMenuPrincipal extends javax.swing.JFrame {
 
         for (int i = 0; i < productoDTOs.size(); i++) {
             JButton boton = new JButton(productoDTOs.get(i).getNombre());
+            boton.setBackground(new Color(226,183,252));
+            Font f=new Font("Comic Sans MS",18,18);
+            boton.setFont(f);
             boton.setPreferredSize(new Dimension(230, 120));
             boton.addActionListener(new ActionListener() {
 
@@ -80,7 +85,13 @@ public class JMenuPrincipal extends javax.swing.JFrame {
             Object[] fila = {d.getNombreProducto(), d.getSabor(), d.getTamano(), topping, d.getCantidad(), d.getPrecioTotal()};
             modeloTabla.addRow(fila);
         }
+        Float costo=0f;
+        for(DetalleProductoDTO detalle:listaDetallesProductos){
+            costo+=detalle.getPrecioTotal();
+        }
+        txtCobro.setText("$"+costo);
         tabTicket.setModel(modeloTabla);
+        
     }
 
     /**
@@ -108,6 +119,7 @@ public class JMenuPrincipal extends javax.swing.JFrame {
         txtTotal = new javax.swing.JLabel();
         btnPagar = new javax.swing.JButton();
         btnConsultarProductos = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -228,6 +240,15 @@ public class JMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnEliminar.setBackground(new java.awt.Color(226, 183, 252));
+        btnEliminar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanTicketLayout = new javax.swing.GroupLayout(PanTicket);
         PanTicket.setLayout(PanTicketLayout);
         PanTicketLayout.setHorizontalGroup(
@@ -247,6 +268,8 @@ public class JMenuPrincipal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtCobro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
                         .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -263,7 +286,8 @@ public class JMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(PanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTotal)
                     .addComponent(txtCobro)
-                    .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13))
         );
 
@@ -328,9 +352,15 @@ public class JMenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnConsultarProductosActionPerformed
 
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanTicket;
     private javax.swing.JButton btnConsultarProductos;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnPagar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

@@ -7,7 +7,9 @@ package presentacion;
 import com.mycompany.heladeriaconsultar.CasoConsultar;
 import com.mycompany.iheladeriaconsultar.ICasoConsultar;
 import dto.ProductoDTO;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -35,6 +37,9 @@ public class FormProductos extends javax.swing.JFrame {
         
         for (int i = 0; i < productoDTOs.size(); i++) {
             JButton boton = new JButton(productoDTOs.get(i).getNombre());
+            boton.setBackground(new Color(226,183,252));
+            Font f=new Font("Comic Sans MS",18,18);
+            boton.setFont(f);
             boton.setPreferredSize(new Dimension(295, 200));
             boton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -56,34 +61,90 @@ public class FormProductos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        panel = new javax.swing.JPanel();
+        panFondo = new javax.swing.JPanel();
+        txtTitulo = new javax.swing.JLabel();
         regresarButton = new javax.swing.JButton();
         anadirButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        panel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panel.setLayout(new java.awt.GridLayout(0, 2));
-        jScrollPane1.setViewportView(panel);
+        panFondo.setBackground(new java.awt.Color(233, 215, 248));
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 610, 430));
+        txtTitulo.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
+        txtTitulo.setText("Papu Coquette :v    Menú de edición productos");
 
+        regresarButton.setBackground(new java.awt.Color(226, 183, 252));
+        regresarButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         regresarButton.setText("Regresar");
         regresarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regresarButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(regresarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 130, 50));
 
+        anadirButton.setBackground(new java.awt.Color(226, 183, 252));
+        anadirButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         anadirButton.setText("Añadir");
         anadirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 anadirButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(anadirButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 570, 130, 50));
+
+        panel.setLayout(new java.awt.GridLayout(0, 2));
+        jScrollPane1.setViewportView(panel);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout panFondoLayout = new javax.swing.GroupLayout(panFondo);
+        panFondo.setLayout(panFondoLayout);
+        panFondoLayout.setHorizontalGroup(
+            panFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panFondoLayout.createSequentialGroup()
+                .addGroup(panFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panFondoLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(txtTitulo))
+                    .addGroup(panFondoLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(29, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFondoLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(regresarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(anadirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFondoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(97, 97, 97))
+        );
+        panFondoLayout.setVerticalGroup(
+            panFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panFondoLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(txtTitulo)
+                .addGroup(panFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panFondoLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE))
+                    .addGroup(panFondoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)))
+                .addGroup(panFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(regresarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(anadirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
+        );
+
+        getContentPane().add(panFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -105,8 +166,11 @@ public class FormProductos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton anadirButton;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panFondo;
     private javax.swing.JPanel panel;
     private javax.swing.JButton regresarButton;
+    private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables
 }
