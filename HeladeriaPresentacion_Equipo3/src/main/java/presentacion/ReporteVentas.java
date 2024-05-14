@@ -46,7 +46,6 @@ public class ReporteVentas extends javax.swing.JFrame {
         txtTitulo1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         txtTitulo1.setText("Reporte de ventas");
 
-        botonImprimir.setBackground(new java.awt.Color(255, 255, 255));
         botonImprimir.setText("Imprimir");
         botonImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,7 +62,6 @@ public class ReporteVentas extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -103,13 +101,9 @@ public class ReporteVentas extends javax.swing.JFrame {
         txtTitulo2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         txtTitulo2.setText("Venta total");
 
-        txtFechaVenta.setBackground(new java.awt.Color(255, 255, 255));
-
         txtTitulo3.setBackground(new java.awt.Color(0, 0, 0));
         txtTitulo3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         txtTitulo3.setText("Fecha");
-
-        txtTotalVenta.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -186,6 +180,7 @@ public class ReporteVentas extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImprimirActionPerformed

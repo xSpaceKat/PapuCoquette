@@ -150,7 +150,6 @@ public class FormEditarProducto extends javax.swing.JFrame {
 
         regresarButton.setBackground(new java.awt.Color(226, 183, 252));
         regresarButton.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        regresarButton.setForeground(new java.awt.Color(0, 0, 0));
         regresarButton.setText("Regresar");
         regresarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,7 +160,6 @@ public class FormEditarProducto extends javax.swing.JFrame {
 
         eliminarButton.setBackground(new java.awt.Color(226, 183, 252));
         eliminarButton.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        eliminarButton.setForeground(new java.awt.Color(0, 0, 0));
         eliminarButton.setText("Eliminar");
         eliminarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,7 +170,6 @@ public class FormEditarProducto extends javax.swing.JFrame {
 
         guardarButton.setBackground(new java.awt.Color(226, 183, 252));
         guardarButton.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        guardarButton.setForeground(new java.awt.Color(0, 0, 0));
         guardarButton.setText("Guadar");
         guardarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,7 +189,6 @@ public class FormEditarProducto extends javax.swing.JFrame {
 
         anadirTamanoButton.setBackground(new java.awt.Color(226, 183, 252));
         anadirTamanoButton.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        anadirTamanoButton.setForeground(new java.awt.Color(0, 0, 0));
         anadirTamanoButton.setText("+");
         anadirTamanoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,7 +210,6 @@ public class FormEditarProducto extends javax.swing.JFrame {
 
         anadirSaborButton.setBackground(new java.awt.Color(226, 183, 252));
         anadirSaborButton.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        anadirSaborButton.setForeground(new java.awt.Color(0, 0, 0));
         anadirSaborButton.setText("+");
         anadirSaborButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,6 +292,7 @@ public class FormEditarProducto extends javax.swing.JFrame {
         getContentPane().add(panFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 680));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void regresarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarButtonActionPerformed

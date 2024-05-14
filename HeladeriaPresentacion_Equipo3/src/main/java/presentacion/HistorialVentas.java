@@ -60,7 +60,6 @@ public class HistorialVentas extends javax.swing.JFrame {
         txtTitulo.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         txtTitulo.setText("Historial de ventas");
 
-        tablaHistorial.setBackground(new java.awt.Color(255, 255, 255));
         tablaHistorial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -89,7 +88,6 @@ public class HistorialVentas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaHistorial);
 
-        botonRegresar.setBackground(new java.awt.Color(255, 255, 255));
         botonRegresar.setText("Regresar");
         botonRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,6 +133,7 @@ public class HistorialVentas extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
