@@ -11,9 +11,9 @@ import negocio.ObjetosNegocioAgregarPedido;
  */
 public class CasoAgregar implements ICasoAgregar {
 
-    @Override
+    IObjetosNegocioAgregarPedido INegocio = new ObjetosNegocioAgregarPedido();
+
     public void AgregarPedido(PedidoDTO pedidoDTO) {
-        IObjetosNegocioAgregarPedido INegocio = new ObjetosNegocioAgregarPedido();
         INegocio.agregarPedido(pedidoDTO);
     }
 

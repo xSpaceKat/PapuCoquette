@@ -3,11 +3,14 @@ package negocio;
 import dto.DetalleProductoDTO;
 import dto.PedidoDTO;
 import interfacesNegocio.IObjetosNegocioAgregarPedido;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import persistencia.dao.PedidoDAO;
 import persistencia.entidades.DetalleProducto;
 import persistencia.entidades.Pedido;
-import persistencia.entidades.Producto;
+import persistencia.excepciones.PersistenciaException;
 import persistencia.interfaces.IPedidoDAO;
 
 /**
@@ -16,25 +19,39 @@ import persistencia.interfaces.IPedidoDAO;
  */
 public class ObjetosNegocioAgregarPedido implements IObjetosNegocioAgregarPedido {
 
-    @Override
+    IPedidoDAO ipedido = new PedidoDAO();
+
     public void agregarPedido(PedidoDTO pedido) {
-        /*IPedidoDAO ipedido = new PedidoDAO();
-        ipedido.agregarPedido(this.DTODAO(pedido));*/
+        Pedido p = Conversion(pedido);
+        try {
+            ipedido.guardarPedido(p);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(ObjetosNegocioAgregarPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    public Pedido DTODAO(PedidoDTO pedidoDTO) {
-        /*pedidoDTO.getDetalles();
-        Pedido pedido = new Pedido(pedidoDTO.getSubtotal());
-        List<DetalleProductoDTO> detallesProductos = pedidoDTO.getDetalles();
+    public Pedido Conversion(PedidoDTO dto) {
+        List<DetalleProductoDTO> detallesProductos = dto.getDetalles();
+        List<DetalleProducto> darling = new ArrayList<>();
+        Pedido guardarPedido = new Pedido();
 
         for (DetalleProductoDTO dt : detallesProductos) {
-           
-            DetalleProducto dtTemp = new DetalleProducto(Sabores.valueOf(dt.getSabores()), Tamanio.valueOf(dt.getTamanio()), dt.getToppings(), dt.getPrecioVenta());
-            dtTemp.setProducto(new Producto( dt.getProducto().getNombre(), dt.getProducto().getPrecio(), TipoProducto.valueOf(dt.getProducto().getTipo())));
-            pedido.agregarDetallesProd(dtTemp);
+            DetalleProducto dtTemp = new DetalleProducto();
+            dtTemp.setCantidad(dt.getCantidad());
+            dtTemp.setNombreProducto(dt.getNombreProducto());
+            dtTemp.setSabor(dt.getSabor());
+            dtTemp.setTamano(dt.getTamano());
+            dtTemp.setTamanoPrecio(dt.getTamanoPrecio());
+            dtTemp.setprecioTotal(dt.getPrecioTotal());
+            dtTemp.setTopping(dt.getTopping());
+            darling.add(dtTemp);
         }
-        return pedido;*/
-        return null;
+
+        guardarPedido.setDetalles(darling);
+        guardarPedido.setFecha(dto.getFecha());
+        guardarPedido.setTotalPedido(dto.getTotalPedido());
+
+        return guardarPedido;
     }
 
 }

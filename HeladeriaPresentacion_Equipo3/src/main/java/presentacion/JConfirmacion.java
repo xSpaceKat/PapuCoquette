@@ -1,16 +1,26 @@
 package presentacion;
 
+import com.mycompany.heladeriaagregar.CasoAgregar;
+import com.mycompany.heladeriaagregarinteraz.ICasoAgregar;
+import dto.PedidoDTO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Katt
  */
 public class JConfirmacion extends javax.swing.JFrame {
 
+    PedidoDTO pedidoDTO = new PedidoDTO();
+    ICasoAgregar agregar = new CasoAgregar();
+
     /**
      * Creates new form JConfirmacion
      */
-    public JConfirmacion() {
+    public JConfirmacion(PedidoDTO pedido) {
         initComponents();
+        this.pedidoDTO = pedido;
+        this.agregar = new CasoAgregar();
     }
 
     /**
@@ -125,11 +135,21 @@ public class JConfirmacion extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
-        // Hacer que reciba un parametro del pedido y que valide si no esta en
-        // nulo para poder avanzar a la siguiente pantalla
-        JFormaPago j = new JFormaPago();
-        j.setVisible(true);
-        dispose();
+        if (pedidoDTO.getDetalles() == null) {
+            JOptionPane.showMessageDialog(null, "Erorr! No hay datos de pedido");
+            JMenuPrincipal s = new JMenuPrincipal();
+            s.setVisible(true);
+            dispose();
+        } else {
+            try {
+                agregar.AgregarPedido(pedidoDTO);
+                JFormaPago j = new JFormaPago();
+                j.setVisible(true);
+                dispose();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "No se pudo agregar el pedido, Vuelva a intentarlo");
+            }
+        }
     }//GEN-LAST:event_botonAceptarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
