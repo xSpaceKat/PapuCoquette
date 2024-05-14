@@ -1,5 +1,6 @@
 package persistencia.interfaces;
 
+import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.List;
 import persistencia.entidades.DetalleProducto;
@@ -23,4 +24,6 @@ public interface IPedidoDAO {
     public List<Pedido> listaPedidos(Date fecha) throws PersistenciaException;
     
     public List<DetalleProducto> listaDetalles(List<Pedido> listaPedidos) throws PersistenciaException;
+    
+    public void ImprimirReporte(Pedido pepe) throws PersistenciaException, FileNotFoundException;
 }

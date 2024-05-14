@@ -1,12 +1,25 @@
 package persistencia.dao;
 
 import com.mongodb.MongoException;
+import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.kernel.colors.ColorConstants;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.Style;
+import com.itextpdf.layout.element.Paragraph;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 import persistencia.conexion.ConexionBD;
@@ -30,6 +43,15 @@ public class PedidoDAO implements IPedidoDAO {
     public Pedido buscarPorID(Pedido pedido) throws PersistenciaException {
         try {
             Pedido pedidoBuscado = coleccionPedido.find(Filters.eq("_id", pedido.getIdMongo())).first();
+            return pedidoBuscado;
+        } catch (MongoException e) {
+            throw new PersistenciaException("No se pudo consultar el pedido " + e);
+        }
+    }
+
+    public Pedido buscarPorTotal(Pedido pedido) throws PersistenciaException {
+        try {
+            Pedido pedidoBuscado = coleccionPedido.find(Filters.eq("totalPedido", pedido.getTotalPedido())).first();
             return pedidoBuscado;
         } catch (MongoException e) {
             throw new PersistenciaException("No se pudo consultar el pedido " + e);
@@ -64,7 +86,7 @@ public class PedidoDAO implements IPedidoDAO {
             System.out.println("No se pudo agregar el Detalle de Producto" + e);
         }
     }
-    
+
     @Override
     public List<Pedido> listaPedidos(Date fecha) throws PersistenciaException {
         Bson filtro = Filters.eq("fecha", fecha);
@@ -79,12 +101,38 @@ public class PedidoDAO implements IPedidoDAO {
 
     @Override
     public List<DetalleProducto> listaDetalles(List<Pedido> listaPedidos) throws PersistenciaException {
-       List<DetalleProducto> listaDetalles = new ArrayList<>();
+        List<DetalleProducto> listaDetalles = new ArrayList<>();
 
-    for (Pedido pedido : listaPedidos) { 
-        List<DetalleProducto> detallesPedido = pedido.getDetalles();
-        listaDetalles.addAll(detallesPedido);
+        for (Pedido pedido : listaPedidos) {
+            List<DetalleProducto> detallesPedido = pedido.getDetalles();
+            listaDetalles.addAll(detallesPedido);
+        }
+        return listaDetalles;
     }
-    return listaDetalles;
+
+    public void ImprimirReporte(Pedido pepe) throws PersistenciaException, FileNotFoundException {
+        PdfFont code = null;
+        Pedido p = buscarPorTotal(pepe);
+        try {
+            code = PdfFontFactory.createFont(StandardFonts.COURIER_BOLD);
+        } catch (IOException ex) {
+            Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Style style = new Style()
+                .setFont(code)
+                .setFontSize(14)
+                .setFontColor(ColorConstants.BLACK)
+                .setBackgroundColor(ColorConstants.LIGHT_GRAY);
+
+        try (Document document = new Document(new PdfDocument(new PdfWriter("./Recibo.pdf")))) {
+            document.add(new Paragraph("PAPU COQUETTE").addStyle(style));
+            document.add(new Paragraph("COMPRA").addStyle(style));
+            document.add(new Paragraph(p.getFecha().toString()).addStyle(style));
+            document.add(new Paragraph("Detalles del producto: " + p.getDetalles()).addStyle(style));
+            document.add(new Paragraph("Precio Total: " + p.getTotalPedido().toString()).addStyle(style));
+            document.add(new Paragraph("").addStyle(style));
+            document.add(new Paragraph("Gracias por su compra!").addStyle(style));
+        }
     }
+
 }

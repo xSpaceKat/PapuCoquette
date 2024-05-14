@@ -2,10 +2,8 @@ package persistencia.pruebas;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import org.bson.types.ObjectId;
-import persistencia.dao.DetalleProductoDAO;
 import persistencia.dao.PedidoDAO;
 import persistencia.dao.ProductoDAO;
 import persistencia.entidades.DetalleProducto;
@@ -13,7 +11,6 @@ import persistencia.entidades.Pedido;
 import persistencia.entidades.Producto;
 import persistencia.entidades.Tamano;
 import persistencia.excepciones.PersistenciaException;
-import persistencia.interfaces.IDetalleProductoDAO;
 import persistencia.interfaces.IPedidoDAO;
 import persistencia.interfaces.IProductoDAO;
 
@@ -31,7 +28,6 @@ public class Pruebas {
     public static void main(String[] args) throws PersistenciaException {
 
         IProductoDAO productoDAO = new ProductoDAO();
-        IDetalleProductoDAO detallesDAO = new DetalleProductoDAO();
         IPedidoDAO pedidoDAO = new PedidoDAO();
 
         List<String> sabores = new ArrayList<>();
@@ -59,16 +55,14 @@ public class Pruebas {
         DetalleProducto detalles2 = new DetalleProducto(new ObjectId(), "Conos", "Fresa", "Chico", 10.0f, 1, false);
         DetalleProducto detalles3 = new DetalleProducto(new ObjectId(), "Paletas", "Sandia", "Chico", 10.5f, 3, true);
 
-
-
         List<DetalleProducto> listadetalles = new ArrayList<>();
 
         listadetalles.add(detalles2);
         listadetalles.add(detalles3);
 
-        Pedido a = new Pedido( new Date(2024, 5, 13), listadetalles);
-        Pedido b = new Pedido( new Date(2024, 5, 13), listadetalles);
-        Pedido c = new Pedido( new Date(2024, 5, 13), listadetalles);
+        Pedido a = new Pedido(new Date(2024, 5, 13), listadetalles);
+        Pedido b = new Pedido(new Date(2024, 5, 13), listadetalles);
+        Pedido c = new Pedido(new Date(2024, 5, 13), listadetalles);
 
         pedidoDAO.guardarPedido(a);
         pedidoDAO.guardarPedido(b);

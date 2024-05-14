@@ -20,14 +20,13 @@ public class Pedido {
         this.detalles = new ArrayList<>();
     }
 
-    
-    public Pedido( Date fecha,List<DetalleProducto> detalles) {
+    public Pedido(Date fecha, List<DetalleProducto> detalles) {
         this.fecha = fecha;
         this.totalPedido = totalPedido;
         this.detalles = detalles;
-        this.totalPedido=0f;
-        for(DetalleProducto dp:detalles){
-            totalPedido+=dp.getprecioTotal();
+        this.totalPedido = 0f;
+        for (DetalleProducto dp : detalles) {
+            totalPedido += dp.getprecioTotal();
         }
     }
 
@@ -35,11 +34,11 @@ public class Pedido {
         this._idMongo = _idMongo;
         this.fecha = fecha;
         this.detalles = detalles;
-        this.totalPedido=0f;
-        for(DetalleProducto dp:detalles){
-            totalPedido+=dp.getprecioTotal();
+        this.totalPedido = 0f;
+        for (DetalleProducto dp : detalles) {
+            totalPedido += dp.getprecioTotal();
         }
-        
+
     }
 
     public ObjectId getIdMongo() {
@@ -57,7 +56,7 @@ public class Pedido {
     public void setDetalles(List<DetalleProducto> detalles) {
         this.detalles = detalles;
     }
-    
+
     public Date getFecha() {
         return fecha;
     }
@@ -78,7 +77,5 @@ public class Pedido {
     public String toString() {
         return "Pedido{" + "_idMongo=" + _idMongo + ", fecha=" + fecha + ", totalPedido=" + totalPedido + ", detalles=" + detalles + '}';
     }
-    
-    
 
 }

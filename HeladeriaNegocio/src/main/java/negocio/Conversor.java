@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package negocio;
 
 import dto.DetalleProductoDTO;
@@ -52,7 +48,7 @@ public class Conversor {
         for (DetalleProducto detalle : pedido.getDetalles()) {
             detallesDTO.add(DAOaDTO(detalle));
         }
-        return new PedidoDTO(pedido.getIdMongo(), pedido.getFecha(), pedido.getTotalPedido(), detallesDTO);
+        return new PedidoDTO(pedido.getFecha(), pedido.getTotalPedido(), detallesDTO);
     }
 
     private DetalleProductoDTO DAOaDTO(DetalleProducto detalle) {
