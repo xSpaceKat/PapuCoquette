@@ -375,23 +375,25 @@ public class ProductoAdquirido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-
+        JMenuPrincipal menuPrincipal=new JMenuPrincipal();
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         try {
             Integer cantidad = Integer.parseInt(txfCantidad.getText());
-            
-                DetalleProductoDTO detalleProducto = new DetalleProductoDTO(productoDTO.getNombre(), sabor, tamano, precio, cantidad, radTamToping.isSelected(), 33.0f);
 
+            DetalleProductoDTO detalleProducto = new DetalleProductoDTO(productoDTO.getNombre(), sabor, tamano, precio, cantidad, radTamToping.isSelected(), 33.0f);
+            if (sabor.equals("")) {
+                JOptionPane.showMessageDialog(this, "Seleccione el tamaño y sabor.");
+            } else {
                 listaDetallesProductos.add(detalleProducto);
                 JMenuPrincipal menu = new JMenuPrincipal();
 
                 menu.actualizarTable(listaDetallesProductos);
                 menu.setVisible(true);
                 this.dispose();
-
+            }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Escriba la cantidad que desea con números.");
         } catch(NullPointerException e){

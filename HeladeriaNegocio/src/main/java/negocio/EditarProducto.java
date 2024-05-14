@@ -36,8 +36,10 @@ public class EditarProducto implements IEditarProducto{
         IProductoDAO productoDAO=new ProductoDAO();
         Conversor conversor=new Conversor();
         Producto producto=conversor.DTOaDAO(productoDTO);
+        Producto productoTemp=productoDAO.buscarPorNombre(producto);
+        producto.setId(productoTemp.getId());
         try {
-            productoDAO.actualizarProducto(productoDAO.buscarPorNombre(producto));
+            productoDAO.actualizarProducto(producto);
         } catch (PersistenciaException ex) {
             throw new PersistenciaException("No se pudo eliminar");
         }

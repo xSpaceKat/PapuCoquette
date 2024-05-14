@@ -37,7 +37,6 @@ public class FormProductos extends javax.swing.JFrame {
             JButton boton = new JButton(productoDTOs.get(i).getNombre());
             boton.setPreferredSize(new Dimension(295, 200));
             boton.addActionListener(new ActionListener() {
-
                 public void actionPerformed(ActionEvent e) {
                     FormEditarProducto editarProducto=new FormEditarProducto(boton.getText());
                     menu.dispose();

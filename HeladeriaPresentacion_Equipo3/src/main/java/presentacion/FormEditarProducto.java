@@ -9,8 +9,16 @@ import com.mycompany.heladeriaeditarproducto.CasoEditarProducto;
 import com.mycompany.iheladeriaconsultar.ICasoConsultar;
 import com.mycompany.iheladeriaeditarproducto.ICasoEditarProducto;
 import dto.ProductoDTO;
+import dto.TamanoDTO;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,8 +37,80 @@ public class FormEditarProducto extends javax.swing.JFrame {
         casoEditarProducto=new CasoEditarProducto();
         productoActual=casoConsultar.consultarProducto(nombreProducto);
         initComponents();
-        this.setVisible(true);
+        ActionListener listenerTam = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() instanceof JCheckBox) {
+                    JCheckBox selectedCheckBox = (JCheckBox) e.getSource();
+                    if (selectedCheckBox.isSelected()) {
+                        for(int i=0;i<productoActual.getTamano().size();i++){
+                            
+                            if(selectedCheckBox.getName().equals(productoActual.getTamano().get(i).getNombreTamano())){
+                                productoActual.getTamano().remove(i);
+                                break;
+                            }
+                        }
+                        Container parent = selectedCheckBox.getParent();
+                        parent.remove(selectedCheckBox);
+                        parent.revalidate();
+                        parent.repaint();
+                    }
+                }
+            }
+        };
+
+        List<TamanoDTO> tamanos = productoActual.getTamano();
+        for (TamanoDTO t : tamanos) {
+            JCheckBox checkbox = new JCheckBox(t.getNombreTamano() + " $" + t.getPrecioBase());
+            checkbox.setName(t.getNombreTamano());
+            checkbox.setPreferredSize(new Dimension(340, 50));
+            checkbox.addActionListener(listenerTam);
+            panelTamano.add(checkbox);
+        }
+        ActionListener listenerSab = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() instanceof JCheckBox) {
+                    JCheckBox selectedCheckBox = (JCheckBox) e.getSource();
+                    if (selectedCheckBox.isSelected()) {
+                        
+                        for(int i=0;i<productoActual.getSabores().size();i++){
+                            if(selectedCheckBox.getText().equals(productoActual.getSabores().get(i))){
+                                productoActual.getSabores().remove(i);
+                                break;
+                            }
+                        }
+                        
+                        Container parent = selectedCheckBox.getParent();
+                        parent.remove(selectedCheckBox);
+                        
+                        parent.revalidate();
+                        parent.repaint();
+                    }
+                }
+            }
+        };
+        List<String> sabores = productoActual.getSabores();
+        for (String s : sabores) {
+            JCheckBox checkbox = new JCheckBox(s);
+            checkbox.setPreferredSize(new Dimension(340, 50));
+            checkbox.addActionListener(listenerSab);
+            panelSabor.add(checkbox);
+        }
+
         this.setLocationRelativeTo(null);
+        txtNombreProducto.setText(productoActual.getNombre());
+        this.setVisible(true);
+    }
+    public String obtenerPrecio(String texto) {
+        int indiceSignoDolar = texto.indexOf("$");
+        if (indiceSignoDolar != -1 && indiceSignoDolar < texto.length() - 1) {
+            String textoDespuesDelSignoDolar = texto.substring(indiceSignoDolar + 1);
+            textoDespuesDelSignoDolar = textoDespuesDelSignoDolar.trim();
+            return textoDespuesDelSignoDolar;
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -43,17 +123,28 @@ public class FormEditarProducto extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        ProductoNombreLabel = new javax.swing.JLabel();
         regresarButton = new javax.swing.JButton();
         eliminarButton = new javax.swing.JButton();
         guardarButton = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        panelSabor = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        panelTamano = new javax.swing.JPanel();
+        txtNombreProducto = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        anadirTamanoButton = new javax.swing.JButton();
+        tamanoTextField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        precioTextField = new javax.swing.JTextField();
+        saborTextField = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        anadirSaborButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Producto:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
-        getContentPane().add(ProductoNombreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 100, 30));
 
         regresarButton.setText("Regresar");
         regresarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +163,51 @@ public class FormEditarProducto extends javax.swing.JFrame {
         getContentPane().add(eliminarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 620, -1, -1));
 
         guardarButton.setText("Guadar");
+        guardarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(guardarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 620, -1, -1));
+
+        panelSabor.setLayout(new java.awt.GridLayout(0, 1));
+        jScrollPane4.setViewportView(panelSabor);
+
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 270, 140));
+
+        panelTamano.setLayout(new java.awt.GridLayout(0, 1));
+        jScrollPane2.setViewportView(panelTamano);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 240, 120));
+        getContentPane().add(txtNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 120, 30));
+
+        jLabel2.setText("Tamaño:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
+
+        anadirTamanoButton.setText("+");
+        anadirTamanoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anadirTamanoButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(anadirTamanoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, -1, -1));
+        getContentPane().add(tamanoTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 90, -1));
+
+        jLabel3.setText("Precio:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
+        getContentPane().add(precioTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 90, -1));
+        getContentPane().add(saborTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, 90, -1));
+
+        jLabel4.setText("Sabor:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 520, -1, -1));
+
+        anadirSaborButton.setText("+");
+        anadirSaborButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anadirSaborButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(anadirSaborButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 540, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -85,7 +220,6 @@ public class FormEditarProducto extends javax.swing.JFrame {
 
     private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
         try {
-            // TODO add your handling code here:
             casoEditarProducto.eliminarProducto(productoActual);
             FormProductos formProductos=new FormProductos();
             this.dispose();
@@ -95,16 +229,128 @@ public class FormEditarProducto extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_eliminarButtonActionPerformed
 
+    private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
+        // TODO add your handling code here:
+        try {
+            casoEditarProducto.actualizarProducto(productoActual);
+            System.out.println(productoActual);
+            
+            FormProductos formProductos=new FormProductos();
+            this.dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        
+        }
+    }//GEN-LAST:event_guardarButtonActionPerformed
+
+    private void anadirTamanoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anadirTamanoButtonActionPerformed
+        // TODO add your handling code here:
+        if(!tamanoTextField.getText().equals("")||!precioTextField.getText().equals("")){
+            try{
+                String tamano=tamanoTextField.getText();
+                Float precio=Float.parseFloat( precioTextField.getText());
+                TamanoDTO tamanoDTO=new TamanoDTO(tamano, precio);
+                ActionListener listenerTam = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (e.getSource() instanceof JCheckBox) {
+                        JCheckBox selectedCheckBox = (JCheckBox) e.getSource();
+                        if (selectedCheckBox.isSelected()) {
+                            for (int i = 0; i < productoActual.getTamano().size(); i++) {
+
+                                if (selectedCheckBox.getName().equals(productoActual.getTamano().get(i).getNombreTamano())) {
+                                    productoActual.getTamano().remove(i);
+                                    break;
+                                }
+                            }
+                            Container parent = selectedCheckBox.getParent();
+                            parent.remove(selectedCheckBox);
+                            parent.revalidate();
+                            parent.repaint();
+                        }
+                    }
+                }
+            };
+            JCheckBox checkbox = new JCheckBox(tamano + " $" + precio);
+            checkbox.setName(tamano);
+            checkbox.setPreferredSize(new Dimension(340, 50));
+            checkbox.addActionListener(listenerTam);
+            productoActual.getTamano().add(tamanoDTO);
+            panelTamano.add(checkbox);
+            panelTamano.revalidate();
+            panelTamano.repaint();
+            tamanoTextField.setText("");
+            precioTextField.setText("");
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this, "Ingrese el precio correctamente");
+            }
+        }
+    }//GEN-LAST:event_anadirTamanoButtonActionPerformed
+
+    private void anadirSaborButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anadirSaborButtonActionPerformed
+        // TODO add your handling code here:
+        if(!saborTextField.getText().equals("")){
+            try{
+                String sabor=saborTextField.getText();
+                
+                ActionListener listenerTam = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (e.getSource() instanceof JCheckBox) {
+                        JCheckBox selectedCheckBox = (JCheckBox) e.getSource();
+                        if (selectedCheckBox.isSelected()) {
+                            for (int i = 0; i < productoActual.getSabores().size(); i++) {
+
+                                if (selectedCheckBox.getName().equals(productoActual.getSabores().get(i))) {
+                                    productoActual.getSabores().remove(i);
+                                    break;
+                                }
+                            }
+                            Container parent = selectedCheckBox.getParent();
+                            parent.remove(selectedCheckBox);
+                            parent.revalidate();
+                            parent.repaint();
+                        }
+                    }
+                }
+            };
+            JCheckBox checkbox = new JCheckBox(sabor);
+            checkbox.setName(sabor);
+            checkbox.setPreferredSize(new Dimension(340, 50));
+            checkbox.addActionListener(listenerTam);
+            productoActual.getSabores().add(sabor);
+            panelSabor.add(checkbox);
+            panelSabor.revalidate();
+            panelSabor.repaint();
+            saborTextField.setText("");
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_anadirSaborButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ProductoNombreLabel;
+    private javax.swing.JButton anadirSaborButton;
+    private javax.swing.JButton anadirTamanoButton;
     private javax.swing.JButton eliminarButton;
     private javax.swing.JButton guardarButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JPanel panelSabor;
+    private javax.swing.JPanel panelTamano;
+    private javax.swing.JTextField precioTextField;
     private javax.swing.JButton regresarButton;
+    private javax.swing.JTextField saborTextField;
+    private javax.swing.JTextField tamanoTextField;
+    private javax.swing.JTextField txtNombreProducto;
     // End of variables declaration//GEN-END:variables
 }
