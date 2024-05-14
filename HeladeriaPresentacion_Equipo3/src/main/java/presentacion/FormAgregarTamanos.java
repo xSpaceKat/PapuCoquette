@@ -9,16 +9,18 @@ import dto.TamanoDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import org.itson.bdavanzadas.heladeriaagregarproducto.CasoAgregarProducto;
+import org.itson.bdavanzadas.heladeriaagregarproductointerfaces.ICasoAgregarProducto;
 
 /**
  *
  * @author Berry
  */
 public class FormAgregarTamanos extends javax.swing.JFrame {
-    
+
     private ProductoDTO productoDTO;
     private List<TamanoDTO> tamanosDTO;
-    
+
     /**
      * Creates new form FormAgregarSabores
      */
@@ -26,6 +28,7 @@ public class FormAgregarTamanos extends javax.swing.JFrame {
         this.productoDTO = productoDTO;
         this.tamanosDTO = new ArrayList<>();
         initComponents();
+
     }
 
     /**
@@ -86,6 +89,11 @@ public class FormAgregarTamanos extends javax.swing.JFrame {
         txtPrecio.setText("Precio");
 
         txfPrecio.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txfPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfPrecioKeyTyped(evt);
+            }
+        });
 
         panSeparador2.setBackground(new java.awt.Color(233, 215, 248));
 
@@ -119,11 +127,11 @@ public class FormAgregarTamanos extends javax.swing.JFrame {
         });
 
         txtDescripcion1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtDescripcion1.setText("Para agregar otro selecciona Agregar otro tamaño");
+        txtDescripcion1.setText("Para agregar otro selecciona Agregar Tamaño");
 
-        btnAgregarProducto.setText("Agregar otro Tamaño");
         btnAgregarProducto.setBackground(new java.awt.Color(226, 183, 252));
         btnAgregarProducto.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        btnAgregarProducto.setText("Agregar Tamaño");
         btnAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarProductoActionPerformed(evt);
@@ -148,9 +156,6 @@ public class FormAgregarTamanos extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(panSeparador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panOpcionesLayout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addComponent(txtDescripcion1))
-                            .addGroup(panOpcionesLayout.createSequentialGroup()
                                 .addGap(50, 50, 50)
                                 .addGroup(panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,6 +178,10 @@ public class FormAgregarTamanos extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panOpcionesLayout.createSequentialGroup()
                         .addComponent(txtPrecio)
                         .addGap(176, 176, 176))))
+            .addGroup(panOpcionesLayout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(txtDescripcion1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panOpcionesLayout.setVerticalGroup(
             panOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,14 +247,30 @@ public class FormAgregarTamanos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
-        productoDTO.setTamano(tamanosDTO);
-        
-        
+        if ("".equals(txfNombreDelProdcuto.getText()) || "".equals(txfPrecio.getText())) {
+            if (tamanosDTO.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No hay tamaños registrados");
+            } else {
+                productoDTO.setTamano(tamanosDTO);
+                meteProducto(productoDTO);
+                JMenuPrincipal jmp = new JMenuPrincipal();
+                jmp.setVisible(true);
+                this.dispose();
+            }
+        } else {
+            tamanosDTO.add(meteTamano());
+            productoDTO.setTamano(tamanosDTO);
+                meteProducto(productoDTO);
+                JMenuPrincipal jmp = new JMenuPrincipal();
+                jmp.setVisible(true);
+                this.dispose();
+            
+        }
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         int opcion = JOptionPane.showConfirmDialog(null, "Seguro que quieres salirte?", "Confirmación", JOptionPane.YES_NO_OPTION);
-        
+
         if (opcion == JOptionPane.YES_OPTION) {
             JMenuPrincipal jmp = new JMenuPrincipal();
             jmp.setVisible(true);
@@ -254,16 +279,42 @@ public class FormAgregarTamanos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
-        TamanoDTO tamano = new TamanoDTO();
-        
-        tamano.setNombreTamano(txfNombreDelProdcuto.getText());
-        tamano.setPrecioBase(Float.parseFloat(txfPrecio.getText()));
+        if ("".equals(txfNombreDelProdcuto.getText()) || "".equals(txfPrecio.getText())) {
+            if("".equals(txfNombreDelProdcuto.getText()) && "".equals(txfPrecio.getText())){
+                JOptionPane.showMessageDialog(null, "Debes llenar los 2 Campos");
+            }
+            else if("".equals(txfNombreDelProdcuto.getText())){
+                JOptionPane.showMessageDialog(null, "Falta el Nombre del producto");
+            }
+            else if("".equals(txfPrecio.getText())){
+                JOptionPane.showMessageDialog(null, "Falta el Precio");
+            }
+        } else {
+            tamanosDTO.add(meteTamano());
+            txfNombreDelProdcuto.setText("");
+            txfPrecio.setText("");
+        }
 
-        tamanosDTO.add(tamano);
-        
-        txfNombreDelProdcuto.setText("");
-        txfPrecio.setText("");
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
+
+    private void txfPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfPrecioKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txfPrecioKeyTyped
+
+    public void meteProducto(ProductoDTO productoDTO) {
+        ICasoAgregarProducto casoAgregarProducto = new CasoAgregarProducto();
+        casoAgregarProducto.AgregarProducto(productoDTO);
+    }
+
+    public TamanoDTO meteTamano() {
+        TamanoDTO tamano = new TamanoDTO();
+        tamano.setNombreTamano(txfNombreDelProdcuto.getText());
+        tamano.setPrecioBase(Float.valueOf(txfPrecio.getText()));
+        return tamano;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProducto;

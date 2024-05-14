@@ -53,6 +53,11 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>HeladeriaAgregarProducto</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>HeladeriaEditarProducto</artifactId>
             <version>${project.version}</version>
         </dependency>

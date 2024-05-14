@@ -91,10 +91,6 @@
                                       <Component id="panSeparador2" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                                      <Component id="txtDescripcion1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="btnFinalizar" alignment="0" min="-2" pref="332" max="-2" attributes="0"/>
@@ -128,6 +124,11 @@
                               <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="txtDescripcion1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -166,18 +167,18 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="txtAgregarProducto">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Agregar Producto"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Comic Sans MS" size="24" style="0"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="Agregar Producto"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="txtDescripcion">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Solo pon un tama&#xf1;o y su precio"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Comic Sans MS" size="14" style="0"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="Solo pon un tama&#xf1;o y su precio"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JPanel" name="panSeparador">
@@ -202,10 +203,10 @@
             </Container>
             <Component class="javax.swing.JLabel" name="txtNombreDelProducto">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nombre de Tama&#xf1;o"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Comic Sans MS" size="24" style="0"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="Nombre de Tama&#xf1;o"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txfNombreDelProdcuto">
@@ -217,10 +218,10 @@
             </Component>
             <Component class="javax.swing.JLabel" name="txtPrecio">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Precio"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Comic Sans MS" size="24" style="0"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="Precio"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txfPrecio">
@@ -229,6 +230,9 @@
                   <Font name="Comic Sans MS" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txfPrecioKeyTyped"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="panSeparador2">
               <Properties>
@@ -252,13 +256,13 @@
             </Container>
             <Component class="javax.swing.JButton" name="btnFinalizar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Finalizar producto"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="fc" green="b7" red="e2" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Comic Sans MS" size="18" style="0"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="Finalizar producto"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFinalizarActionPerformed"/>
@@ -266,13 +270,13 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnCancelar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cancelar"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="fc" green="b7" red="e2" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Comic Sans MS" size="18" style="0"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
@@ -280,21 +284,21 @@
             </Component>
             <Component class="javax.swing.JLabel" name="txtDescripcion1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Para agregar otro selecciona Agregar otro tama&#xf1;o"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Comic Sans MS" size="14" style="0"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="Para agregar otro selecciona Agregar Tama&#xf1;o"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnAgregarProducto">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Agregar otro Tama&#xf1;o"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="fc" green="b7" red="e2" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Comic Sans MS" size="18" style="0"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="Agregar Tama&#xf1;o"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarProductoActionPerformed"/>
