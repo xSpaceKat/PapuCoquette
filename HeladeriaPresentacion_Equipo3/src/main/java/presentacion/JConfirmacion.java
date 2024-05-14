@@ -143,7 +143,7 @@ public class JConfirmacion extends javax.swing.JFrame {
         } else {
             try {
                 agregar.AgregarPedido(pedidoDTO);
-                JFormaPago j = new JFormaPago();
+                JFormaPago j = new JFormaPago(pedidoDTO);
                 j.setVisible(true);
                 dispose();
             } catch (Exception e) {

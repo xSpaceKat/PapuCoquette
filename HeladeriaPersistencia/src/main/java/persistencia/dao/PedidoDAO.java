@@ -113,6 +113,7 @@ public class PedidoDAO implements IPedidoDAO {
     public void ImprimirReporte(Pedido pepe) throws PersistenciaException, FileNotFoundException {
         PdfFont code = null;
         Pedido p = buscarPorTotal(pepe);
+        List<DetalleProducto> detallesProductos = p.getDetalles();
         try {
             code = PdfFontFactory.createFont(StandardFonts.COURIER_BOLD);
         } catch (IOException ex) {
@@ -127,9 +128,21 @@ public class PedidoDAO implements IPedidoDAO {
         try (Document document = new Document(new PdfDocument(new PdfWriter("./Recibo.pdf")))) {
             document.add(new Paragraph("PAPU COQUETTE").addStyle(style));
             document.add(new Paragraph("COMPRA").addStyle(style));
+            document.add(new Paragraph("---------------------------------------").addStyle(style));
             document.add(new Paragraph(p.getFecha().toString()).addStyle(style));
-            document.add(new Paragraph("Detalles del producto: " + p.getDetalles()).addStyle(style));
+            document.add(new Paragraph("---------------------------------------").addStyle(style));
+            for (DetalleProducto dt : detallesProductos) {
+                document.add(new Paragraph("Nombre del Producto: " + dt.getNombreProducto()).addStyle(style));
+                document.add(new Paragraph("Sabor: " + dt.getSabor()).addStyle(style));
+                document.add(new Paragraph("Tamaño: " + dt.getTamano()).addStyle(style));
+                document.add(new Paragraph("Precio por tamaño: " + dt.getTamanoPrecio().toString()).addStyle(style));
+                document.add(new Paragraph("Cantidad: " + dt.getCantidad().toString()).addStyle(style));
+                document.add(new Paragraph("¿Topping?: " + dt.getTopping().toString()).addStyle(style));
+            }
+            document.add(new Paragraph("---------------------------------------").addStyle(style));
             document.add(new Paragraph("Precio Total: " + p.getTotalPedido().toString()).addStyle(style));
+            document.add(new Paragraph("---------------------------------------").addStyle(style));
+            document.add(new Paragraph("").addStyle(style));
             document.add(new Paragraph("").addStyle(style));
             document.add(new Paragraph("Gracias por su compra!").addStyle(style));
         }

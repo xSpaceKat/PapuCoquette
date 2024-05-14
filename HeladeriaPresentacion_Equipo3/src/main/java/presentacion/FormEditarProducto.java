@@ -35,7 +35,7 @@ public class FormEditarProducto extends javax.swing.JFrame {
     public FormEditarProducto(String nombreProducto) {
         casoConsultar=new CasoConsultar();
         casoEditarProducto=new CasoEditarProducto();
-        productoActual=casoConsultar.consultarProducto(nombreProducto);
+//        productoActual=casoConsultar.consultarProducto(nombreProducto);
         initComponents();
         ActionListener listenerTam = new ActionListener() {
             @Override

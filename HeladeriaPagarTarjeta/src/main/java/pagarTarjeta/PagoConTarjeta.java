@@ -12,9 +12,6 @@ import javax.swing.JOptionPane;
  */
 public class PagoConTarjeta implements IPagoConTarjeta {
 
-    // F A L T A N T E S
-    // Validar que las tarjetas sean las mismas 
-    // Ni siquiera sabe si funciona  y ya esta validando q humillante denigrante...
     private int numero;
 
     private String[] tarjetas = {"6666-6666-6666-6666", "9045-6721-8273-5601", "2154-7803-9640-3087",
@@ -92,9 +89,11 @@ public class PagoConTarjeta implements IPagoConTarjeta {
             }
             if (peso = false) {
                 JOptionPane.showMessageDialog(null, "ERROR! No se pudo verificar su monto de tarjeta");
+                return null;
             }
             if (pluma = true) {
                 JOptionPane.showMessageDialog(null, "No se encontro la tarjeta, pruebe otra vez");
+                return null;
             }
         } catch (Exception e) {
             Logger.getLogger(PagoConTarjeta.class.getName()).log(Level.SEVERE, null, e);
@@ -104,6 +103,9 @@ public class PagoConTarjeta implements IPagoConTarjeta {
 
     public PagoTarjetaDTO calcularCambio(PagoTarjetaDTO tarjeta) {
         verificarDinero(tarjeta);
+        if (verificarDinero(tarjeta).equals(null)) {
+            return null;
+        }
         Float manuel = tarjeta.getPrecioTotal();
         int i = numero;
         Float kat = dinero[i];

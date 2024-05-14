@@ -1,6 +1,7 @@
 package presentacion;
 
 import dto.PagoTarjetaDTO;
+import dto.PedidoDTO;
 import imprimirRecibo.ImprimirRecibo;
 import interfaces.IImprimirRecibo;
 import interfaces.IPagoConTarjeta;
@@ -13,17 +14,18 @@ import pagarTarjeta.PagoConTarjeta;
  */
 public class FormTarjeta extends javax.swing.JFrame {
 
-    // C A M B I O S
-    // Traer el pedido para el precioTotal
     IPagoConTarjeta ipago = new PagoConTarjeta();
     PagoTarjetaDTO dto = new PagoTarjetaDTO();
     IImprimirRecibo dumb = new ImprimirRecibo();
+    PedidoDTO owo = new PedidoDTO();
 
-    public FormTarjeta() {
+    public FormTarjeta(PedidoDTO pedido) {
         initComponents();
         this.ipago = new PagoConTarjeta();
         this.dto = new PagoTarjetaDTO();
         this.dumb = new ImprimirRecibo();
+        this.owo = pedido;
+        txtCambio.setText("$ " + owo.getTotalPedido().toString());
     }
 
     /**
@@ -283,12 +285,12 @@ public class FormTarjeta extends javax.swing.JFrame {
             verificarDatos();
             guardarDatos();
             ipago.calcularCambio(dto);
-            // quitar el setText y ponerlo arriba cuando cree el pedido
-            txtCambio.setText("$ " + dto.getPrecioTotal().toString());
-//            dumb.imprimir();
+
+            dumb.imprimir(owo);
             JMenuPrincipal q = new JMenuPrincipal();
             q.setVisible(true);
             dispose();
+
         }
     }//GEN-LAST:event_botonAceptarActionPerformed
 
@@ -354,7 +356,7 @@ public class FormTarjeta extends javax.swing.JFrame {
         dto.setNumTarjeta(numTarjeta.getText());
         dto.setFechaVencimiento(vencimiento.getText());
         dto.setCvv(Integer.parseInt(cvv.getText()));
-        dto.setPrecioTotal(40.5f);
+        dto.setPrecioTotal(owo.getTotalPedido());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

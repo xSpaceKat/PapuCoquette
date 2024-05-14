@@ -1,16 +1,21 @@
 package presentacion;
 
+import dto.PedidoDTO;
+
 /**
  *
  * @author Berry
  */
 public class JFormaPago extends javax.swing.JFrame {
 
+    PedidoDTO pepe = new PedidoDTO();
+
     /**
      * Creates new form JFormaPago
      */
-    public JFormaPago() {
+    public JFormaPago(PedidoDTO pedido) {
         initComponents();
+        this.pepe = pedido;
     }
 
     /**
@@ -128,13 +133,13 @@ public class JFormaPago extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        FormEfectivo jc = new FormEfectivo();
+        FormEfectivo jc = new FormEfectivo(pepe);
         jc.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void btnPagar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagar2ActionPerformed
-        FormTarjeta f = new FormTarjeta();
+        FormTarjeta f = new FormTarjeta(pepe);
         f.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnPagar2ActionPerformed

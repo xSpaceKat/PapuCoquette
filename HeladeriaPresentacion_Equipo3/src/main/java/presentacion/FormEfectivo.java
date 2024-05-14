@@ -1,6 +1,7 @@
 package presentacion;
 
 import dto.PagoEfectivoDTO;
+import dto.PedidoDTO;
 import imprimirRecibo.ImprimirRecibo;
 import interfaces.IImprimirRecibo;
 import interfaces.IPagoConEfectivo;
@@ -14,17 +15,17 @@ import pagarEfectivo.PagoConEfectivo;
  */
 public class FormEfectivo extends javax.swing.JFrame {
 
-    // C A M B I O S
-    // Traer el pedido para el precioTotal
     PagoEfectivoDTO efectivo = new PagoEfectivoDTO();
     IPagoConEfectivo ipago = new PagoConEfectivo();
     IImprimirRecibo dumb = new ImprimirRecibo();
+    PedidoDTO uwu = new PedidoDTO();
 
-    public FormEfectivo() {
+    public FormEfectivo(PedidoDTO pedido) {
         initComponents();
         this.efectivo = new PagoEfectivoDTO();
         this.ipago = new PagoConEfectivo();
         this.dumb = new ImprimirRecibo();
+        this.uwu = pedido;
     }
 
     /**
@@ -227,7 +228,7 @@ public class FormEfectivo extends javax.swing.JFrame {
             guardarDatos();
             ipago.calcularCambio(efectivo);
             txtCambio.setText(efectivo.getCambio().toString());
-//            dumb.imprimir();
+            dumb.imprimir(uwu);
             JMenuPrincipal s = new JMenuPrincipal();
             s.setVisible(true);
             dispose();
@@ -245,7 +246,7 @@ public class FormEfectivo extends javax.swing.JFrame {
     }//GEN-LAST:event_cantidadActionPerformed
 
     private void guardarDatos() {
-        efectivo.setPrecioTotal(40.5f);
+        efectivo.setPrecioTotal(uwu.getTotalPedido());
         efectivo.setCantidadPagar(parseFloat(cantidad.getText()));
     }
 
