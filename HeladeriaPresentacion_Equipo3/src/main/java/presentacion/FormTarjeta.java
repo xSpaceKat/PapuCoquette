@@ -286,6 +286,9 @@ public class FormTarjeta extends javax.swing.JFrame {
             // quitar el setText y ponerlo arriba cuando cree el pedido
             txtCambio.setText("$ " + dto.getPrecioTotal().toString());
 //            dumb.imprimir();
+            JMenuPrincipal q = new JMenuPrincipal();
+            q.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_botonAceptarActionPerformed
 

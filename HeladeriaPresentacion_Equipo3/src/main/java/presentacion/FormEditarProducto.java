@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package presentacion;
 
 import com.mycompany.heladeriaconsultar.CasoConsultar;
@@ -26,16 +22,18 @@ import javax.swing.JOptionPane;
  * @author USER
  */
 public class FormEditarProducto extends javax.swing.JFrame {
+
     ICasoConsultar casoConsultar;
     ProductoDTO productoActual;
     ICasoEditarProducto casoEditarProducto;
+
     /**
      * Creates new form FormEditarProducto
      */
     public FormEditarProducto(String nombreProducto) {
-        casoConsultar=new CasoConsultar();
-        casoEditarProducto=new CasoEditarProducto();
-        productoActual=casoConsultar.consultarProducto(nombreProducto);
+        casoConsultar = new CasoConsultar();
+        casoEditarProducto = new CasoEditarProducto();
+        //productoActual=casoConsultar.consultarProducto(nombreProducto);
         initComponents();
         ActionListener listenerTam = new ActionListener() {
             @Override
@@ -43,9 +41,9 @@ public class FormEditarProducto extends javax.swing.JFrame {
                 if (e.getSource() instanceof JCheckBox) {
                     JCheckBox selectedCheckBox = (JCheckBox) e.getSource();
                     if (selectedCheckBox.isSelected()) {
-                        for(int i=0;i<productoActual.getTamano().size();i++){
-                            
-                            if(selectedCheckBox.getName().equals(productoActual.getTamano().get(i).getNombreTamano())){
+                        for (int i = 0; i < productoActual.getTamano().size(); i++) {
+
+                            if (selectedCheckBox.getName().equals(productoActual.getTamano().get(i).getNombreTamano())) {
                                 productoActual.getTamano().remove(i);
                                 break;
                             }
@@ -73,17 +71,17 @@ public class FormEditarProducto extends javax.swing.JFrame {
                 if (e.getSource() instanceof JCheckBox) {
                     JCheckBox selectedCheckBox = (JCheckBox) e.getSource();
                     if (selectedCheckBox.isSelected()) {
-                        
-                        for(int i=0;i<productoActual.getSabores().size();i++){
-                            if(selectedCheckBox.getText().equals(productoActual.getSabores().get(i))){
+
+                        for (int i = 0; i < productoActual.getSabores().size(); i++) {
+                            if (selectedCheckBox.getText().equals(productoActual.getSabores().get(i))) {
                                 productoActual.getSabores().remove(i);
                                 break;
                             }
                         }
-                        
+
                         Container parent = selectedCheckBox.getParent();
                         parent.remove(selectedCheckBox);
-                        
+
                         parent.revalidate();
                         parent.repaint();
                     }
@@ -102,6 +100,7 @@ public class FormEditarProducto extends javax.swing.JFrame {
         txtNombreProducto.setText(productoActual.getNombre());
         this.setVisible(true);
     }
+
     public String obtenerPrecio(String texto) {
         int indiceSignoDolar = texto.indexOf("$");
         if (indiceSignoDolar != -1 && indiceSignoDolar < texto.length() - 1) {
@@ -214,18 +213,18 @@ public class FormEditarProducto extends javax.swing.JFrame {
 
     private void regresarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarButtonActionPerformed
         // TODO add your handling code here:
-        FormProductos formProductos=new FormProductos();
+        FormProductos formProductos = new FormProductos();
         this.dispose();
     }//GEN-LAST:event_regresarButtonActionPerformed
 
     private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
         try {
             casoEditarProducto.eliminarProducto(productoActual);
-            FormProductos formProductos=new FormProductos();
+            FormProductos formProductos = new FormProductos();
             this.dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-        
+
         }
     }//GEN-LAST:event_eliminarButtonActionPerformed
 
@@ -234,54 +233,54 @@ public class FormEditarProducto extends javax.swing.JFrame {
         try {
             casoEditarProducto.actualizarProducto(productoActual);
             System.out.println(productoActual);
-            
-            FormProductos formProductos=new FormProductos();
+
+            FormProductos formProductos = new FormProductos();
             this.dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-        
+
         }
     }//GEN-LAST:event_guardarButtonActionPerformed
 
     private void anadirTamanoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anadirTamanoButtonActionPerformed
         // TODO add your handling code here:
-        if(!tamanoTextField.getText().equals("")||!precioTextField.getText().equals("")){
-            try{
-                String tamano=tamanoTextField.getText();
-                Float precio=Float.parseFloat( precioTextField.getText());
-                TamanoDTO tamanoDTO=new TamanoDTO(tamano, precio);
+        if (!tamanoTextField.getText().equals("") || !precioTextField.getText().equals("")) {
+            try {
+                String tamano = tamanoTextField.getText();
+                Float precio = Float.parseFloat(precioTextField.getText());
+                TamanoDTO tamanoDTO = new TamanoDTO(tamano, precio);
                 ActionListener listenerTam = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (e.getSource() instanceof JCheckBox) {
-                        JCheckBox selectedCheckBox = (JCheckBox) e.getSource();
-                        if (selectedCheckBox.isSelected()) {
-                            for (int i = 0; i < productoActual.getTamano().size(); i++) {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource() instanceof JCheckBox) {
+                            JCheckBox selectedCheckBox = (JCheckBox) e.getSource();
+                            if (selectedCheckBox.isSelected()) {
+                                for (int i = 0; i < productoActual.getTamano().size(); i++) {
 
-                                if (selectedCheckBox.getName().equals(productoActual.getTamano().get(i).getNombreTamano())) {
-                                    productoActual.getTamano().remove(i);
-                                    break;
+                                    if (selectedCheckBox.getName().equals(productoActual.getTamano().get(i).getNombreTamano())) {
+                                        productoActual.getTamano().remove(i);
+                                        break;
+                                    }
                                 }
+                                Container parent = selectedCheckBox.getParent();
+                                parent.remove(selectedCheckBox);
+                                parent.revalidate();
+                                parent.repaint();
                             }
-                            Container parent = selectedCheckBox.getParent();
-                            parent.remove(selectedCheckBox);
-                            parent.revalidate();
-                            parent.repaint();
                         }
                     }
-                }
-            };
-            JCheckBox checkbox = new JCheckBox(tamano + " $" + precio);
-            checkbox.setName(tamano);
-            checkbox.setPreferredSize(new Dimension(340, 50));
-            checkbox.addActionListener(listenerTam);
-            productoActual.getTamano().add(tamanoDTO);
-            panelTamano.add(checkbox);
-            panelTamano.revalidate();
-            panelTamano.repaint();
-            tamanoTextField.setText("");
-            precioTextField.setText("");
-            }catch(Exception e){
+                };
+                JCheckBox checkbox = new JCheckBox(tamano + " $" + precio);
+                checkbox.setName(tamano);
+                checkbox.setPreferredSize(new Dimension(340, 50));
+                checkbox.addActionListener(listenerTam);
+                productoActual.getTamano().add(tamanoDTO);
+                panelTamano.add(checkbox);
+                panelTamano.revalidate();
+                panelTamano.repaint();
+                tamanoTextField.setText("");
+                precioTextField.setText("");
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Ingrese el precio correctamente");
             }
         }
@@ -289,41 +288,41 @@ public class FormEditarProducto extends javax.swing.JFrame {
 
     private void anadirSaborButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anadirSaborButtonActionPerformed
         // TODO add your handling code here:
-        if(!saborTextField.getText().equals("")){
-            try{
-                String sabor=saborTextField.getText();
-                
-                ActionListener listenerTam = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (e.getSource() instanceof JCheckBox) {
-                        JCheckBox selectedCheckBox = (JCheckBox) e.getSource();
-                        if (selectedCheckBox.isSelected()) {
-                            for (int i = 0; i < productoActual.getSabores().size(); i++) {
+        if (!saborTextField.getText().equals("")) {
+            try {
+                String sabor = saborTextField.getText();
 
-                                if (selectedCheckBox.getName().equals(productoActual.getSabores().get(i))) {
-                                    productoActual.getSabores().remove(i);
-                                    break;
+                ActionListener listenerTam = new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource() instanceof JCheckBox) {
+                            JCheckBox selectedCheckBox = (JCheckBox) e.getSource();
+                            if (selectedCheckBox.isSelected()) {
+                                for (int i = 0; i < productoActual.getSabores().size(); i++) {
+
+                                    if (selectedCheckBox.getName().equals(productoActual.getSabores().get(i))) {
+                                        productoActual.getSabores().remove(i);
+                                        break;
+                                    }
                                 }
+                                Container parent = selectedCheckBox.getParent();
+                                parent.remove(selectedCheckBox);
+                                parent.revalidate();
+                                parent.repaint();
                             }
-                            Container parent = selectedCheckBox.getParent();
-                            parent.remove(selectedCheckBox);
-                            parent.revalidate();
-                            parent.repaint();
                         }
                     }
-                }
-            };
-            JCheckBox checkbox = new JCheckBox(sabor);
-            checkbox.setName(sabor);
-            checkbox.setPreferredSize(new Dimension(340, 50));
-            checkbox.addActionListener(listenerTam);
-            productoActual.getSabores().add(sabor);
-            panelSabor.add(checkbox);
-            panelSabor.revalidate();
-            panelSabor.repaint();
-            saborTextField.setText("");
-            }catch(Exception e){
+                };
+                JCheckBox checkbox = new JCheckBox(sabor);
+                checkbox.setName(sabor);
+                checkbox.setPreferredSize(new Dimension(340, 50));
+                checkbox.addActionListener(listenerTam);
+                productoActual.getSabores().add(sabor);
+                panelSabor.add(checkbox);
+                panelSabor.revalidate();
+                panelSabor.repaint();
+                saborTextField.setText("");
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
         }
@@ -332,7 +331,6 @@ public class FormEditarProducto extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton anadirSaborButton;

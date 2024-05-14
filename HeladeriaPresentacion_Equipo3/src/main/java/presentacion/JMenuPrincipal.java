@@ -5,11 +5,13 @@ import com.mycompany.heladeriaagregarinteraz.ICasoAgregar;
 import com.mycompany.heladeriaconsultar.CasoConsultar;
 import com.mycompany.iheladeriaconsultar.ICasoConsultar;
 import dto.DetalleProductoDTO;
+import dto.PedidoDTO;
 import dto.ProductoDTO;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -64,7 +66,7 @@ public class JMenuPrincipal extends javax.swing.JFrame {
     }
 
     public void actualizarTable(List<DetalleProductoDTO> lista) {
-        this.listaDetallesProductos=lista;
+        this.listaDetallesProductos = lista;
         DefaultTableModel modeloTabla;
         String titulo[] = {"Nombre", "Sabor", "Tamaño", "Topping", "Cantidad", "PrecioTotal"};
         modeloTabla = new DefaultTableModel(null, titulo);
@@ -72,10 +74,10 @@ public class JMenuPrincipal extends javax.swing.JFrame {
         modeloTabla.setRowCount(0);
         for (DetalleProductoDTO d : lista) {
             String topping;
-            if(d.getTopping()){
-                topping="Si";
-            }else{
-                topping="No";
+            if (d.getTopping()) {
+                topping = "Si";
+            } else {
+                topping = "No";
             }
             Object[] fila = {d.getNombreProducto(), d.getSabor(), d.getTamano(), topping, d.getCantidad(), d.getPrecioTotal()};
             modeloTabla.addRow(fila);
@@ -310,22 +312,36 @@ public class JMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        JConfirmacion jfp = new JConfirmacion();
-        jfp.setVisible(true);
-        this.dispose();
+        PedidoDTO e = new PedidoDTO();
+
+        if (listaDetallesProductos.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Agrege un producto para realizar su pedido");
+        } else {
+            e.setDetalles(listaDetallesProductos);
+            e.setFecha(new GregorianCalendar().getTime());
+            Float bellbb = 0.0f;
+            for (DetalleProductoDTO d : listaDetallesProductos) {
+                bellbb += d.getPrecioTotal();
+            }
+            e.setTotalPedido(bellbb);
+
+            JConfirmacion jfp = new JConfirmacion(e);
+            jfp.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void btnConsultarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarProductosActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             listaDetallesProductos.get(0);
-            JOptionPane.showMessageDialog(this, "Termine su orden pendiente");    
-        }catch(IndexOutOfBoundsException e){
-            FormProductos formProductos=new FormProductos();
+            JOptionPane.showMessageDialog(this, "Termine su orden pendiente");
+        } catch (IndexOutOfBoundsException e) {
+            FormProductos formProductos = new FormProductos();
             this.dispose();
         }
-        
-        
+
+
     }//GEN-LAST:event_btnConsultarProductosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

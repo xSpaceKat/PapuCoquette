@@ -231,6 +231,11 @@ public class ProductoAdquirido extends javax.swing.JFrame {
                 txfCantidadActionPerformed(evt);
             }
         });
+        txfCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfCantidadKeyTyped(evt);
+            }
+        });
 
         btnAceptar.setBackground(new java.awt.Color(226, 183, 252));
         btnAceptar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
@@ -375,7 +380,7 @@ public class ProductoAdquirido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        JMenuPrincipal menuPrincipal=new JMenuPrincipal();
+        JMenuPrincipal menuPrincipal = new JMenuPrincipal();
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -396,11 +401,11 @@ public class ProductoAdquirido extends javax.swing.JFrame {
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Escriba la cantidad que desea con números.");
-        } catch(NullPointerException e){
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "Seleccione el tamaño y sabor.");
         }
 
-        
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void radTamTopingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radTamTopingActionPerformed
@@ -410,6 +415,12 @@ public class ProductoAdquirido extends javax.swing.JFrame {
     private void txfCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfCantidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfCantidadActionPerformed
+
+    private void txfCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfCantidadKeyTyped
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txfCantidadKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
