@@ -23,8 +23,12 @@ public class HistorialVentas extends javax.swing.JFrame {
     /**
      * Creates new form HistorilVentas
      */
-    public HistorialVentas() {
+    public HistorialVentas() throws PersistenciaException {
         initComponents();
+
+        CasoConsultarVentas cv = new CasoConsultarVentas();
+        List<PedidoDTO> listaPedidosPro = cv.listaHistorial();
+        tabla(listaPedidosPro);
     }
 
     /**
@@ -66,30 +70,15 @@ public class HistorialVentas extends javax.swing.JFrame {
 
         tablaHistorial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Fecha de la venta", "Venta total"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(tablaHistorial);
 
         botonRegresar.setText("Regresar");
@@ -146,29 +135,37 @@ public class HistorialVentas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
 
-    public void tabla(Date fecha) throws PersistenciaException {
+    public static String formatDate(Date date) {
+        String pattern = "dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return simpleDateFormat.format(date);
+    }
+
+    public void tabla(List<PedidoDTO> pedido) throws PersistenciaException {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Fecha de la venta");
-        modelo.addColumn("Venta total");
+        modelo.addColumn("Total venta");
 
-        Object[] datos = new Object[1];
         try {
-            ICasoConsultarVenta cv = new CasoConsultarVentas();
-            List<PedidoDTO> dp = cv.consultarVentas(fecha);
-            if (!dp.isEmpty()) {
-                for (int i = 0; i < dp.size(); i++) {
-                    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-                    datos[0] = formato.format(dp.get(i).getFecha());
-                    datos[1] = dp.get(i).getTotalPedido();
+            if (pedido != null && !pedido.isEmpty()) {
+                for (PedidoDTO patricio : pedido) {
+                    String[] datos = new String[2];
+                    datos[0] = formatDate(patricio.getFecha());
+                    datos[1] = "" + patricio.getTotalPedido();
+
                     modelo.addRow(datos);
                 }
                 tablaHistorial.setModel(modelo);
+                tablaHistorial.repaint();
+            } else {
+                System.out.println("La lista está vacía");
             }
-         } catch (Exception e) {
-            System.out.println(e);
+        } catch (Exception e) {
+            throw e;
         }
     }
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonRegresar;
     private javax.swing.JPanel jPanel3;

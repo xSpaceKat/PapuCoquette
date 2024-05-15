@@ -13,5 +13,7 @@ public interface IConsultarProductos {
     public List<ProductoDTO> consultarTodosLosProductos() throws PersistenciaException;
 
     public ProductoDTO consultarProducto(String nombre) throws PersistenciaException;
+    
+    
 
 }

@@ -158,23 +158,39 @@ public class ConsultarVentas2 extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     private void botonHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHistorialActionPerformed
-        HistorialVentas hv = new HistorialVentas();
-        hv.setVisible(true);
+        try {
+            HistorialVentas hv = new HistorialVentas();
+
+            hv.setVisible(true);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }//GEN-LAST:event_botonHistorialActionPerformed
 
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         try {
-            CasoConsultarVentas cv = new CasoConsultarVentas();
-            List<PedidoDTO> listaPedidosPro = cv.consultarVentas(datePicker1.getDate());
-            System.out.println(listaPedidosPro);
-                ReporteVentas kk = new ReporteVentas(listaPedidosPro);
-                kk.setVisible(true);
-                this.dispose();
+            Date fechaSeleccionada = datePicker1.getDate();
+            if (fechaSeleccionada == null) {
+                JOptionPane.showMessageDialog(this, "Por favor, selecciona una fecha válida.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            CasoConsultarVentas casoConsultarVentas = new CasoConsultarVentas();
+            List<PedidoDTO> listaPedidosPro = casoConsultarVentas.consultarVentas(fechaSeleccionada);
+            float totalVentas = 0;
+            for (PedidoDTO pedido : listaPedidosPro) {
+                totalVentas += pedido.getTotalPedido();
+            }
+            ReporteVentas reporteVentas = new ReporteVentas(listaPedidosPro, fechaSeleccionada, totalVentas);
+            reporteVentas.setVisible(true);
+
+            this.dispose();
         } catch (Exception e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(this, "Error al obtener las ventas: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
-           
+
     }//GEN-LAST:event_botonAceptarActionPerformed
 
 

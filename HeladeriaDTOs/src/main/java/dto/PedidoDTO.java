@@ -18,6 +18,11 @@ public class PedidoDTO {
     public PedidoDTO() {
     }
 
+    public PedidoDTO(Date fecha, Float totalPedido) {
+        this.fecha = fecha;
+        this.totalPedido = totalPedido;
+    }
+    
     public PedidoDTO(ObjectId _idMongo, Date fecha, Float totalPedido, List<DetalleProductoDTO> detalles) {
         this._idMongo = _idMongo;
         this.fecha = fecha;

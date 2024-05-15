@@ -28,4 +28,6 @@ public interface IPedidoDAO {
     public void ImprimirReporte(Pedido pepe) throws PersistenciaException, FileNotFoundException;
 
     public List<DetalleProducto> consultaVentasDetalles(List<Pedido> pedido) throws PersistenciaException;
+    
+    public List<Pedido> listaHistorial()throws PersistenciaException;
 }

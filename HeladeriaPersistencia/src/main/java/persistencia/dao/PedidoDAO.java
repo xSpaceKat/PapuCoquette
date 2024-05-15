@@ -11,6 +11,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.Style;
 import com.itextpdf.layout.element.Paragraph;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import java.io.FileNotFoundException;
@@ -167,4 +168,16 @@ public class PedidoDAO implements IPedidoDAO {
         }
         return listaDetalles;
     }
+
+    @Override
+    public List<Pedido> listaHistorial() throws PersistenciaException {
+        MongoCursor<Pedido> cursor = coleccionPedido.find().iterator();
+        List<Pedido> documentos = new ArrayList<>();
+        while (cursor.hasNext()) {
+            Pedido p = cursor.next();
+            documentos.add(p);
+        }
+        return documentos;
+    }
 }
+

@@ -19,4 +19,6 @@ public interface ICasoConsultarVenta {
      
      public List<DetalleProductoDTO> consultaVentasDetalles(List<PedidoDTO> pedido) throws PersistenciaException;
      
+     public List<PedidoDTO> listaHistorial() throws PersistenciaException;
+     
 }

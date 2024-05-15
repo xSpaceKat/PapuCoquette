@@ -50,4 +50,15 @@ public class CasoConsultarVentas implements ICasoConsultarVenta {
         return null;
     }
 
+    @Override
+    public List<PedidoDTO> listaHistorial() throws PersistenciaException {
+        IConsultaVentas consultarVentas = new ConsultarVentas();
+        try {
+            return consultarVentas.listaHistorial();
+        } catch (PersistenciaException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
 }

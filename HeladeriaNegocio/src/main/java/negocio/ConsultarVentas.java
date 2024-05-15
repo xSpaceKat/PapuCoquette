@@ -34,7 +34,7 @@ public class ConsultarVentas implements IConsultaVentas {
         IPedidoDAO pedidoDAO = new PedidoDAO();
         List<Pedido> pedido = pedidoDAO.listaPedidos(fecha);
         System.out.println(pedido);
-        System.out.println("esta vacia en objetonegocio D:");
+        System.out.println("esta vacia en objetonegocio usa fecha");
         List<PedidoDTO> pedidoDTO = new ArrayList<>();
         Conversor conversor = new Conversor();
         for (Pedido p : pedido) {
@@ -53,6 +53,21 @@ public class ConsultarVentas implements IConsultaVentas {
 
         }
         return listaDetalles;
+    }
+
+    @Override
+    public List<PedidoDTO> listaHistorial() throws PersistenciaException {
+        IPedidoDAO pedidoDAO = new PedidoDAO();
+        List<Pedido> pedido = pedidoDAO.listaHistorial();
+        System.out.println(pedido);
+        System.out.println("esta vacia en objetonegocio ");
+        List<PedidoDTO> pedidoDTO = new ArrayList<>();
+        Conversor conversor = new Conversor();
+        for (Pedido p : pedido) {
+            pedidoDTO.add(conversor.DAOaDTOHistorial(p));
+            System.out.println(p);
+        }
+        return pedidoDTO;
     }
 
 }

@@ -61,4 +61,9 @@ public class Conversor {
                 detalle.getTopping(),
                 detalle.getprecioTotal());
     }
+    
+     public PedidoDTO DAOaDTOHistorial(Pedido pedido) {
+        return new PedidoDTO(pedido.getFecha(), pedido.getTotalPedido());
+    }
+    
 }

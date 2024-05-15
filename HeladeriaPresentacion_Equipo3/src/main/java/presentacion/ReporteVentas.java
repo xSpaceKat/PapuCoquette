@@ -30,14 +30,18 @@ public class ReporteVentas extends javax.swing.JFrame {
     /**
      * Creates new form ReporteVentas
      */
-    public ReporteVentas(List<PedidoDTO> pedido) throws PersistenciaException {
+    public ReporteVentas(List<PedidoDTO> pedido, Date fecha, Float total) throws PersistenciaException {
 
         initComponents();
+        txtFechaVenta.setText(formatDate(fecha));
+        txtTotalVenta.setText("" + total);
         listaPedidosPro = pedido;
         cv = new CasoConsultarVentas();
 //        listaDetallesPro = cv.consultaVentasDetalles(pedido);
         System.out.println(listaDetallesPro);
-        tabla(listaDetallesPro);
+
+        tabla(cv.consultaVentasDetalles(listaPedidosPro));
+
     }
 
     /**
@@ -189,6 +193,12 @@ public class ReporteVentas extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    public static String formatDate(Date date) {
+        String pattern = "dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return simpleDateFormat.format(date);
+    }
 
     private void botonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImprimirActionPerformed
 
