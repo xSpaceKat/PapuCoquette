@@ -1,20 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package negocio;
 
-import dto.ConsultarVentasDTO;
 import dto.DetalleProductoDTO;
 import dto.PedidoDTO;
 import interfacesNegocio.IConsultaVentas;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import persistencia.dao.PedidoDAO;
-import persistencia.entidades.DetalleProducto;
 import persistencia.entidades.Pedido;
 import persistencia.excepciones.PersistenciaException;
 import persistencia.interfaces.IPedidoDAO;
@@ -56,9 +48,9 @@ public class ConsultarVentas implements IConsultaVentas {
     public List<DetalleProductoDTO> listaDetalles(List<PedidoDTO> listaPedidos) throws PersistenciaException {
         List<DetalleProductoDTO> listaDetalles = new ArrayList<>();
         for (PedidoDTO pedidos : listaPedidos) {
-            
+
             listaDetalles.addAll(pedidos.getDetalles());
-            
+
         }
         return listaDetalles;
     }

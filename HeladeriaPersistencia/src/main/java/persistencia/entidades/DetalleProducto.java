@@ -1,7 +1,5 @@
 package persistencia.entidades;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
@@ -29,11 +27,10 @@ public class DetalleProducto {
         this.tamano = tamano;
         this.tamanoPrecio = tamanoPrecio;
         this.cantidad = cantidad;
-        if (topping){
-           this.precioTotal = (tamanoPrecio*cantidad)+(5*cantidad); 
-        }
-        else{
-            this.precioTotal = (tamanoPrecio*cantidad);
+        if (topping) {
+            this.precioTotal = (tamanoPrecio * cantidad) + (5 * cantidad);
+        } else {
+            this.precioTotal = (tamanoPrecio * cantidad);
         }
     }
 
@@ -44,11 +41,10 @@ public class DetalleProducto {
         this.tamanoPrecio = tamanoPrecio;
         this.cantidad = cantidad;
         this.topping = topping;
-        if (topping){
-           this.precioTotal = (tamanoPrecio*cantidad)+(5*cantidad); 
-        }
-        else{
-            this.precioTotal = (tamanoPrecio*cantidad);
+        if (topping) {
+            this.precioTotal = (tamanoPrecio * cantidad) + (5 * cantidad);
+        } else {
+            this.precioTotal = (tamanoPrecio * cantidad);
         }
     }
 
@@ -121,5 +117,4 @@ public class DetalleProducto {
         return "DetalleProducto{" + "_id=" + _id + ", nombreProducto=" + nombreProducto + ", sabor=" + sabor + ", tamano=" + tamano + ", tamanoPrecio=" + tamanoPrecio + ", cantidad=" + cantidad + ", topping=" + topping + '}';
     }
 
-    
 }

@@ -1,9 +1,5 @@
 package dto;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.bson.types.ObjectId;
-
 /**
  *
  * @author Katt
@@ -25,11 +21,10 @@ public class DetalleProductoDTO {
         this.tamanoPrecio = tamanoPrecio;
         this.cantidad = cantidad;
         this.topping = topping;
-        if (topping){
-           this.precioTotal = (tamanoPrecio*cantidad)+(5*cantidad); 
-        }
-        else{
-            this.precioTotal = (tamanoPrecio*cantidad);
+        if (topping) {
+            this.precioTotal = (tamanoPrecio * cantidad) + (5 * cantidad);
+        } else {
+            this.precioTotal = (tamanoPrecio * cantidad);
         }
     }
 
@@ -96,7 +91,5 @@ public class DetalleProductoDTO {
     public String toString() {
         return "Producto:" + nombreProducto + " | Sabor:" + sabor + " | Tamaño=" + tamano + " | Cantidad=" + cantidad + " | Topping=" + topping + " | precioTotal=" + precioTotal;
     }
-
-    
 
 }

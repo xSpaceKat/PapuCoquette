@@ -300,7 +300,7 @@ public class FormTarjeta extends javax.swing.JFrame {
     }//GEN-LAST:event_numTarjetaActionPerformed
 
     private void numTarjetaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numTarjetaKeyTyped
-        if (numTarjeta.getText().length() >= 19) {
+        if (numTarjeta.getText().length() >= 20) {
             JOptionPane.showMessageDialog(null, "Error, el formato de la tarjeta es de: 'XXXX-XXXX-XXXX-XXXX'");
             evt.consume();
         } else {
@@ -319,7 +319,8 @@ public class FormTarjeta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error! El formato de fecha es: 'MES/DIA' con digitos");
             evt.consume();
         } else {
-            if (!Character.isDigit(evt.getKeyChar())) {
+            char c = evt.getKeyChar();
+            if (!Character.isDigit(c)) {
                 evt.consume();
             } else {
                 String text = vencimiento.getText().replaceAll("/", "");

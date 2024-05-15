@@ -1,7 +1,6 @@
 package dto;
 
 import java.util.List;
-import org.bson.types.ObjectId;
 
 /**
  *
@@ -45,17 +44,10 @@ public class ProductoDTO {
     public void setSabores(List<String> sabores) {
         this.sabores = sabores;
     }
-    
-    
-    
 
     @Override
     public String toString() {
         return "ProductoDTO{" + "nombre=" + nombre + ", tamano=" + tamano + ", sabores=" + sabores + '}';
     }
-    
-    
-    
-    
 
 }

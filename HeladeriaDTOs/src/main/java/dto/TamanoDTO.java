@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dto;
 
 /**
@@ -9,6 +5,7 @@ package dto;
  * @author USER
  */
 public class TamanoDTO {
+
     private String nombreTamano;
     private Float precioBase;
 
@@ -40,6 +37,5 @@ public class TamanoDTO {
     public String toString() {
         return "TamanoDTO{" + "nombreTamano=" + nombreTamano + ", precioBase=" + precioBase + '}';
     }
-    
-    
+
 }

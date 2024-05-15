@@ -19,7 +19,7 @@ import persistencia.interfaces.IProductoDAO;
 public class ProductoDAO implements IProductoDAO {
 
     private final MongoCollection<Producto> coleccionProducto;
-    
+
     public ProductoDAO() {
         this.coleccionProducto = ConexionBD.getDatabase().getCollection("Producto", Producto.class);
     }
@@ -32,7 +32,7 @@ public class ProductoDAO implements IProductoDAO {
             throw new PersistenciaException("No se pudo consultar el producto" + e);
         }
     }
-    
+
     public Producto buscarPorNombre(Producto producto) throws PersistenciaException {
         try {
             Producto productoBuscado = coleccionProducto.find(Filters.eq("nombre", producto.getNombre())).first();
@@ -68,7 +68,6 @@ public class ProductoDAO implements IProductoDAO {
         }
     }
 
-    
     public void actualizarProducto(Producto producto) throws PersistenciaException {
         Bson filtroID = Filters.eq("_id", producto.getId());
 

@@ -13,7 +13,7 @@ import org.bson.codecs.pojo.PojoCodecProvider;
  * @author Katt
  */
 public class ConexionBD {
-    
+
     private static MongoClient mongoClient = null;
     //Si se conectaron por Atlas su URL es la que les proporciona la página
     private static final String URI = "mongodb://localhost:27017";
@@ -53,5 +53,5 @@ public class ConexionBD {
             mongoClient = null;
         }
     }
-    
+
 }

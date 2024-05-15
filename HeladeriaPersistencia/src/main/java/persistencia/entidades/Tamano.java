@@ -7,6 +7,7 @@ import org.bson.types.ObjectId;
  * @author Katt
  */
 public class Tamano {
+
     private ObjectId _id;
     private String nombreTamano;
     private Float precioBase;

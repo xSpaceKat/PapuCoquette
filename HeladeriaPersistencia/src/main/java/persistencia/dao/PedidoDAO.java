@@ -153,7 +153,7 @@ public class PedidoDAO implements IPedidoDAO {
 //        DetalleProducto dp = 
 //    }
 //    
-    
+
     @Override
     public List<DetalleProducto> consultaVentasDetalles(List<Pedido> pedido) throws PersistenciaException {
         List<DetalleProducto> listaDetalles = new ArrayList<>();

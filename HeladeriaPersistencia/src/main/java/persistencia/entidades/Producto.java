@@ -69,8 +69,5 @@ public class Producto {
     public String toString() {
         return "Producto{" + "_id=" + _id + ", nombre=" + nombre + ", tamano=" + tamano + ", sabores=" + sabores + '}';
     }
-    
-    
-    
 
 }

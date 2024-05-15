@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package negocio;
 
 import dto.ProductoDTO;
@@ -17,25 +13,25 @@ import persistencia.interfaces.IProductoDAO;
  *
  * @author USER
  */
-public class ConsultarProductos implements IConsultarProductos{
-    
-    public List<ProductoDTO> consultarTodosLosProductos() throws PersistenciaException{
-        IProductoDAO productoDAO=new ProductoDAO();
-        
-        List<Producto> productos=productoDAO.consultar();
-        List<ProductoDTO> productosDTO=new ArrayList<>();
-        Conversor conversor=new Conversor();
-        for(Producto p:productos){
+public class ConsultarProductos implements IConsultarProductos {
+
+    public List<ProductoDTO> consultarTodosLosProductos() throws PersistenciaException {
+        IProductoDAO productoDAO = new ProductoDAO();
+
+        List<Producto> productos = productoDAO.consultar();
+        List<ProductoDTO> productosDTO = new ArrayList<>();
+        Conversor conversor = new Conversor();
+        for (Producto p : productos) {
             productosDTO.add(conversor.DAOaDTO(p));
         }
         return productosDTO;
-    } 
+    }
 
     @Override
     public ProductoDTO consultarProducto(String nombre) throws PersistenciaException {
-        IProductoDAO productoDAO=new ProductoDAO();
-        Conversor conversor=new Conversor();
-        Producto producto=new Producto();
+        IProductoDAO productoDAO = new ProductoDAO();
+        Conversor conversor = new Conversor();
+        Producto producto = new Producto();
         producto.setNombre(nombre);
         return conversor.DAOaDTO(productoDAO.buscarPorNombre(producto));
     }

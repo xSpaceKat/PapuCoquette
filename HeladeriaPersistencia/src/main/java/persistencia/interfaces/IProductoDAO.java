@@ -11,7 +11,7 @@ import persistencia.excepciones.PersistenciaException;
 public interface IProductoDAO {
 
     public Producto buscarPorID(Producto producto) throws PersistenciaException;
-    
+
     public Producto buscarPorNombre(Producto producto) throws PersistenciaException;
 
     public List<Producto> consultar() throws PersistenciaException;

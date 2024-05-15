@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package negocio;
 
 import dto.ProductoDTO;
@@ -15,7 +11,7 @@ import persistencia.excepciones.PersistenciaException;
  *
  * @author Berry
  */
-public class AgregarProductoBO implements IAgregarProductoBO{
+public class AgregarProductoBO implements IAgregarProductoBO {
 
     @Override
     public void AgregarProducto(ProductoDTO productoDTO) {
@@ -26,7 +22,7 @@ public class AgregarProductoBO implements IAgregarProductoBO{
         } catch (PersistenciaException ex) {
             Logger.getLogger(AgregarProductoBO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
 }

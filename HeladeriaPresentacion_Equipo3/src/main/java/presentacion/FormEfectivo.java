@@ -14,18 +14,19 @@ import pagarEfectivo.PagoConEfectivo;
  * @author Katt
  */
 public class FormEfectivo extends javax.swing.JFrame {
-
+    
     PagoEfectivoDTO efectivo = new PagoEfectivoDTO();
     IPagoConEfectivo ipago = new PagoConEfectivo();
     IImprimirRecibo dumb = new ImprimirRecibo();
     PedidoDTO uwu = new PedidoDTO();
-
+    
     public FormEfectivo(PedidoDTO pedido) {
         initComponents();
         this.efectivo = new PagoEfectivoDTO();
         this.ipago = new PagoConEfectivo();
         this.dumb = new ImprimirRecibo();
         this.uwu = pedido;
+        dineroTotal.setText("$" + uwu.getTotalPedido().toString());
     }
 
     /**
@@ -46,6 +47,8 @@ public class FormEfectivo extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         cantidad = new javax.swing.JTextField();
         txtCambio = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        dineroTotal = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         botonCancelar = new javax.swing.JToggleButton();
         botonFinalizar = new javax.swing.JToggleButton();
@@ -101,18 +104,18 @@ public class FormEfectivo extends javax.swing.JFrame {
         txtCambio.setFont(new java.awt.Font("Comic Sans MS", 0, 20)); // NOI18N
         txtCambio.setText("$0.00");
 
+        jLabel6.setFont(new java.awt.Font("Comic Sans MS", 0, 20)); // NOI18N
+        jLabel6.setText("TOTAL:");
+
+        dineroTotal.setFont(new java.awt.Font("Comic Sans MS", 0, 20)); // NOI18N
+        dineroTotal.setText("$");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,14 +124,31 @@ public class FormEfectivo extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCambio)
-                            .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dineroTotal)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(dineroTotal))))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(29, 29, 29)
@@ -218,7 +238,7 @@ public class FormEfectivo extends javax.swing.JFrame {
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         JMenuPrincipal s = new JMenuPrincipal();
         s.setVisible(true);
-
+        
         dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
@@ -245,7 +265,7 @@ public class FormEfectivo extends javax.swing.JFrame {
             txtCambio.setText("$ " + efectivo.getCambio().toString());
         }
     }//GEN-LAST:event_cantidadActionPerformed
-
+    
     private void guardarDatos() {
         efectivo.setPrecioTotal(uwu.getTotalPedido());
         efectivo.setCantidadPagar(parseFloat(cantidad.getText()));
@@ -255,11 +275,13 @@ public class FormEfectivo extends javax.swing.JFrame {
     private javax.swing.JToggleButton botonCancelar;
     private javax.swing.JToggleButton botonFinalizar;
     private javax.swing.JTextField cantidad;
+    private javax.swing.JLabel dineroTotal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
