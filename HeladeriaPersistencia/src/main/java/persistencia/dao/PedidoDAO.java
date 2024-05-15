@@ -11,7 +11,6 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.Style;
 import com.itextpdf.layout.element.Paragraph;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import java.io.FileNotFoundException;
@@ -148,7 +147,13 @@ public class PedidoDAO implements IPedidoDAO {
             document.add(new Paragraph("Gracias por su compra!").addStyle(style));
         }
     }
-
+//
+//    public void reporteVentas(DetalleProducto detalleProducto){
+//        PdfFont code = null;
+//        DetalleProducto dp = 
+//    }
+//    
+    
     @Override
     public List<DetalleProducto> consultaVentasDetalles(List<Pedido> pedido) throws PersistenciaException {
         List<DetalleProducto> listaDetalles = new ArrayList<>();

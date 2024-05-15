@@ -5,14 +5,11 @@
 package Caso;
 
 import Interfaz.ICasoConsultarVenta;
-import com.mongodb.client.MongoCursor;
 import dto.DetalleProductoDTO;
 import dto.PedidoDTO;
 import interfacesNegocio.IConsultaVentas;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 import negocio.ConsultarVentas;
 import persistencia.excepciones.PersistenciaException;
 
@@ -20,24 +17,31 @@ import persistencia.excepciones.PersistenciaException;
  *
  * @author Ximena
  */
-public class CasoConsultarVentas implements ICasoConsultarVenta{
+public class CasoConsultarVentas implements ICasoConsultarVenta {
+
+    IConsultaVentas consultarVentas;
+    
+    public CasoConsultarVentas() {
+         consultarVentas = new ConsultarVentas();
+    }
+    
+    
 
     @Override
-    public List<PedidoDTO> consultarVentas(Date fecha) {
-        IConsultaVentas consultarVentas = new ConsultarVentas();
-        try {
-            return consultarVentas.listaPedidos(fecha);
-        } catch (PersistenciaException e) {
-            System.out.println(e);
-        }
-        return null;
+    public List<PedidoDTO> consultarVentas(Date fecha) throws PersistenciaException {
+//        IConsultaVentas consultarVentas = new ConsultarVentas();
+//        try {
+//            return consultarVentas.listaPedidos(fecha);
+//        } catch (PersistenciaException e) {
+//            System.out.println(e);
+//        }
+//        return null;
+        return consultarVentas.listaPedidos(fecha);
     }
-
-  
 
     @Override
     public List<DetalleProductoDTO> consultaVentasDetalles(List<PedidoDTO> pedido) throws PersistenciaException {
-          IConsultaVentas consultarVentas = new ConsultarVentas();
+        IConsultaVentas consultarVentas = new ConsultarVentas();
         try {
             return consultarVentas.listaDetalles(pedido);
         } catch (PersistenciaException e) {
@@ -46,6 +50,4 @@ public class CasoConsultarVentas implements ICasoConsultarVenta{
         return null;
     }
 
-   
-    
 }

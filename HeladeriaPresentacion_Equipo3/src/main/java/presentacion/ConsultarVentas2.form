@@ -99,9 +99,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="txtTitulo1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="44" max="32767" attributes="0"/>
-                      <Component id="datePicker1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="datePicker1" min="-2" pref="202" max="-2" attributes="0"/>
+                      <EmptySpace pref="15" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -109,9 +109,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="datePicker1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtTitulo1" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="datePicker1" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="txtTitulo1" min="-2" pref="44" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="27" max="32767" attributes="0"/>
                   </Group>
@@ -127,7 +127,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="com.github.lgooddatepicker.components.DatePicker" name="datePicker1">
+            <Component class="com.toedter.calendar.JDateChooser" name="datePicker1">
             </Component>
           </SubComponents>
         </Container>

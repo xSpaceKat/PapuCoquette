@@ -13,6 +13,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.JButton;
@@ -357,8 +359,19 @@ public class JMenuPrincipal extends javax.swing.JFrame {
         if (listaDetallesProductos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Agrege un producto para realizar su pedido");
         } else {
+            Calendar calendario = Calendar.getInstance();
+
+        // Establecer la hora y los segundos en cero
+        calendario.set(Calendar.HOUR_OF_DAY, 0);
+        calendario.set(Calendar.MINUTE, 0);
+        calendario.set(Calendar.SECOND, 0);
+        calendario.set(Calendar.MILLISECOND, 0);
+
+        // Obtener la fecha sin hora ni segundos
+        Date fechaa = calendario.getTime();
             e.setDetalles(listaDetallesProductos);
-            e.setFecha(new GregorianCalendar().getTime());
+            e.setFecha(fechaa);
+            System.out.println(fechaa.toString());
             Float bellbb = 0.0f;
             for (DetalleProductoDTO d : listaDetallesProductos) {
                 bellbb += d.getPrecioTotal();

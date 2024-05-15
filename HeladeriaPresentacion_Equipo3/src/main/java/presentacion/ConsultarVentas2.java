@@ -4,15 +4,22 @@
  */
 package presentacion;
 
+import Caso.CasoConsultarVentas;
+import dto.PedidoDTO;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import persistencia.excepciones.PersistenciaException;
 
 /**
  *
  * @author Ximena
  */
 public class ConsultarVentas2 extends javax.swing.JFrame {
-    
-    
 
     /**
      * Creates new form ConsultarVentas2
@@ -33,7 +40,7 @@ public class ConsultarVentas2 extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         txtTitulo1 = new javax.swing.JLabel();
-        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
+        datePicker1 = new com.toedter.calendar.JDateChooser();
         txtTitulo2 = new javax.swing.JLabel();
         botonRegresar = new javax.swing.JButton();
         botonAceptar = new javax.swing.JButton();
@@ -55,16 +62,16 @@ public class ConsultarVentas2 extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(txtTitulo1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addGap(34, 34, 34)
+                .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(13, 13, 13)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -151,27 +158,31 @@ public class ConsultarVentas2 extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     private void botonHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHistorialActionPerformed
-       HistorialVentas hv = new HistorialVentas();
-       hv.setVisible(true);
+        HistorialVentas hv = new HistorialVentas();
+        hv.setVisible(true);
     }//GEN-LAST:event_botonHistorialActionPerformed
 
+
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
- if (datePicker1.contains(null)) {
-            JOptionPane.showMessageDialog(null, "Por favor, seleccione una fecha.");
-        } else {
-            ConsultarVentas2 cv = new ConsultarVentas2();
-            cv.setVisible(true);
-            this.dispose();
- }
+        try {
+            CasoConsultarVentas cv = new CasoConsultarVentas();
+            List<PedidoDTO> listaPedidosPro = cv.consultarVentas(datePicker1.getDate());
+            System.out.println(listaPedidosPro);
+                ReporteVentas kk = new ReporteVentas(listaPedidosPro);
+                kk.setVisible(true);
+                this.dispose();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+           
     }//GEN-LAST:event_botonAceptarActionPerformed
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAceptar;
     private javax.swing.JButton botonHistorial;
     private javax.swing.JButton botonRegresar;
-    private com.github.lgooddatepicker.components.DatePicker datePicker1;
+    private com.toedter.calendar.JDateChooser datePicker1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel txtTitulo1;

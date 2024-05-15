@@ -41,10 +41,13 @@ public class ConsultarVentas implements IConsultaVentas {
     public List<PedidoDTO> listaPedidos(Date fecha) throws PersistenciaException {
         IPedidoDAO pedidoDAO = new PedidoDAO();
         List<Pedido> pedido = pedidoDAO.listaPedidos(fecha);
+        System.out.println(pedido);
+        System.out.println("esta vacia en objetonegocio D:");
         List<PedidoDTO> pedidoDTO = new ArrayList<>();
         Conversor conversor = new Conversor();
         for (Pedido p : pedido) {
             pedidoDTO.add(conversor.DAOaDTO(p));
+            System.out.println(p);
         }
         return pedidoDTO;
     }
@@ -53,7 +56,9 @@ public class ConsultarVentas implements IConsultaVentas {
     public List<DetalleProductoDTO> listaDetalles(List<PedidoDTO> listaPedidos) throws PersistenciaException {
         List<DetalleProductoDTO> listaDetalles = new ArrayList<>();
         for (PedidoDTO pedidos : listaPedidos) {
+            
             listaDetalles.addAll(pedidos.getDetalles());
+            
         }
         return listaDetalles;
     }

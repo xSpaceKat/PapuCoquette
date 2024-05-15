@@ -5,15 +5,16 @@
 package presentacion;
 
 import Caso.CasoConsultarVentas;
-import Interfaz.ICasoConsultarVenta;
+import com.mycompany.heladeriaconsultar.CasoConsultar;
 import dto.ConsultarVentasDTO;
 import dto.DetalleProductoDTO;
 import dto.PedidoDTO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import persistencia.entidades.DetalleProducto;
 import persistencia.excepciones.PersistenciaException;
 
 /**
@@ -22,11 +23,21 @@ import persistencia.excepciones.PersistenciaException;
  */
 public class ReporteVentas extends javax.swing.JFrame {
 
+    List<PedidoDTO> listaPedidosPro;
+    List<DetalleProductoDTO> listaDetallesPro;
+    CasoConsultarVentas cv;
+
     /**
      * Creates new form ReporteVentas
      */
-    public ReporteVentas() {
+    public ReporteVentas(List<PedidoDTO> pedido) throws PersistenciaException {
+
         initComponents();
+        listaPedidosPro = pedido;
+        cv = new CasoConsultarVentas();
+        listaDetallesPro = cv.consultaVentasDetalles(pedido);
+        System.out.println(listaDetallesPro);
+        tabla(listaDetallesPro);
     }
 
     /**
@@ -45,7 +56,7 @@ public class ReporteVentas extends javax.swing.JFrame {
         botonRegresar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablapapupro = new javax.swing.JTable();
         txtTitulo2 = new javax.swing.JLabel();
         txtFechaVenta = new javax.swing.JTextField();
         txtTitulo3 = new javax.swing.JLabel();
@@ -74,40 +85,18 @@ public class ReporteVentas extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablapapupro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "ID del artículo", "Nombre del artículo", "Tamaño", "Sabor", "Cantidad", "Costo", "Total vendido"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-        }
+        ));
+        jScrollPane1.setViewportView(tablapapupro);
 
         txtTitulo2.setBackground(new java.awt.Color(0, 0, 0));
         txtTitulo2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
@@ -211,41 +200,54 @@ public class ReporteVentas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
 
-    public void tabla(Date fecha, List<PedidoDTO> pedido) throws PersistenciaException {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Nombre del Artículo");
-        modelo.addColumn("Tamaño");
-        modelo.addColumn("Sabor");
-        modelo.addColumn("Cantidad");
-        modelo.addColumn("Costo");
-        modelo.addColumn("Total vendido");
+   public void tabla(List<DetalleProductoDTO> pedido) throws PersistenciaException {
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.addColumn("Nombre del Artículo");
+    modelo.addColumn("Tamaño");
+    modelo.addColumn("Sabor");
+    modelo.addColumn("Cantidad");
+    modelo.addColumn("Costo");
+    modelo.addColumn("Total vendido");
 
-        Object[] datos = new String[6];
-        try {
-            ICasoConsultarVenta cv = new CasoConsultarVentas();
-            List<DetalleProductoDTO> dp = cv.consultaVentasDetalles(pedido);
-            if (!dp.isEmpty()) {
-                for (int i = 0; i < dp.size(); i++) {
-                    datos[0] = dp.get(i).getNombreProducto();
-                    datos[1] = dp.get(i).getTamano();
-                    datos[2] = dp.get(i).getSabor();
-                    datos[3] = dp.get(i).getCantidad();
-                    datos[4] = dp.get(i).getTamanoPrecio();
-                    datos[5] = dp.get(i).getPrecioTotal();
-                }
+    try {
+        if (pedido != null && !pedido.isEmpty()) {
+            for (DetalleProductoDTO detalle : pedido) {
+                String[] datos = new String[6];
+                datos[0] = detalle.getNombreProducto();
+                datos[1] = detalle.getTamano();
+                datos[2] = detalle.getSabor();
+                datos[3] = String.valueOf(detalle.getCantidad());
+                datos[4] = String.valueOf(detalle.getTamanoPrecio()); 
+                datos[5] = String.valueOf(detalle.getPrecioTotal());
+                modelo.addRow(datos);
             }
-        } catch (PersistenciaException e) {
-            System.out.println(e);
+            tablapapupro.setModel(modelo); 
+            tablapapupro.repaint(); 
+        } else {
+            System.out.println("La lista está vacía");
         }
+    } catch (Exception e) {
+        throw e; 
     }
+}
+
 
 
     private void txtFechaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaVentaActionPerformed
+//        ConsultarVentasDTO cv = new ConsultarVentasDTO();
+//        Date fechaVenta = cv.getFecha();
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        String fechaVentaStr = dateFormat.format(fechaVenta);
+//        txtFechaVenta.setText(fechaVentaStr);
+ try {
         ConsultarVentasDTO cv = new ConsultarVentasDTO();
-        Date fechaVenta = cv.getFecha();
+        Date fechaVenta = cv.getFecha(); 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String fechaVentaStr = dateFormat.format(fechaVenta);
-        txtFechaVenta.setText(fechaVentaStr);
+        String fechaVentaStr = dateFormat.format(fechaVenta); 
+        txtFechaVenta.setText(fechaVentaStr); 
+    } catch (Exception e) {
+       throw e;
+    }
     }//GEN-LAST:event_txtFechaVentaActionPerformed
 
 
@@ -256,7 +258,7 @@ public class ReporteVentas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablapapupro;
     private javax.swing.JTextField txtFechaVenta;
     private javax.swing.JLabel txtTitulo1;
     private javax.swing.JLabel txtTitulo2;
