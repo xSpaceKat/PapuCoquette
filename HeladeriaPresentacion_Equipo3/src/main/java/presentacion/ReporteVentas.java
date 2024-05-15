@@ -200,54 +200,48 @@ public class ReporteVentas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
 
-   public void tabla(List<DetalleProductoDTO> pedido) throws PersistenciaException {
-    DefaultTableModel modelo = new DefaultTableModel();
-    modelo.addColumn("Nombre del Artículo");
-    modelo.addColumn("Tamaño");
-    modelo.addColumn("Sabor");
-    modelo.addColumn("Cantidad");
-    modelo.addColumn("Costo");
-    modelo.addColumn("Total vendido");
+    public void tabla(List<DetalleProductoDTO> pedido) throws PersistenciaException {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre del Artículo");
+        modelo.addColumn("Tamaño");
+        modelo.addColumn("Sabor");
+        modelo.addColumn("Cantidad");
+        modelo.addColumn("Costo");
+        modelo.addColumn("Total vendido");
 
-    try {
-        if (pedido != null && !pedido.isEmpty()) {
-            for (DetalleProductoDTO detalle : pedido) {
-                String[] datos = new String[6];
-                datos[0] = detalle.getNombreProducto();
-                datos[1] = detalle.getTamano();
-                datos[2] = detalle.getSabor();
-                datos[3] = String.valueOf(detalle.getCantidad());
-                datos[4] = String.valueOf(detalle.getTamanoPrecio()); 
-                datos[5] = String.valueOf(detalle.getPrecioTotal());
-                modelo.addRow(datos);
+        try {
+            if (pedido != null && !pedido.isEmpty()) {
+                for (DetalleProductoDTO detalle : pedido) {
+                    String[] datos = new String[6];
+                    datos[0] = detalle.getNombreProducto();
+                    datos[1] = detalle.getTamano();
+                    datos[2] = detalle.getSabor();
+                    datos[3] = String.valueOf(detalle.getCantidad());
+                    datos[4] = String.valueOf(detalle.getTamanoPrecio());
+                    datos[5] = String.valueOf(detalle.getPrecioTotal());
+                    modelo.addRow(datos);
+                }
+                tablapapupro.setModel(modelo);
+                tablapapupro.repaint();
+            } else {
+                System.out.println("La lista está vacía");
             }
-            tablapapupro.setModel(modelo); 
-            tablapapupro.repaint(); 
-        } else {
-            System.out.println("La lista está vacía");
+        } catch (Exception e) {
+            throw e;
         }
-    } catch (Exception e) {
-        throw e; 
     }
-}
-
 
 
     private void txtFechaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaVentaActionPerformed
-//        ConsultarVentasDTO cv = new ConsultarVentasDTO();
-//        Date fechaVenta = cv.getFecha();
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        String fechaVentaStr = dateFormat.format(fechaVenta);
-//        txtFechaVenta.setText(fechaVentaStr);
- try {
-        ConsultarVentasDTO cv = new ConsultarVentasDTO();
-        Date fechaVenta = cv.getFecha(); 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String fechaVentaStr = dateFormat.format(fechaVenta); 
-        txtFechaVenta.setText(fechaVentaStr); 
-    } catch (Exception e) {
-       throw e;
-    }
+        try {
+            ConsultarVentasDTO cv = new ConsultarVentasDTO();
+            Date fechaVenta = cv.getFecha(); // Obtener la fecha ingresada en el frame anterior
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaVentaStr = dateFormat.format(fechaVenta); // Convertir la fecha a String
+            txtFechaVenta.setText(fechaVentaStr); // Establecer el texto del campo de texto con la fecha
+        } catch (Exception e) {
+            e.printStackTrace(); // Manejo de errores en caso de que algo falle
+        }
     }//GEN-LAST:event_txtFechaVentaActionPerformed
 
 
