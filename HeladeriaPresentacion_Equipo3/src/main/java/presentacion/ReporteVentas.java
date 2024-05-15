@@ -35,7 +35,7 @@ public class ReporteVentas extends javax.swing.JFrame {
         initComponents();
         listaPedidosPro = pedido;
         cv = new CasoConsultarVentas();
-        listaDetallesPro = cv.consultaVentasDetalles(pedido);
+//        listaDetallesPro = cv.consultaVentasDetalles(pedido);
         System.out.println(listaDetallesPro);
         tabla(listaDetallesPro);
     }

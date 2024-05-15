@@ -137,7 +137,12 @@ public class PedidoDAO implements IPedidoDAO {
                 document.add(new Paragraph("Tamaño: " + dt.getTamano()).addStyle(style));
                 document.add(new Paragraph("Precio por tamaño: " + dt.getTamanoPrecio().toString()).addStyle(style));
                 document.add(new Paragraph("Cantidad: " + dt.getCantidad().toString()).addStyle(style));
-                document.add(new Paragraph("¿Topping?: " + dt.getTopping().toString()).addStyle(style));
+                if (dt.getTopping()) {
+                    document.add(new Paragraph("¿Topping?: " + "Si").addStyle(style));
+                } else {
+                    document.add(new Paragraph("¿Topping?: " + "No").addStyle(style));
+                }
+
             }
             document.add(new Paragraph("---------------------------------------").addStyle(style));
             document.add(new Paragraph("Precio Total: " + p.getTotalPedido().toString()).addStyle(style));
