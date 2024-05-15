@@ -4,17 +4,19 @@
  */
 package Interfaz;
 
-import dto.ConsultarVentasDTO;
+import dto.DetalleProductoDTO;
 import dto.PedidoDTO;
 import java.util.Date;
 import java.util.List;
+import persistencia.excepciones.PersistenciaException;
 
 /**
  *
  * @author Ximena
  */
 public interface ICasoConsultarVenta {
-     public List<PedidoDTO> consultarVentas(Date fecha);
+     public List<PedidoDTO> consultarVentas(Date fecha) throws PersistenciaException;
      
-     public void historial();
+     public List<DetalleProductoDTO> consultaVentasDetalles(List<PedidoDTO> pedido) throws PersistenciaException;
+     
 }

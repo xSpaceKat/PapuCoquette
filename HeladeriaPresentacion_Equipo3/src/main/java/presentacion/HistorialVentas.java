@@ -7,6 +7,10 @@ package presentacion;
 import Caso.CasoConsultarVentas;
 import Interfaz.ICasoConsultarVenta;
 import com.mycompany.heladeriaconsultar.CasoConsultar;
+import dto.PedidoDTO;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import persistencia.excepciones.PersistenciaException;
 
@@ -139,17 +143,32 @@ public class HistorialVentas extends javax.swing.JFrame {
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
         ConsultarVentas2 cv = new ConsultarVentas2();
         cv.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
 
-    public void tabla() throws PersistenciaException{
+    public void tabla(Date fecha) throws PersistenciaException {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Fecha");
-        modelo.addColumn("VentaTotal");
-        
-        ICasoConsultarVenta hv = new CasoConsultarVentas();
-        hv.historial();
-    }
+        modelo.addColumn("Fecha de la venta");
+        modelo.addColumn("Venta total");
 
+        Object[] datos = new Object[1];
+        try {
+            ICasoConsultarVenta cv = new CasoConsultarVentas();
+            List<PedidoDTO> dp = cv.consultarVentas(fecha);
+            if (!dp.isEmpty()) {
+                for (int i = 0; i < dp.size(); i++) {
+                    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                    datos[0] = formato.format(dp.get(i).getFecha());
+                    datos[1] = dp.get(i).getTotalPedido();
+                    modelo.addRow(datos);
+                }
+                tablaHistorial.setModel(modelo);
+            }
+         } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonRegresar;
     private javax.swing.JPanel jPanel3;

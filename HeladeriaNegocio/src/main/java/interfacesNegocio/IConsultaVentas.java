@@ -4,9 +4,11 @@
  */
 package interfacesNegocio;
 
+import dto.DetalleProductoDTO;
 import dto.PedidoDTO;
 import java.util.Date;
 import java.util.List;
+import persistencia.entidades.DetalleProducto;
 import persistencia.excepciones.PersistenciaException;
 
 /**
@@ -16,7 +18,7 @@ import persistencia.excepciones.PersistenciaException;
 public interface IConsultaVentas {
      public List<PedidoDTO> consultarVentas() throws PersistenciaException;
      
-     public void historial();
-     
      public List<PedidoDTO> listaPedidos(Date fecha) throws PersistenciaException;
+     
+     public  List<DetalleProductoDTO> listaDetalles(List<PedidoDTO> listaPedidos) throws PersistenciaException;
 }

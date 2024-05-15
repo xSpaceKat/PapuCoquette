@@ -19,6 +19,7 @@ public class pruebas2 {
         Date fecha = new Date(2024, 5, 13);
         PedidoDAO cv = new PedidoDAO();
         
-        System.out.println(cv.listaDetalles(cv.listaPedidos(fecha)));
+        System.out.println(cv.consultaVentasDetalles(cv.listaPedidos(fecha)));
+     
     }
 }

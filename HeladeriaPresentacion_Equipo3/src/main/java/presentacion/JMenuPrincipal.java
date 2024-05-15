@@ -44,8 +44,8 @@ public class JMenuPrincipal extends javax.swing.JFrame {
 
         for (int i = 0; i < productoDTOs.size(); i++) {
             JButton boton = new JButton(productoDTOs.get(i).getNombre());
-            boton.setBackground(new Color(226,183,252));
-            Font f=new Font("Comic Sans MS",18,18);
+            boton.setBackground(new Color(226, 183, 252));
+            Font f = new Font("Comic Sans MS", 18, 18);
             boton.setFont(f);
             boton.setPreferredSize(new Dimension(230, 120));
             boton.addActionListener(new ActionListener() {
@@ -88,13 +88,13 @@ public class JMenuPrincipal extends javax.swing.JFrame {
             Object[] fila = {d.getNombreProducto(), d.getSabor(), d.getTamano(), topping, d.getCantidad(), d.getPrecioTotal()};
             modeloTabla.addRow(fila);
         }
-        Float costo=0f;
-        for(DetalleProductoDTO detalle:listaDetallesProductos){
-            costo+=detalle.getPrecioTotal();
+        Float costo = 0f;
+        for (DetalleProductoDTO detalle : listaDetallesProductos) {
+            costo += detalle.getPrecioTotal();
         }
-        txtCobro.setText("$"+costo);
+        txtCobro.setText("$" + costo);
         tabTicket.setModel(modeloTabla);
-        
+
     }
 
     /**
@@ -123,6 +123,7 @@ public class JMenuPrincipal extends javax.swing.JFrame {
         btnPagar = new javax.swing.JButton();
         btnConsultarProductos = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        btnConsultarVentas = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -206,17 +207,17 @@ public class JMenuPrincipal extends javax.swing.JFrame {
         panHeaderCarito.setLayout(panHeaderCaritoLayout);
         panHeaderCaritoLayout.setHorizontalGroup(
             panHeaderCaritoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panHeaderCaritoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panHeaderCaritoLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addComponent(txtHeaderPapuCarrito)
-                .addGap(192, 192, 192))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         panHeaderCaritoLayout.setVerticalGroup(
             panHeaderCaritoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panHeaderCaritoLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panHeaderCaritoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtHeaderPapuCarrito)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         txtCobro.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
@@ -252,6 +253,15 @@ public class JMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnConsultarVentas.setBackground(new java.awt.Color(226, 183, 252));
+        btnConsultarVentas.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        btnConsultarVentas.setText("Ventas");
+        btnConsultarVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarVentasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanTicketLayout = new javax.swing.GroupLayout(PanTicket);
         PanTicket.setLayout(PanTicketLayout);
         PanTicketLayout.setHorizontalGroup(
@@ -259,12 +269,14 @@ public class JMenuPrincipal extends javax.swing.JFrame {
             .addGroup(PanTicketLayout.createSequentialGroup()
                 .addGroup(PanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanTicketLayout.createSequentialGroup()
-                        .addComponent(panHeaderCarito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panHeaderCarito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnConsultarVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnConsultarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanTicketLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2))
                     .addGroup(PanTicketLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(txtTotal)
@@ -282,7 +294,9 @@ public class JMenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(PanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(panHeaderCarito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConsultarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnConsultarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnConsultarVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -372,13 +386,21 @@ public class JMenuPrincipal extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        FormEliminarDetallesProducto eliminarDetallesProducto=new FormEliminarDetallesProducto(listaDetallesProductos);
+        FormEliminarDetallesProducto eliminarDetallesProducto = new FormEliminarDetallesProducto(listaDetallesProductos);
         this.dispose();
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnConsultarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarVentasActionPerformed
+        ConsultarVentas2 cv = new ConsultarVentas2();
+        cv.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btnConsultarVentasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanTicket;
     private javax.swing.JButton btnConsultarProductos;
+    private javax.swing.JButton btnConsultarVentas;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnPagar;
     private javax.swing.JScrollPane jScrollPane1;

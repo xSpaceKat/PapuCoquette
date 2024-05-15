@@ -6,13 +6,12 @@ package dto;
 
 import java.util.Date;
 
-
 /**
  *
  * @author Ximena
  */
 public class ConsultarVentasDTO {
-    
+
     private String nombre;
     private String tamanio;
     private String sabor;
@@ -26,9 +25,12 @@ public class ConsultarVentasDTO {
         this.sabor = sabor;
         this.cantidad = cantidad;
         this.costoUnitario = costoUnitario;
-        this.costoTotalProducto = costoUnitario*cantidad;
-        this.ventaTotal +=costoTotalProducto;
+        this.costoTotalProducto = costoUnitario * cantidad;
+        this.ventaTotal += costoTotalProducto;
         this.fecha = new Date();
+    }
+
+    public ConsultarVentasDTO() {
     }
 
     public String getNombre() {
@@ -100,6 +102,4 @@ public class ConsultarVentasDTO {
         return "ConsultarVentasDTO{" + "nombre=" + nombre + ", tamanio=" + tamanio + ", sabor=" + sabor + ", cantidad=" + cantidad + ", costoUnitario=" + costoUnitario + ", costoTotalProducto=" + costoTotalProducto + ", ventaTotal=" + ventaTotal + ", fecha=" + fecha + '}';
     }
 
-    
-    
 }

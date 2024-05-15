@@ -4,6 +4,18 @@
  */
 package presentacion;
 
+import Caso.CasoConsultarVentas;
+import Interfaz.ICasoConsultarVenta;
+import dto.ConsultarVentasDTO;
+import dto.DetalleProductoDTO;
+import dto.PedidoDTO;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import persistencia.entidades.DetalleProducto;
+import persistencia.excepciones.PersistenciaException;
+
 /**
  *
  * @author Ximena
@@ -101,6 +113,12 @@ public class ReporteVentas extends javax.swing.JFrame {
         txtTitulo2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         txtTitulo2.setText("Venta total");
 
+        txtFechaVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaVentaActionPerformed(evt);
+            }
+        });
+
         txtTitulo3.setBackground(new java.awt.Color(0, 0, 0));
         txtTitulo3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         txtTitulo3.setText("Fecha");
@@ -184,13 +202,51 @@ public class ReporteVentas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImprimirActionPerformed
-        
+
     }//GEN-LAST:event_botonImprimirActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
         ConsultarVentas2 cv = new ConsultarVentas2();
         cv.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
+
+    public void tabla(Date fecha, List<PedidoDTO> pedido) throws PersistenciaException {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre del Artículo");
+        modelo.addColumn("Tamaño");
+        modelo.addColumn("Sabor");
+        modelo.addColumn("Cantidad");
+        modelo.addColumn("Costo");
+        modelo.addColumn("Total vendido");
+
+        Object[] datos = new String[6];
+        try {
+            ICasoConsultarVenta cv = new CasoConsultarVentas();
+            List<DetalleProductoDTO> dp = cv.consultaVentasDetalles(pedido);
+            if (!dp.isEmpty()) {
+                for (int i = 0; i < dp.size(); i++) {
+                    datos[0] = dp.get(i).getNombreProducto();
+                    datos[1] = dp.get(i).getTamano();
+                    datos[2] = dp.get(i).getSabor();
+                    datos[3] = dp.get(i).getCantidad();
+                    datos[4] = dp.get(i).getTamanoPrecio();
+                    datos[5] = dp.get(i).getPrecioTotal();
+                }
+            }
+        } catch (PersistenciaException e) {
+            System.out.println(e);
+        }
+    }
+
+
+    private void txtFechaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaVentaActionPerformed
+        ConsultarVentasDTO cv = new ConsultarVentasDTO();
+        Date fechaVenta = cv.getFecha();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaVentaStr = dateFormat.format(fechaVenta);
+        txtFechaVenta.setText(fechaVentaStr);
+    }//GEN-LAST:event_txtFechaVentaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
