@@ -173,7 +173,7 @@ public class ConsultarVentas2 extends javax.swing.JFrame {
         try {
             Date fechaSeleccionada = datePicker1.getDate();
             if (fechaSeleccionada == null) {
-                JOptionPane.showMessageDialog(this, "Por favor, selecciona una fecha válida.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Ingrese una fecha valida.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             CasoConsultarVentas casoConsultarVentas = new CasoConsultarVentas();

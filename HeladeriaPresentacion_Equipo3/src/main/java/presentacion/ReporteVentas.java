@@ -9,6 +9,7 @@ import com.mycompany.heladeriaconsultar.CasoConsultar;
 import dto.ConsultarVentasDTO;
 import dto.DetalleProductoDTO;
 import dto.PedidoDTO;
+import interfacesNegocio.IReporteVentas;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +27,7 @@ public class ReporteVentas extends javax.swing.JFrame {
     List<PedidoDTO> listaPedidosPro;
     List<DetalleProductoDTO> listaDetallesPro;
     CasoConsultarVentas cv;
+    IReporteVentas rp = new negocio.ReporteVentas();
 
     /**
      * Creates new form ReporteVentas
@@ -33,11 +35,12 @@ public class ReporteVentas extends javax.swing.JFrame {
     public ReporteVentas(List<PedidoDTO> pedido, Date fecha, Float total) throws PersistenciaException {
 
         initComponents();
-        txtFechaVenta.setText(formatDate(fecha));
+        txtFechaVenta.setText(formatoFecha(fecha));
         txtTotalVenta.setText("" + total);
         listaPedidosPro = pedido;
         cv = new CasoConsultarVentas();
-//        listaDetallesPro = cv.consultaVentasDetalles(pedido);
+        rp = new negocio.ReporteVentas();
+        
         System.out.println(listaDetallesPro);
 
         tabla(cv.consultaVentasDetalles(listaPedidosPro));
@@ -194,14 +197,17 @@ public class ReporteVentas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public static String formatDate(Date date) {
+    public static String formatoFecha(Date date) {
         String pattern = "dd-MM-yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         return simpleDateFormat.format(date);
     }
 
     private void botonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImprimirActionPerformed
-
+        rp.reporteVentas((DetalleProductoDTO) listaDetallesPro);
+        ConsultarVentas2 cv = new ConsultarVentas2();
+        cv.setVisible(true);
+        dispose();
     }//GEN-LAST:event_botonImprimirActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
@@ -245,12 +251,12 @@ public class ReporteVentas extends javax.swing.JFrame {
     private void txtFechaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaVentaActionPerformed
         try {
             ConsultarVentasDTO cv = new ConsultarVentasDTO();
-            Date fechaVenta = cv.getFecha(); // Obtener la fecha ingresada en el frame anterior
+            Date fechaVenta = cv.getFecha(); 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String fechaVentaStr = dateFormat.format(fechaVenta); // Convertir la fecha a String
-            txtFechaVenta.setText(fechaVentaStr); // Establecer el texto del campo de texto con la fecha
+            String fechaVentaStr = dateFormat.format(fechaVenta);
+            txtFechaVenta.setText(fechaVentaStr); 
         } catch (Exception e) {
-            e.printStackTrace(); // Manejo de errores en caso de que algo falle
+            e.printStackTrace();
         }
     }//GEN-LAST:event_txtFechaVentaActionPerformed
 

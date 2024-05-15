@@ -3,13 +3,21 @@ package persistencia.dao;
 import com.mongodb.MongoException;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.colors.ColorConstants;
+import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.Style;
+import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Tab;
+import com.itextpdf.layout.element.TabStop;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.properties.TabAlignment;
+import com.itextpdf.layout.properties.TextAlignment;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Filters;
@@ -153,12 +161,6 @@ public class PedidoDAO implements IPedidoDAO {
             document.add(new Paragraph("Gracias por su compra!").addStyle(style));
         }
     }
-//
-//    public void reporteVentas(DetalleProducto detalleProducto){
-//        PdfFont code = null;
-//        DetalleProducto dp = 
-//    }
-//    
 
     @Override
     public List<DetalleProducto> consultaVentasDetalles(List<Pedido> pedido) throws PersistenciaException {
@@ -179,5 +181,55 @@ public class PedidoDAO implements IPedidoDAO {
         }
         return documentos;
     }
-}
 
+    @Override
+    public void imprimirReporteVentas(DetalleProducto detalle) throws PersistenciaException {
+        Pedido p = new Pedido();
+        try {
+            PdfDocument pdfDoc = new PdfDocument(new PdfWriter("./ReporteVentas.pdf"));
+            Document doc = new Document(pdfDoc);
+
+            doc.add(new Paragraph("PAPU COQUETTE"));
+            doc.add(new Paragraph("COMPRA"));
+
+            TabStop tabStop = new TabStop(PageSize.A4.getWidth() - 36, TabAlignment.RIGHT);
+
+
+            Paragraph paragraph = new Paragraph();
+            paragraph.addTabStops(tabStop);
+
+            paragraph.add("Fecha del Pedido: " + p.getFecha());
+
+            paragraph.add(new Tab());
+
+            paragraph.add("Venta Total: " + p.getTotalPedido());
+
+            doc.add(paragraph);
+
+            Table table = new Table(new float[]{2, 2, 2, 1, 1, 1});
+
+            String[] headers = {"Nombre del Producto", "Tamaño", "Sabor", "Cantidad", "Precio", "Total Vendido"};
+            PdfFont font = PdfFontFactory.createFont();
+            for (String header : headers) {
+                Cell cell = new Cell();
+                cell.setFont(font);
+                cell.setBackgroundColor(new DeviceRgb(192, 192, 192));
+                cell.setTextAlignment(TextAlignment.CENTER);
+                table.addCell(cell.add(new Paragraph(header))); // Agregar encabezados a la tabla
+            }
+
+            table.addCell(new Cell().add(new Paragraph(detalle.getNombreProducto())));
+            table.addCell(new Cell().add(new Paragraph(detalle.getTamano())));
+            table.addCell(new Cell().add(new Paragraph(detalle.getSabor())));
+            table.addCell(new Cell().add(new Paragraph(String.valueOf(detalle.getCantidad()))));
+            table.addCell(new Cell().add(new Paragraph(String.valueOf(detalle.getTamanoPrecio()))));
+            table.addCell(new Cell().add(new Paragraph(String.valueOf(detalle.getprecioTotal()))));
+
+            doc.add(table);
+            doc.close();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
+}

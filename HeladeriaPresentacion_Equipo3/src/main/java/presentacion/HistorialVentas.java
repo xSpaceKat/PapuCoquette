@@ -5,8 +5,6 @@
 package presentacion;
 
 import Caso.CasoConsultarVentas;
-import Interfaz.ICasoConsultarVenta;
-import com.mycompany.heladeriaconsultar.CasoConsultar;
 import dto.PedidoDTO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -135,7 +133,7 @@ public class HistorialVentas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
 
-    public static String formatDate(Date date) {
+    public static String formatoFecha(Date date) {
         String pattern = "dd-MM-yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         return simpleDateFormat.format(date);
@@ -150,7 +148,7 @@ public class HistorialVentas extends javax.swing.JFrame {
             if (pedido != null && !pedido.isEmpty()) {
                 for (PedidoDTO patricio : pedido) {
                     String[] datos = new String[2];
-                    datos[0] = formatDate(patricio.getFecha());
+                    datos[0] = formatoFecha(patricio.getFecha());
                     datos[1] = "" + patricio.getTotalPedido();
 
                     modelo.addRow(datos);

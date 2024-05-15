@@ -1,6 +1,8 @@
 package interfaces;
 
+import dto.DetalleProductoDTO;
 import dto.PedidoDTO;
+import java.util.List;
 
 /**
  *
@@ -9,5 +11,7 @@ import dto.PedidoDTO;
 public interface IImprimirRecibo {
 
     public void imprimir(PedidoDTO pedido);
+    
+    public void imprimirReporteVentas(DetalleProductoDTO detalle);
 
 }
