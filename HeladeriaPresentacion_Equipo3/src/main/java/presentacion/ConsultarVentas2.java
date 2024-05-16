@@ -155,6 +155,7 @@ public class ConsultarVentas2 extends javax.swing.JFrame {
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
         JMenuPrincipal mp = new JMenuPrincipal();
         mp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     private void botonHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHistorialActionPerformed
@@ -165,7 +166,7 @@ public class ConsultarVentas2 extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e);
         }
-
+        this.dispose();
     }//GEN-LAST:event_botonHistorialActionPerformed
 
 
@@ -190,6 +191,7 @@ public class ConsultarVentas2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al obtener las ventas: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
+        this.dispose();
 
     }//GEN-LAST:event_botonAceptarActionPerformed
 

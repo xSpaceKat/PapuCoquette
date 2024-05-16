@@ -40,7 +40,7 @@ public class ReporteVentas extends javax.swing.JFrame {
         listaPedidosPro = pedido;
         cv = new CasoConsultarVentas();
         rp = new negocio.ReporteVentas();
-        
+
         System.out.println(listaDetallesPro);
 
         tabla(cv.consultaVentasDetalles(listaPedidosPro));
@@ -222,19 +222,26 @@ public class ReporteVentas extends javax.swing.JFrame {
         modelo.addColumn("Tamaño");
         modelo.addColumn("Sabor");
         modelo.addColumn("Cantidad");
+        modelo.addColumn("¿Topping?");
         modelo.addColumn("Costo");
         modelo.addColumn("Total vendido");
 
         try {
             if (pedido != null && !pedido.isEmpty()) {
                 for (DetalleProductoDTO detalle : pedido) {
-                    String[] datos = new String[6];
+                    String[] datos = new String[7];
                     datos[0] = detalle.getNombreProducto();
                     datos[1] = detalle.getTamano();
                     datos[2] = detalle.getSabor();
                     datos[3] = String.valueOf(detalle.getCantidad());
-                    datos[4] = String.valueOf(detalle.getTamanoPrecio());
-                    datos[5] = String.valueOf(detalle.getPrecioTotal());
+                    datos[4] = String.valueOf(detalle.getTopping());
+                    if (detalle.getTopping() == true) {
+                        datos[4] = "Sí";
+                    }else{
+                        datos[4] = "No";
+                    }
+                    datos[5] = String.valueOf(detalle.getTamanoPrecio());
+                    datos[6] = String.valueOf(detalle.getPrecioTotal());
                     modelo.addRow(datos);
                 }
                 tablapapupro.setModel(modelo);
@@ -251,10 +258,10 @@ public class ReporteVentas extends javax.swing.JFrame {
     private void txtFechaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaVentaActionPerformed
         try {
             ConsultarVentasDTO cv = new ConsultarVentasDTO();
-            Date fechaVenta = cv.getFecha(); 
+            Date fechaVenta = cv.getFecha();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String fechaVentaStr = dateFormat.format(fechaVenta);
-            txtFechaVenta.setText(fechaVentaStr); 
+            txtFechaVenta.setText(fechaVentaStr);
         } catch (Exception e) {
             e.printStackTrace();
         }
