@@ -30,6 +30,5 @@ public interface IPedidoDAO {
     public List<DetalleProducto> consultaVentasDetalles(List<Pedido> pedido) throws PersistenciaException;
     
     public List<Pedido> listaHistorial()throws PersistenciaException;
-    
-    public void imprimirReporteVentas(DetalleProducto detalle) throws PersistenciaException;
+
 }

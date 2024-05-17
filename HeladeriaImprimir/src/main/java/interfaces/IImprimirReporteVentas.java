@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package interfacesNegocio;
+package interfaces;
 
 import dto.DetalleProductoDTO;
+import dto.PedidoDTO;
+import java.util.Date;
 import java.util.List;
-import persistencia.excepciones.PersistenciaException;
-
 
 /**
  *
  * @author Ximena
  */
-public interface IReporteVentas {
+public interface IImprimirReporteVentas {
     
-    public void reporteVentas(DetalleProductoDTO detalle);
+    public void imprimirReporteVentas(List<DetalleProductoDTO> detalle, PedidoDTO pedido);
 }

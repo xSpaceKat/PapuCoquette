@@ -5,14 +5,17 @@
 package presentacion;
 
 import Caso.CasoConsultarVentas;
+import ImprimirReporteVentas.ImprimirReporteVentas;
 import com.mycompany.heladeriaconsultar.CasoConsultar;
 import dto.ConsultarVentasDTO;
 import dto.DetalleProductoDTO;
 import dto.PedidoDTO;
-import interfacesNegocio.IReporteVentas;
+import interfaces.IImprimirReporteVentas;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +30,9 @@ public class ReporteVentas extends javax.swing.JFrame {
     List<PedidoDTO> listaPedidosPro;
     List<DetalleProductoDTO> listaDetallesPro;
     CasoConsultarVentas cv;
-    IReporteVentas rp = new negocio.ReporteVentas();
+    IImprimirReporteVentas rp = new ImprimirReporteVentas();
+    Float PapuTotal; 
+    Date Papufecha;
 
     /**
      * Creates new form ReporteVentas
@@ -39,7 +44,8 @@ public class ReporteVentas extends javax.swing.JFrame {
         txtTotalVenta.setText("" + total);
         listaPedidosPro = pedido;
         cv = new CasoConsultarVentas();
-        rp = new negocio.ReporteVentas();
+        PapuTotal = total;
+        Papufecha = fecha;
 
         System.out.println(listaDetallesPro);
 
@@ -118,6 +124,12 @@ public class ReporteVentas extends javax.swing.JFrame {
         txtTitulo3.setBackground(new java.awt.Color(0, 0, 0));
         txtTitulo3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         txtTitulo3.setText("Fecha");
+
+        txtTotalVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalVentaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -204,10 +216,35 @@ public class ReporteVentas extends javax.swing.JFrame {
     }
 
     private void botonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImprimirActionPerformed
-        rp.reporteVentas((DetalleProductoDTO) listaDetallesPro);
+   System.out.println("Generando reporte de ventas...");
+
+        List<DetalleProductoDTO> detalles = new ArrayList<>();
+        PedidoDTO pedido  = new PedidoDTO();
+        
+        for (PedidoDTO pedido2 : listaPedidosPro) {
+            detalles.addAll(pedido2.getDetalles());
+            pedido = pedido2;
+            pedido.setFecha(Papufecha);
+            pedido.setTotalPedido(PapuTotal);
+        }
+
+        if (detalles.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay detalles de productos para imprimir.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            rp.imprimirReporteVentas(detalles, pedido);
+            JOptionPane.showMessageDialog(this, "Reporte de ventas generado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al generar el reporte de ventas: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+
         ConsultarVentas2 cv = new ConsultarVentas2();
         cv.setVisible(true);
         dispose();
+   
     }//GEN-LAST:event_botonImprimirActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
@@ -266,6 +303,10 @@ public class ReporteVentas extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_txtFechaVentaActionPerformed
+
+    private void txtTotalVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalVentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalVentaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
