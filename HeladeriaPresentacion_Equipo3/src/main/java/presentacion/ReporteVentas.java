@@ -6,18 +6,20 @@ package presentacion;
 
 import Caso.CasoConsultarVentas;
 import ImprimirReporteVentas.ImprimirReporteVentas;
-import com.mycompany.heladeriaconsultar.CasoConsultar;
 import dto.ConsultarVentasDTO;
 import dto.DetalleProductoDTO;
 import dto.PedidoDTO;
 import interfaces.IImprimirReporteVentas;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import persistencia.excepciones.PersistenciaException;
 
@@ -27,12 +29,12 @@ import persistencia.excepciones.PersistenciaException;
  */
 public class ReporteVentas extends javax.swing.JFrame {
 
-    List<PedidoDTO> listaPedidosPro;
-    List<DetalleProductoDTO> listaDetallesPro;
-    CasoConsultarVentas cv;
-    IImprimirReporteVentas rp = new ImprimirReporteVentas();
-    Float PapuTotal; 
-    Date Papufecha;
+    private List<PedidoDTO> listaPedidosPro;
+    private List<DetalleProductoDTO> listaDetallesPro;
+    private CasoConsultarVentas cv;
+    private IImprimirReporteVentas rp = new ImprimirReporteVentas();
+    private Float PapuTotal;
+    private Date Papufecha;
 
     /**
      * Creates new form ReporteVentas
@@ -216,11 +218,11 @@ public class ReporteVentas extends javax.swing.JFrame {
     }
 
     private void botonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImprimirActionPerformed
-   System.out.println("Generando reporte de ventas...");
+        System.out.println("Generando reporte de ventas...");
 
         List<DetalleProductoDTO> detalles = new ArrayList<>();
-        PedidoDTO pedido  = new PedidoDTO();
-        
+        PedidoDTO pedido = new PedidoDTO();
+
         for (PedidoDTO pedido2 : listaPedidosPro) {
             detalles.addAll(pedido2.getDetalles());
             pedido = pedido2;
@@ -234,17 +236,25 @@ public class ReporteVentas extends javax.swing.JFrame {
         }
 
         try {
-            rp.imprimirReporteVentas(detalles, pedido);
             JOptionPane.showMessageDialog(this, "Reporte de ventas generado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al generar el reporte de ventas: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
 
-        ConsultarVentas2 cv = new ConsultarVentas2();
-        cv.setVisible(true);
-        dispose();
-   
+        String filePath = "./ReporteVentas.pdf";
+        File file = new File(filePath);
+        if (file.exists()) {
+            try {
+                Desktop.getDesktop().open(file);
+            } catch (IOException ex) {
+                Logger.getLogger(ReporteVentas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            rp.imprimirReporteVentas(detalles, pedido);
+            ConsultarVentas2 cv = new ConsultarVentas2();
+            cv.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_botonImprimirActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
@@ -274,7 +284,7 @@ public class ReporteVentas extends javax.swing.JFrame {
                     datos[4] = String.valueOf(detalle.getTopping());
                     if (detalle.getTopping() == true) {
                         datos[4] = "Sí";
-                    }else{
+                    } else {
                         datos[4] = "No";
                     }
                     datos[5] = String.valueOf(detalle.getTamanoPrecio());

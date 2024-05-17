@@ -18,12 +18,16 @@ import persistencia.excepciones.PersistenciaException;
  */
 public class HistorialVentas extends javax.swing.JFrame {
 
+    private Float paputotal;
+    
     /**
      * Creates new form HistorilVentas
      */
     public HistorialVentas() throws PersistenciaException {
         initComponents();
+        
 
+        
         CasoConsultarVentas cv = new CasoConsultarVentas();
         List<PedidoDTO> listaPedidosPro = cv.listaHistorial();
         tabla(listaPedidosPro);

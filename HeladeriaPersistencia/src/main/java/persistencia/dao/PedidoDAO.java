@@ -3,21 +3,13 @@ package persistencia.dao;
 import com.mongodb.MongoException;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.colors.ColorConstants;
-import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
-import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.Style;
-import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Tab;
-import com.itextpdf.layout.element.TabStop;
-import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.properties.TabAlignment;
-import com.itextpdf.layout.properties.TextAlignment;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Filters;
@@ -26,7 +18,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.conversions.Bson;
@@ -181,5 +175,7 @@ public class PedidoDAO implements IPedidoDAO {
         }
         return documentos;
     }
+
+   
 
 }

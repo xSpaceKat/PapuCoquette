@@ -31,4 +31,5 @@ public interface IPedidoDAO {
     
     public List<Pedido> listaHistorial()throws PersistenciaException;
 
+
 }
